@@ -43,7 +43,7 @@ Post.defaultProps = {
 };
 
 const PostBox = styled.div`
-  width: 20rem;
+  width: 18rem;
   background: white;
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 16px 0px;

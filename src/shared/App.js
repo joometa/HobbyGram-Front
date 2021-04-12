@@ -1,10 +1,10 @@
 import React from "react";
-import Post from "../components/Post";
+import PostList from "../components/PostList";
 
 function App() {
   return (
     <React.Fragment>
-      <Post></Post>
+      <PostList></PostList>
     </React.Fragment>
   );
 }
