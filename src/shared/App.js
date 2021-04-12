@@ -10,7 +10,7 @@ import Header from "../components/Header";
 function App() {
   return (
     <React.Fragment>
-      <Header></Header>
+      <Header />
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main} />
       </ConnectedRouter>

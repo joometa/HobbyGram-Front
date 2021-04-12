@@ -3,12 +3,17 @@ import styled from "styled-components";
 
 import Category from "../components/category";
 
+import ChattingBox from "../components/ChattingBox";
+import PostList from "../components/PostList";
+
 const Main = () => {
   return (
     <React.Fragment>
       <Loginuser>접속자 수 : 0명</Loginuser>
       <Title>Hobbygram🙂</Title>
       <Category></Category>
+      <ChattingBox></ChattingBox>
+      <PostList></PostList>
     </React.Fragment>
   );
 };
