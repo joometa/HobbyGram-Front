@@ -10,7 +10,7 @@ const ChattingBox = (props) => {
     <React.Fragment>
       <TotalWrap>
         <ChatContainer>
-          <div></div>
+          <div>채팅창</div>
           <div></div>
         </ChatContainer>
       </TotalWrap>
@@ -20,20 +20,21 @@ const ChattingBox = (props) => {
 
 const ChatContainer = styled.div`
   max-width: 70rem;
-  width: 100%;
+  width: 800px;
   height: 100%;
   max-height: 20rem;
-  background: #cc66ff;
+  background: #ecc7ff;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 16px 0px;
   margin: 2rem;
 `;
 
 const TotalWrap = styled.div`
-  overflow: hidden;
-  position: relative;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
   height: 350px;
-  margin: 40px 0 0;
+  margin: 0px auto;
   padding: 40px 0;
   background-color: #f5f5f5;
 `;

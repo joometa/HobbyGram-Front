@@ -18,6 +18,8 @@ const PostList = (props) => {
 const PostWrap = styled.div`
   flex-wrap: wrap;
   display: flex;
+  width: 1000px;
+  margin: 0px auto;
 `;
 
 export default PostList;
