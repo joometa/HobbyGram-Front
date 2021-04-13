@@ -3,7 +3,7 @@ import Post from "./Post";
 
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { history } from "../redux/ConfigureStore";
+import { history } from "../redux/configureStore";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 
