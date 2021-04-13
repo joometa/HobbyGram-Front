@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import commentImg from "../image/comment-icon.jpg";
 
-import { history } from "../redux/ConfigureStore";
+import { history } from "../redux/configureStore";
 
 const CommentButton = (props) => {
   return (
