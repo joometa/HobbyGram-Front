@@ -5,26 +5,24 @@ import { Grid, Input, Text, Image } from "../element/Index";
 import HeartButton from "../components/HeartButton";
 import CommentButton from "../components/CommentButton";
 import CommentPost from "../components/CommentPost";
-import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 
 const PostDetail = (props) => {
-
   const dispatch = useDispatch();
   console.log(props);
 
   const post = useSelector((state) => state.post.post);
-  
+
   const { comment_user, comment_content, comment_createdAt } = props;
 
   const post_id = props.match.params.id;
   const comment_list = useSelector((state) => state.comment.list);
-  
+
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
-    dispatch(commentActions.getCommentDB(post_id));    
+    dispatch(commentActions.getCommentDB(post_id));
   }, []);
 
   return (
@@ -69,11 +67,7 @@ const PostDetail = (props) => {
           </InfoWrap>
         </Grid>
         <Grid>
-
           <IMAGE src={post.img}></IMAGE>
-        
-
-
         </Grid>
         <Grid>
           <ContentBox>{props.content}</ContentBox>
