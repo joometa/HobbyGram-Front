@@ -20,7 +20,7 @@ function App() {
         <Route path="/" exact component={Main} />
         <Route path="/post" exact component={PostWrite} />
         <Route path="/post/edit" exact component={PostEdit} />
-        <Route path="/post/detail" exact component={PostDetail} />
+        <Route path="/post/:id" exact component={PostDetail} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
       </ConnectedRouter>

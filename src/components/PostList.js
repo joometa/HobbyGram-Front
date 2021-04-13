@@ -2,14 +2,35 @@ import React from "react";
 import Post from "./Post";
 
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/ConfigureStore";
+
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const PostList = (props) => {
+  const dispatch = useDispatch();
+  const post_list = useSelector((state) => state.post.list); // post는 모듈js를 뜻함 post 모듈에서 initialState에 list 값을 가져옴
+
+  console.log(post_list);
+  React.useEffect(() => {
+    dispatch(postActions.setPostDB());
+  }, []);
+
   return (
     <React.Fragment>
       <PostWrap>
-        <Post></Post>
-        <Post></Post>
-        <Post></Post>
+        {post_list.map((p, idx) => {
+          const id = p.id;
+          return (
+            <div
+              onClick={() => {
+                history.push(`post/${id}`);
+              }}
+            >
+              <Post key={p.id} {...p} />
+            </div>
+          );
+        })}
       </PostWrap>
     </React.Fragment>
   );

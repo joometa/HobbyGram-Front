@@ -1,14 +1,26 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Grid, Input, Text, Image } from "../element/Index";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+
 const PostDetail = (props) => {
+  const dispatch = useDispatch();
+  console.log(props);
+
+  const post = useSelector((state) => state.post.post);
+
+  React.useEffect(() => {
+    dispatch(postActions.getOnePostDB(props.match.params.id));
+  }, []);
+
   return (
     <React.Fragment>
       <Wrapper>
         <Grid>
           <Text bold size="40px">
-            {props.title}
+            {post.title}
           </Text>
           <Grid is_flex padding="30px 0px">
             <Button>수정</Button>
@@ -16,15 +28,15 @@ const PostDetail = (props) => {
           </Grid>
           <InfoWrap>
             <Info_Box>
-              <InfoText>{props.createdAt}</InfoText>
+              <InfoText>{post.createdAt}</InfoText>
               <span style={{ marginLeft: "0.4rem", marginRight: "0.4rem" }}>
                 ·
               </span>
-              <InfoText>{props.user}</InfoText>
+              <InfoText>{post.user}</InfoText>
               <span style={{ marginLeft: "0.4rem", marginRight: "0.4rem" }}>
                 ·
               </span>
-              <InfoText>{props.category}</InfoText>
+              <InfoText>{post.category}</InfoText>
             </Info_Box>
             <LikeCommentBox>
               <div>댓글</div>
@@ -33,10 +45,10 @@ const PostDetail = (props) => {
           </InfoWrap>
         </Grid>
         <Grid>
-          <Image></Image>
+          <IMAGE src={post.img}></IMAGE>
         </Grid>
         <Grid>
-          <ContentBox>컨텐츠 들어가는 자리</ContentBox>
+          <ContentBox>{post.content}</ContentBox>
         </Grid>
       </Wrapper>
     </React.Fragment>
@@ -44,16 +56,17 @@ const PostDetail = (props) => {
 };
 
 PostDetail.defaultProps = {
-  title:
-    "제목이 들어갈 자리입니다. 그래서 아무도 제목말고는 볼 수 없어요. 진짜에요.",
-  user: "작성자",
-  createdAt: "2000-00-00",
-  category: "카테고리",
-  commentCnt: 0,
-  recommendCnt: 0,
-  img:
-    "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
-  content: "내용이 들어가는 자리입니다.",
+  // id: null,
+  // title:
+  //   "제목이 들어갈 자리입니다. 그래서 아무도 제목말고는 볼 수 없어요. 진짜에요.",
+  // user: "작성자",
+  // createdAt: "2000-00-00",
+  // category: "카테고리",
+  // commentCnt: 0,
+  // recommendCnt: 0,
+  // img:
+  //   "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
+  // content: "내용이 들어가는 자리입니다.",
 };
 
 const Button = styled.button`
@@ -130,6 +143,13 @@ const InfoWrap = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
+`;
+
+const IMAGE = styled.img`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0px auto;
 `;
 
 export default PostDetail;
