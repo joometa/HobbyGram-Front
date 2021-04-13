@@ -14,7 +14,6 @@ const Category = () => {
           <Button>반려동물</Button>
         </div>
       </Div>
-      <div>채팅창</div>
     </React.Fragment>
   );
 };
@@ -26,6 +25,7 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   margin: 0px auto;
+  /* background-color: #f5f5f5; */
 `;
 
 const Button = styled.button`

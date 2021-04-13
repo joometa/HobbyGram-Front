@@ -9,6 +9,8 @@ import Header from "../components/Header";
 import PostWrite from "../pages/PostWrite";
 import PostEdit from "../pages/PostEdit";
 import PostDetail from "../pages/PostDetail";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/post" exact component={PostWrite} />
         <Route path="/post/edit" exact component={PostEdit} />
         <Route path="/post/detail" exact component={PostDetail} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
       </ConnectedRouter>
     </React.Fragment>
   );
