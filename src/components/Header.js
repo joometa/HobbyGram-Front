@@ -1,14 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 
+import { history } from "../redux/ConfigureStore";
+
 const Header = () => {
   return (
     <React.Fragment>
       <Div>
         <Font>Hobbygram</Font>
         <Buttondiv>
-          <Button style={{ margin: "7px", marginRight: "5px" }}>로그인</Button>
-          <Button style={{ margin: "7px", marginRight: "15px" }}>
+          <Button
+            style={{ margin: "7px", marginRight: "5px" }}
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            로그인
+          </Button>
+          <Button
+            style={{ margin: "7px", marginRight: "15px" }}
+            onClick={() => {
+              history.push("/signup");
+            }}
+          >
             회원가입
           </Button>
         </Buttondiv>

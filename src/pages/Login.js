@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Signup from "./Signup";
 import { Route, Link } from "react-router-dom";
 
 const Login = () => {
