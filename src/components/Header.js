@@ -7,7 +7,13 @@ const Header = () => {
   return (
     <React.Fragment>
       <Div>
-        <Font>Hobbygram</Font>
+        <Font
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Hobbygram
+        </Font>
         <Buttondiv>
           <Button
             style={{ margin: "7px", marginRight: "5px" }}

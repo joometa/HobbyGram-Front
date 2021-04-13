@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Grid, Input, Text, Image } from "../element/Index";
 import HeartButton from "../components/HeartButton";
@@ -7,15 +8,23 @@ import CommentPost from "../components/CommentPost";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+
 const PostDetail = (props) => {
+
+  const dispatch = useDispatch();
+  console.log(props);
+
+  const post = useSelector((state) => state.post.post);
+  
   const { comment_user, comment_content, comment_createdAt } = props;
 
   const post_id = props.match.params.id;
-  const dispatch = useDispatch();
   const comment_list = useSelector((state) => state.comment.list);
-  console.log(comment_list);
+  
   React.useEffect(() => {
-    dispatch(commentActions.getCommentDB(post_id));
+    dispatch(postActions.getOnePostDB(post_id));
+    dispatch(commentActions.getCommentDB(post_id));    
   }, []);
 
   return (
@@ -37,19 +46,19 @@ const PostDetail = (props) => {
         </div>
         <Grid padding="0px">
           <Text bold size="40px">
-            {props.title}
+            {post.title}
           </Text>
           <InfoWrap>
             <Info_Box>
-              <InfoText>{props.createdAt}</InfoText>
+              <InfoText>{post.createdAt}</InfoText>
               <span style={{ marginLeft: "0.4rem", marginRight: "0.4rem" }}>
                 ·
               </span>
-              <InfoText>{props.user}</InfoText>
+              <InfoText>{post.user}</InfoText>
               <span style={{ marginLeft: "0.4rem", marginRight: "0.4rem" }}>
                 ·
               </span>
-              <InfoText>{props.category}</InfoText>
+              <InfoText>{post.category}</InfoText>
             </Info_Box>
             <LikeCommentBox>
               <div style={{ display: "flex" }}>
@@ -60,7 +69,11 @@ const PostDetail = (props) => {
           </InfoWrap>
         </Grid>
         <Grid>
-          <Image src={props.img}></Image>
+
+          <IMAGE src={post.img}></IMAGE>
+        
+
+
         </Grid>
         <Grid>
           <ContentBox>{props.content}</ContentBox>
@@ -202,6 +215,13 @@ const InfoWrap = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
+`;
+
+const IMAGE = styled.img`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0px auto;
 `;
 
 export default PostDetail;
