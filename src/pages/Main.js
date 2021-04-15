@@ -12,7 +12,7 @@ const Main = () => {
       <Loginuser>접속자 수 : 0명</Loginuser>
       <Title>Hobbygram🙂</Title>
       <Category></Category>
-      <ChattingBox></ChattingBox>
+      {/* <ChattingBox></ChattingBox> */}
       <PostList></PostList>
     </React.Fragment>
   );

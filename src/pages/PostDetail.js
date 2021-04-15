@@ -6,6 +6,7 @@ import { Grid, Input, Text, Image } from "../element/Index";
 
 import CommentButton from "../components/CommentButton";
 import CommentPost from "../components/CommentPost";
+import HeartButton from "../components/HeartButton";
 
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
