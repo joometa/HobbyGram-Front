@@ -54,6 +54,8 @@ const addPostDB = (title, content, imgfile) => {
   };
 };
 
+// API-URL : http://15.164.164.65/post
+// Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = () => {
   return function (dispatch, getState, { history }) {
     let post_list = [];
@@ -102,6 +104,7 @@ const editPostDB = (content, img, title, id) => {
         let new_post_data = {
           // 새로 받은 값들을 바꿔준다.
           title: title,
+          _id: id,
           content: content,
           // img:img,
         };
@@ -121,7 +124,7 @@ const deletePostDB = (id) => {
       method: "delete",
       url: `${config.api}/post/${id}`,
       data: {
-        id: id,
+        _id: id,
       },
     })
       .then((response) => {
@@ -154,6 +157,7 @@ export default handleActions(
       produce(state, (draft) => {
         // 받아온 id값과 맞지 않는 id의 데이터들을 새로운 배열에 넣어서 기존 list에 덮어쓰기해준다.
         let new_post_list = draft.list.filter((p) => {
+          console.log(action.payload);
           if (p.id !== action.payload.post) {
             return p;
           }
@@ -163,7 +167,9 @@ export default handleActions(
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
         // 수정할 포스트의 id로 인덱스를 찾는다.
-        let idx = draft.list.findIndex((p) => p.id === action.payload.post.id);
+        let idx = draft.list.findIndex(
+          (p) => p._id === action.payload.post._id
+        );
         draft.post = action.payload.post;
         draft.list[idx] = draft.post; // 수정된 값이 들어간 post를 list[idx] 값에 넣어준다.
         console.log(idx);

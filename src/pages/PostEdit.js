@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Input, Upload, Image } from "../element/Index";
+import { Grid, Input, Text, Image } from "../element/Index";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
@@ -30,20 +30,9 @@ const PostEdit = (props) => {
     dispatch(postActions.getOnePostDB(post_id));
   }, []);
 
-  const selectFile = (e) => {
-    //file state에 현재 선택된 파일 저장
-    const reader = new FileReader();
-    // 현재 선택된 파일을 dataurl로 변환
-    reader.readAsDataURL(e.target.files[0]);
-    // 변환된 dataurl을 preview state에 저장
-    reader.onload = () => {
-      setImg(reader.result);
-    };
-  };
-
   const editPost = () => {
     dispatch(postActions.editPostDB(contents, img, title, post_id));
-    // history.push("/");
+    history.push("/");
   };
 
   return (
@@ -53,11 +42,8 @@ const PostEdit = (props) => {
           <h1>제목</h1>
           <TitleInput value={title} onChange={changeTitle}></TitleInput>
         </Grid>
-        <Grid padding="30px 0px">
-          <Upload _onChange={selectFile}>사진선택</Upload>
-        </Grid>
         <Grid>
-          <Image detail src={img}></Image>
+          <Image src={post.img}></Image>
         </Grid>
         <Grid>
           <Input
