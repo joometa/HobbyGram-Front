@@ -77,13 +77,14 @@ const editPostDB = (content, img, title, id) => {
       },
     })
       .then(() => {
-        let post_data = {
+        let new_post_data = {
+          // 새로 받은 값들을 바꿔준다.
           title: title,
           id: id,
           content: content,
           // img:img,
         };
-        dispatch(editPost(post_data));
+        dispatch(editPost(new_post_data));
         window.alert("수정 되었습니다!");
       })
       .catch((err) => {
@@ -124,6 +125,7 @@ export default handleActions(
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
+        // 받아온 id값과 맞지 않는 id의 데이터들을 새로운 배열에 넣어서 기존 list에 덮어쓰기해준다.
         let new_post_list = draft.list.filter((p) => {
           if (p.id !== action.payload.post) {
             return p;
@@ -133,6 +135,7 @@ export default handleActions(
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
+        // 수정할 포스트의 id로 인덱스를 찾는다.
         let idx = draft.list.findIndex((p) => p.id === action.payload.post.id);
         draft.post = action.payload.post;
         draft.list[idx] = draft.post; // 수정된 값이 들어간 post를 list[idx] 값에 넣어준다.
