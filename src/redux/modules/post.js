@@ -92,6 +92,25 @@ const editPostDB = (content, img, title, id) => {
   };
 };
 
+const deletePostDB = (id) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "delete",
+      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      data: {
+        id: id,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        dispatch(deletePost(id));
+      })
+      .catch((err) => {
+        console.log("삭제에러", err);
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_POST]: (state, action) =>
@@ -103,7 +122,15 @@ export default handleActions(
       produce(state, (draft) => {
         draft.post = action.payload.post;
       }),
-    [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
+    [DELETE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        let new_post_list = draft.list.filter((p) => {
+          if (p.id !== action.payload.post) {
+            return p;
+          }
+        });
+        draft.list = new_post_list;
+      }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex((p) => p.id === action.payload.post.id);
@@ -121,6 +148,7 @@ const actionCreators = {
   setPostDB,
   getOnePostDB,
   editPostDB,
+  deletePostDB,
 };
 
 export { actionCreators };

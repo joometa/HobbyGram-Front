@@ -29,6 +29,16 @@ const PostDetail = (props) => {
     dispatch(commentActions.getCommentDB(post_id));
   }, []);
 
+  const deletePost = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(postActions.deletePostDB(post_id));
+      window.alert("삭제되었습니다!");
+      history.replace("/");
+    } else {
+      return;
+    }
+  };
+
   return (
     <React.Fragment>
       <Wrapper>
@@ -49,7 +59,7 @@ const PostDetail = (props) => {
             </Button>
           </div>
           <div>
-            <Button>삭제</Button>
+            <Button onClick={deletePost}>삭제</Button>
           </div>
         </div>
         <Grid padding="0px">
