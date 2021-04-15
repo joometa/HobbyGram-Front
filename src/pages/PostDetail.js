@@ -18,6 +18,7 @@ const PostDetail = (props) => {
 
   const post = useSelector((state) => state.post.post);
   const post_id = props.match.params.id;
+  console.log(props.match.params);
   console.log(post_id);
   const comment_list = useSelector((state) => state.comment.list);
 
@@ -252,8 +253,10 @@ const InfoWrap = styled.div`
 const IMAGE = styled.img`
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 70%;
+  height: 70%;
   margin: 0px auto;
+  background-size: 70% 70%;
 `;
 
 export default PostDetail;

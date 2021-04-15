@@ -19,7 +19,7 @@ const PostList = (props) => {
     <React.Fragment>
       <PostWrap>
         {post_list.map((p, idx) => {
-          const id = p.id;
+          const id = p._id;
           return (
             <div
               onClick={() => {

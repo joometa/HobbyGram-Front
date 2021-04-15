@@ -40,7 +40,7 @@ const addPostDB = (title, content) => {
     let new_post = [];
     axios({
       method: "post",
-      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
+      url: "http://15.164.164.65/post",
       data: post,
     }).then((docs) => {
       console.log(docs.data);
@@ -50,6 +50,7 @@ const addPostDB = (title, content) => {
   };
 };
 
+// API-URL : http://15.164.164.65/post
 // Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = () => {
   return function (dispatch, getState, { history }) {
@@ -57,7 +58,7 @@ const setPostDB = () => {
 
     axios({
       method: "get",
-      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
+      url: "http://15.164.164.65/post",
       // `${config.api}/post`,
     }).then((docs) => {
       // console.log(docs.data);
@@ -74,12 +75,12 @@ const getOnePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "get",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      url: `http://15.164.164.65/post/detail/${id}`,
       // `${config.api}/post/${id}`,
     })
       .then((docs) => {
         console.log(docs.data);
-        const onePost = docs.data;
+        const onePost = docs.data.post;
         dispatch(getPost(onePost));
       })
       .catch((err) => {
@@ -91,8 +92,8 @@ const getOnePostDB = (id) => {
 const editPostDB = (content, img, title, id) => {
   return function (dispatch, getState, { history }) {
     axios({
-      method: "put",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      method: "patch",
+      url: `http://15.164.164.65/post/${id}`,
       data: {
         content: content,
         // img: img,
@@ -103,10 +104,11 @@ const editPostDB = (content, img, title, id) => {
         let new_post_data = {
           // 새로 받은 값들을 바꿔준다.
           title: title,
-          id: id,
+          _id: id,
           content: content,
           // img:img,
         };
+        console.log(new_post_data);
         dispatch(editPost(new_post_data));
         window.alert("수정 되었습니다!");
       })
@@ -120,9 +122,9 @@ const deletePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "delete",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      url: `http://15.164.164.65/post/${id}`,
       data: {
-        id: id,
+        _id: id,
       },
     })
       .then((response) => {
@@ -139,7 +141,7 @@ export default handleActions(
   {
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.post_list;
+        draft.list = action.payload.post_list.post;
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -155,6 +157,7 @@ export default handleActions(
       produce(state, (draft) => {
         // 받아온 id값과 맞지 않는 id의 데이터들을 새로운 배열에 넣어서 기존 list에 덮어쓰기해준다.
         let new_post_list = draft.list.filter((p) => {
+          console.log(action.payload);
           if (p.id !== action.payload.post) {
             return p;
           }
@@ -164,7 +167,9 @@ export default handleActions(
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
         // 수정할 포스트의 id로 인덱스를 찾는다.
-        let idx = draft.list.findIndex((p) => p.id === action.payload.post.id);
+        let idx = draft.list.findIndex(
+          (p) => p._id === action.payload.post._id
+        );
         draft.post = action.payload.post;
         draft.list[idx] = draft.post; // 수정된 값이 들어간 post를 list[idx] 값에 넣어준다.
         console.log(idx);

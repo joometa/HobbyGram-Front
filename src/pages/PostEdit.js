@@ -12,6 +12,7 @@ const PostEdit = (props) => {
   const post = useSelector((state) => state.post.post);
 
   const post_id = props.match.params.id;
+  console.log(post_id);
 
   // 수정 시 현재 게시물의 content를 수정 인풋창에 띄워주기 위해 state의 default값을 props.content로 설정
   const [contents, setContents] = React.useState(post.content);

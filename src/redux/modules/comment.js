@@ -25,7 +25,7 @@ const getCommentDB = (post_id) => {
     let list = [];
     axios({
       method: "get",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${post_id}`,
+      url: `http://15.164.164.65/post${post_id}`,
     }).then((docs) => {
       if (!docs.data.comment) {
         return;
