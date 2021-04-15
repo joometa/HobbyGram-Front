@@ -25,12 +25,13 @@ const getCommentDB = (post_id) => {
     let list = [];
     axios({
       method: "get",
-      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
+      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${post_id}`,
     }).then((docs) => {
-      console.log(docs.data);
-      const post_idx = docs.data.findIndex((p) => p.id === post_id);
-      console.log(docs.data[post_idx].comment);
-      list = docs.data[post_idx].comment;
+      if (!docs.data.comment) {
+        return;
+      }
+      // const post_idx = docs.data.findIndex((p) => p.id === post_id);
+      list = docs.data.comment;
       dispatch(setComment(list));
     });
   };

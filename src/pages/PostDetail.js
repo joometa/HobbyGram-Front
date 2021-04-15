@@ -1,13 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import styled from "styled-components";
 import { Grid, Input, Text, Image } from "../element/Index";
-import HeartButton from "../components/HeartButton";
+
 import CommentButton from "../components/CommentButton";
 import CommentPost from "../components/CommentPost";
-import { actionCreators as commentActions } from "../redux/modules/comment";
 
+import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
+
+import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -18,12 +21,23 @@ const PostDetail = (props) => {
   const { comment_user, comment_content, comment_createdAt } = props;
 
   const post_id = props.match.params.id;
+  console.log(post_id);
   const comment_list = useSelector((state) => state.comment.list);
 
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
     dispatch(commentActions.getCommentDB(post_id));
   }, []);
+
+  const deletePost = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(postActions.deletePostDB(post_id));
+      window.alert("삭제되었습니다!");
+      history.replace("/");
+    } else {
+      return;
+    }
+  };
 
   return (
     <React.Fragment>
@@ -36,10 +50,16 @@ const PostDetail = (props) => {
           }}
         >
           <div style={{ marginRight: "0.5rem" }}>
-            <Button>수정</Button>
+            <Button
+              onClick={() => {
+                history.push(`/post/${post_id}/edit`);
+              }}
+            >
+              수정
+            </Button>
           </div>
           <div>
-            <Button>삭제</Button>
+            <Button onClick={deletePost}>삭제</Button>
           </div>
         </div>
         <Grid padding="0px">
@@ -70,7 +90,7 @@ const PostDetail = (props) => {
           <IMAGE src={post.img}></IMAGE>
         </Grid>
         <Grid>
-          <ContentBox>{props.content}</ContentBox>
+          <ContentBox>{post.content}</ContentBox>
         </Grid>
         <Grid margin="1rem 0px 0px 0px">
           <CommentBox>

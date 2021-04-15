@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Grid, Text } from "./Index";
 
 const Input = (props) => {
-  const { multiline, type, _onChange, label, placeholder, bold } = props;
+  const { multiline, type, _onChange, label, placeholder, bold, value } = props;
 
   if (multiline) {
     return (
@@ -13,6 +13,7 @@ const Input = (props) => {
           rows={15}
           onChange={_onChange}
           placeholder={placeholder}
+          value={value}
         ></ElTextarea>
       </Grid>
     );
@@ -39,7 +40,7 @@ Input.defaultProps = {
   label: false,
   placeholder: "입력하세요.",
   bold: false,
-  value: false,
+  value: null,
 };
 
 const ElInput = styled.input`

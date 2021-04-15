@@ -1,36 +1,66 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Input, Text, Upload, Image } from "../element/Index";
 
+import { actionCreators as postActions } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
+
 const PostEdit = (props) => {
-  const [contents, setContents] = React.useState("");
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post.post);
+
+  const post_id = props.match.params.id;
+
+  // 수정 시 현재 게시물의 content를 수정 인풋창에 띄워주기 위해 state의 default값을 props.content로 설정
+  const [contents, setContents] = React.useState(post.content);
+  const [title, setTitle] = React.useState(post.title);
+  const [img, setImg] = React.useState(post.img);
 
   const changeContents = (e) => {
     setContents(e.target.value);
+  };
+
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  React.useEffect(() => {
+    dispatch(postActions.getOnePostDB(post_id));
+  }, []);
+
+  const editPost = () => {
+    dispatch(postActions.editPostDB(contents, img, title, post_id));
+    history.push("/");
   };
 
   return (
     <React.Fragment>
       <Wrapper>
         <Grid>
-          <Text bold size="40px">
-            {props.title}
-          </Text>
+          <h1>제목</h1>
+          <TitleInput value={title} onChange={changeTitle}></TitleInput>
         </Grid>
         <Grid>
-          <Image></Image>
+          <Image src={post.img}></Image>
         </Grid>
         <Grid>
           <Input
             _onChange={changeContents}
             multiline
-            placeholder="내용을 입력하세요."
+            value={contents}
+            placeholder="수정할 내용을 입력하세요."
           />
         </Grid>
         <Grid is_flex padding="30px 0px">
-          <Button>수정</Button>
-          <Button>취소</Button>
+          <Button onClick={editPost}>수정완료</Button>
+          <Button
+            onClick={() => {
+              history.replace(`/post/${post_id}`);
+            }}
+          >
+            취소
+          </Button>
         </Grid>
       </Wrapper>
     </React.Fragment>
@@ -78,6 +108,13 @@ const Wrapper = styled.div`
   @media (max-width: 767px) {
     width: calc(50% - 0.5rem);
   }
+`;
+
+const TitleInput = styled.input`
+  width: 100%;
+  height: 40px;
+  font-size: 30px;
+  margin: 10px auto;
 `;
 
 export default PostEdit;
