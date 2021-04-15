@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Input, Text, Upload, Image } from "../element/Index";
+import { Grid, Input, Text, Image } from "../element/Index";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";

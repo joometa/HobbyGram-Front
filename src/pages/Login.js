@@ -3,14 +3,27 @@ import styled from "styled-components";
 import { Route, Link } from "react-router-dom";
 
 const Login = () => {
+  const [id, setId] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+
   return (
     <React.Fragment>
       <Div>
         <H1>로그인</H1>
         <P>아이디</P>
-        <Input placeholder="아이디를 입력해주세요." />
+        <Input
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+          placeholder="아이디를 입력해주세요."
+        />
         <P>비밀번호</P>
-        <Input placeholder="비밀번호를 입력해주세요."></Input>
+        <Input
+          onChange={(e) => {
+            setPwd(e.target.value);
+          }}
+          placeholder="비밀번호를 입력해주세요."
+        ></Input>
         <Button>로그인하기</Button>
         <Question>
           <p>아직 회원이 아니신가요?</p>

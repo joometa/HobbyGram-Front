@@ -26,7 +26,7 @@ const PostList = (props) => {
                 history.push(`post/${id}`);
               }}
             >
-              <Post key={p.id} {...p} />
+              <Post key={id} {...p} />
             </div>
           );
         })}

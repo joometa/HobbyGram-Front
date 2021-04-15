@@ -30,9 +30,16 @@ const getCommentDB = (post_id) => {
       if (!docs.data.comment) {
         return;
       }
+
       // const post_idx = docs.data.findIndex((p) => p.id === post_id);
       list = docs.data.comment;
+
+      // const post_idx = docs.data.findIndex((p) => p.id === post_id);
+      // console.log(docs.data[post_idx].comment);
+      // list = docs.data[post_idx].comment;
+
       dispatch(setComment(list));
+      console.log(docs.data);
     });
   };
 };

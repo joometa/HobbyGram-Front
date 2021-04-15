@@ -14,12 +14,8 @@ import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
-  console.log(props);
 
   const post = useSelector((state) => state.post.post);
-
-  const { comment_user, comment_content, comment_createdAt } = props;
-
   const post_id = props.match.params.id;
   console.log(post_id);
   const comment_list = useSelector((state) => state.comment.list);
@@ -79,9 +75,30 @@ const PostDetail = (props) => {
               <InfoText>{post.category}</InfoText>
             </Info_Box>
             <LikeCommentBox>
-              <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  display: "flex",
+                  lineHeight: "1.5",
+                  color: "rgb(134, 142, 150)",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
                 <CommentButton />
-                <CommentPost />
+                {props.commentCnt}
+              </div>
+              <div style={{ width: "2rem" }}></div>
+              <div
+                style={{
+                  display: "flex",
+                  lineHeight: "1.5",
+                  color: "rgb(134, 142, 150)",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <HeartButton />
+                {props.recommendCnt}
               </div>
             </LikeCommentBox>
           </InfoWrap>

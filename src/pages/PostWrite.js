@@ -2,17 +2,66 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { Grid, Input, Text, Upload, Image } from "../element/Index";
+import { actionCreators as postActions } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
+import axios from "axios";
 
 const PostWrite = (props) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = React.useState("");
-  const [contents, setContents] = React.useState("");
+  const [content, setContent] = React.useState("");
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
   };
 
+  const addPost = () => {
+    dispatch(postActions.addPostDB(title, content));
+    history.replace("/");
+  };
+
   const changeContents = (e) => {
-    setContents(e.target.value);
+    setContent(e.target.value);
+  };
+
+  const [file, setFile] = React.useState(null);
+  const [preview, setPreview] = React.useState();
+
+  // 사진 업로드
+  // const fileInput = React.useRef();
+  // const selectfile = (e) => {
+  //   //이미지 파일정보
+  //   setFile(e.target.files[0]);
+  //   console.log(e.target.files[0]);
+
+  //   const fd = new FormData();
+
+  //   fd.append("fileName", e.target.files[0]);
+  //   axios({
+  //     method: "post",
+  //     // url: `${api}/post/:category`,
+  //     data: fd,
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log("에러메세지", err);
+  //     });
+  // };
+  const fileInput = React.useRef();
+
+  const selectFile = (e) => {
+    //file state에 현재 선택된 파일 저장
+    setFile(e.target.files[0]);
+    console.log(e.target.files);
+    const reader = new FileReader();
+    // 현재 선택된 파일을 dataurl로 변환
+    reader.readAsDataURL(e.target.files[0]);
+    // 변환된 dataurl을 preview state에 저장
+    reader.onload = () => {
+      setPreview(reader.result);
+    };
   };
 
   return (
@@ -27,10 +76,10 @@ const PostWrite = (props) => {
         </Grid>
 
         <Grid padding="30px 0px">
-          <Upload>사진선택</Upload>
+          <Upload _onChange={selectFile}>사진선택</Upload>
         </Grid>
         <Grid>
-          <Image></Image>
+          <Image src={preview}></Image>
         </Grid>
         <Grid>
           <Input
@@ -40,7 +89,7 @@ const PostWrite = (props) => {
           />
         </Grid>
         <Grid is_flex padding="30px 0px">
-          <Button>완료</Button>
+          <Button onClick={addPost}>완료</Button>
           <Button>취소</Button>
         </Grid>
       </Wrapper>

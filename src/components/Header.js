@@ -69,4 +69,5 @@ const Font = styled.div`
   font-size: 40px;
   color: #a445c5;
   margin-left: 15px;
+  cursor: pointer;
 `;

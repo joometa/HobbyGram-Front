@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Post = (props) => {
   const { _id } = props;
+
   return (
     <React.Fragment>
       <PostBox>
