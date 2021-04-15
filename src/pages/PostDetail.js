@@ -17,6 +17,7 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
 
   const post = useSelector((state) => state.post.post);
+  console.log(post);
   const post_id = props.match.params.id;
   console.log(post_id);
   const comment_list = useSelector((state) => state.comment.list);
@@ -105,7 +106,7 @@ const PostDetail = (props) => {
           </InfoWrap>
         </Grid>
         <Grid>
-          <IMAGE src={post.img}></IMAGE>
+          <Image detail src={post.img}></Image>
         </Grid>
         <Grid>
           <ContentBox>{post.content}</ContentBox>
@@ -247,13 +248,6 @@ const InfoWrap = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
-`;
-
-const IMAGE = styled.img`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 0px auto;
 `;
 
 export default PostDetail;

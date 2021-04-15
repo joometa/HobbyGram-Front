@@ -10,7 +10,6 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const PostList = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list); // post는 모듈js를 뜻함 post 모듈에서 initialState에 list 값을 가져옴
-
   React.useEffect(() => {
     dispatch(postActions.setPostDB());
   }, []);
@@ -19,7 +18,7 @@ const PostList = (props) => {
     <React.Fragment>
       <PostWrap>
         {post_list.map((p, idx) => {
-          const id = p.id;
+          const id = p._id;
           return (
             <div
               onClick={() => {

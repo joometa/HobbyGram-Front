@@ -3,7 +3,7 @@ import styled from "styled-components";
 import preview from "../image/no_image.png";
 
 const Image = (props) => {
-  const { shape, src, size, overflow } = props;
+  const { shape, src, size, overflow, detail } = props;
 
   const styles = {
     src: src,
@@ -11,12 +11,15 @@ const Image = (props) => {
     overflow: overflow,
     shape: shape,
   };
-
-  return (
-    <AspectOutter>
-      <AspectInner {...styles}></AspectInner>
-    </AspectOutter>
-  );
+  if (detail) {
+    return <DetailImage src={src}></DetailImage>;
+  } else {
+    return (
+      <AspectOutter>
+        <AspectInner {...styles}></AspectInner>
+      </AspectOutter>
+    );
+  }
 };
 
 Image.defaultProps = {
@@ -24,14 +27,19 @@ Image.defaultProps = {
   src: preview,
   size: 36,
   overflow: "hidden",
+  label: null,
+  detail: false,
 };
 
-const ImageDefault = styled.div`
-  --size: ${(props) => props.size}px;
-  width: var(--size);
-  height: var(--size);
+const DetailImage = styled.img`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-height: 40rem;
+  margin: 0px auto;
   background-image: url("${(props) => props.src}");
-  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: fill;
 `;
 
 const AspectOutter = styled.div`

@@ -5,9 +5,17 @@ import { Grid, Input, Text, Upload, Image } from "../element/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 import axios from "axios";
+// import {
+//   FormControl,
+//   FormLabel,
+//   RadioGroup,
+//   FormControlLabel,
+//   Radio,
+// } from "@material-ui/core";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
+  console.log(props);
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
 
@@ -15,17 +23,17 @@ const PostWrite = (props) => {
     setTitle(e.target.value);
   };
 
-  const addPost = () => {
-    dispatch(postActions.addPostDB(title, content));
-    history.replace("/");
-  };
-
   const changeContents = (e) => {
     setContent(e.target.value);
   };
 
-  const [file, setFile] = React.useState(null);
+  const [imgfile, setImgFile] = React.useState(null);
   const [preview, setPreview] = React.useState();
+
+  const addPost = () => {
+    dispatch(postActions.addPostDB(title, imgfile, content));
+    history.replace("/");
+  };
 
   // 사진 업로드
   // const fileInput = React.useRef();
@@ -53,7 +61,7 @@ const PostWrite = (props) => {
 
   const selectFile = (e) => {
     //file state에 현재 선택된 파일 저장
-    setFile(e.target.files[0]);
+    setImgFile(e.target.files[0]);
     console.log(e.target.files);
     const reader = new FileReader();
     // 현재 선택된 파일을 dataurl로 변환
@@ -73,6 +81,9 @@ const PostWrite = (props) => {
             bold
             placeholder="제목을 입력하세요."
           />
+        </Grid>
+        <Grid>
+          <input type="radio" id="male" name="gender" value="male" />
         </Grid>
 
         <Grid padding="30px 0px">

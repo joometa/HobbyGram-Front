@@ -34,31 +34,33 @@ const initialPost = {
   content: "하이",
 };
 
-const addPostDB = (title, content) => {
+const addPostDB = (title, content, imgfile) => {
   return function (dispatch, getState, { history }) {
     const post = { ...initialPost, title: title, content: content };
     let new_post = [];
+
+    const formdata = new FormData();
+    formdata.append("content", content);
+    formdata.append("title", title);
+    formdata.append("img", imgfile);
+
     axios({
       method: "post",
-      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
-      data: post,
-    }).then((docs) => {
-      console.log(docs.data);
-      new_post = docs.data;
-      dispatch(addPost(new_post));
+      url: `${config.api}/post`,
+      data: formdata,
+    }).then((res) => {
+      console.log(res);
     });
   };
 };
 
-// Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = () => {
   return function (dispatch, getState, { history }) {
     let post_list = [];
 
     axios({
       method: "get",
-      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
-      // `${config.api}/post`,
+      url: `${config.api}/post`,
     }).then((docs) => {
       // console.log(docs.data);
       const post_list = docs.data;
@@ -68,18 +70,15 @@ const setPostDB = () => {
   };
 };
 
-// `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`
-
 const getOnePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "get",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
-      // `${config.api}/post/${id}`,
+      url: `${config.api}/post/detail/${id}`,
     })
       .then((docs) => {
         console.log(docs.data);
-        const onePost = docs.data;
+        const onePost = docs.data.post;
         dispatch(getPost(onePost));
       })
       .catch((err) => {
@@ -91,8 +90,8 @@ const getOnePostDB = (id) => {
 const editPostDB = (content, img, title, id) => {
   return function (dispatch, getState, { history }) {
     axios({
-      method: "put",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      method: "patch",
+      url: `${config.api}/post/${id}`,
       data: {
         content: content,
         // img: img,
@@ -103,10 +102,10 @@ const editPostDB = (content, img, title, id) => {
         let new_post_data = {
           // 새로 받은 값들을 바꿔준다.
           title: title,
-          id: id,
           content: content,
           // img:img,
         };
+        console.log(new_post_data);
         dispatch(editPost(new_post_data));
         window.alert("수정 되었습니다!");
       })
@@ -120,7 +119,7 @@ const deletePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "delete",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      url: `${config.api}/post/${id}`,
       data: {
         id: id,
       },
@@ -139,7 +138,7 @@ export default handleActions(
   {
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = action.payload.post_list;
+        draft.list = action.payload.post_list.post;
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {

@@ -5,18 +5,43 @@ import { Route, Link } from "react-router-dom";
 import Login from "./Login";
 
 const Signup = () => {
+  const [user_id, setUserId] = React.useState("");
+  const [user_name, setUserName] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+  const [pwdCheck, setPwdCheck] = React.useState("");
+
   return (
     <React.Fragment>
       <Div>
         <H1>회원가입</H1>
         <P>아이디</P>
-        <Input placeholder="아이디를 입력해주세요." />
+        <Input
+          onChange={(e) => {
+            setUserId(e.target.value);
+          }}
+          placeholder="아이디를 입력해주세요."
+        />
         <P>닉네임</P>
-        <Input placeholder="닉네임을 입력해주세요."></Input>
+        <Input
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+          placeholder="닉네임을 입력해주세요."
+        ></Input>
         <P>비밀번호</P>
-        <Input placeholder="비밀번호를 입력해주세요."></Input>
+        <Input
+          onChange={(e) => {
+            setPwd(e.target.value);
+          }}
+          placeholder="비밀번호를 입력해주세요."
+        ></Input>
         <P>비밀번호 확인</P>
-        <Input placeholder="비밀번호를 한번 더 입력해주세요."></Input>
+        <Input
+          onChange={(e) => {
+            setPwdCheck(e.target.value);
+          }}
+          placeholder="비밀번호를 한번 더 입력해주세요."
+        ></Input>
 
         <Button>로그인하기</Button>
         <Question>
