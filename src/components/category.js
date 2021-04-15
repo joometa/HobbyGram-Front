@@ -6,7 +6,7 @@ const Category = () => {
     <React.Fragment>
       <Div>
         <div style={{ flexDirection: "column" }}>
-          <div>카테고리</div>
+          <div style={{ marginBottom: "100px" }}></div>
           <Button style={{ marginRight: "5px" }}>음악</Button>
           <Button style={{ marginRight: "5px" }}>여행</Button>
           <Button style={{ marginRight: "5px" }}>재테크</Button>
@@ -25,7 +25,7 @@ const Div = styled.div`
   justify-content: space-between;
   margin: 0px auto;
   /* background-color: #f5f5f5; */
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 `;
 
 const Button = styled.button`
@@ -33,7 +33,7 @@ const Button = styled.button`
   height: 50px;
   border: hidden;
   font-size: 15px;
-  background-color: #fa768d;
+  background-color: #e6ccef;
   margin: 0px auto;
   font-size: 17px;
 `;
