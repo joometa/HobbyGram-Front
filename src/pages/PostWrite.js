@@ -2,18 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { Grid, Input, Text, Upload, Image } from "../element/Index";
+import { actionCreators as postActions } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
 import axios from "axios";
 
 const PostWrite = (props) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = React.useState("");
-  const [contents, setContents] = React.useState("");
+  const [content, setContent] = React.useState("");
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
   };
 
+  const addPost = () => {
+    dispatch(postActions.addPostDB(title, content));
+    history.replace("/");
+  };
+
   const changeContents = (e) => {
-    setContents(e.target.value);
+    setContent(e.target.value);
   };
 
   const [file, setFile] = React.useState(null);
@@ -81,7 +89,7 @@ const PostWrite = (props) => {
           />
         </Grid>
         <Grid is_flex padding="30px 0px">
-          <Button>완료</Button>
+          <Button onClick={addPost}>완료</Button>
           <Button>취소</Button>
         </Grid>
       </Wrapper>

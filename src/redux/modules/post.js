@@ -33,6 +33,22 @@ const initialPost = {
   category: "카테고리",
 };
 
+const addPostDB = (title, content) => {
+  return function (dispatch, getState, { history }) {
+    const post = { ...initialPost, title: title, content: content };
+    let new_post = [];
+    axios({
+      method: "post",
+      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
+      data: post,
+    }).then((docs) => {
+      console.log(docs.data);
+      new_post = docs.data;
+      dispatch(addPost(new_post));
+    });
+  };
+};
+
 // Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = () => {
   return function (dispatch, getState, { history }) {
@@ -40,10 +56,12 @@ const setPostDB = () => {
 
     axios({
       method: "get",
-      url: `${config.api}/post`,
+      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
+      // `${config.api}/post`,
     }).then((docs) => {
-      const post_list = docs.data.post;
-      console.log(post_list);
+      // console.log(docs.data);
+      const post_list = docs.data;
+      // console.log(post_list);
       dispatch(setPost(post_list));
     });
   };
@@ -55,11 +73,12 @@ const getOnePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "get",
-      url: `${config.api}/post/${id}`,
+      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      // `${config.api}/post/${id}`,
     })
       .then((docs) => {
-        const onePost = docs.data;
         console.log(docs.data);
+        const onePost = docs.data;
         dispatch(getPost(onePost));
       })
       .catch((err) => {
@@ -74,7 +93,12 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = action.payload.post_list;
       }),
-    [ADD_POST]: (state, action) => produce(state, (draft) => {}),
+    [ADD_POST]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.post);
+        const new_post = action.payload.post;
+        draft.list.unshift(new_post);
+      }),
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.post = action.payload.post;
@@ -87,9 +111,11 @@ export default handleActions(
 
 const actionCreators = {
   setPost,
+  addPost,
   getPost,
   setPostDB,
   getOnePostDB,
+  addPostDB,
 };
 
 export { actionCreators };

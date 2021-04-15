@@ -13,9 +13,6 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
 
   const post = useSelector((state) => state.post.post);
-
-  const { comment_user, comment_content, comment_createdAt } = props;
-
   const post_id = props.match.params.id;
   const comment_list = useSelector((state) => state.comment.list);
 
