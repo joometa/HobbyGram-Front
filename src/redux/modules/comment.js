@@ -27,11 +27,14 @@ const getCommentDB = (post_id) => {
       method: "get",
       url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
     }).then((docs) => {
-      console.log(docs.data);
+      if (!docs.data.comment) {
+        return;
+      }
       const post_idx = docs.data.findIndex((p) => p.id === post_id);
       console.log(docs.data[post_idx].comment);
       list = docs.data[post_idx].comment;
       dispatch(setComment(list));
+      console.log(docs.data);
     });
   };
 };

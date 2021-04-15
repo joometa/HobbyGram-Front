@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Post = (props) => {
+  console.log(props.img);
   const { _id } = props;
   return (
     <React.Fragment>
@@ -39,7 +40,8 @@ Post.defaultProps = {
   commentCnt: 0,
   recommendCnt: 0,
   img:
-    "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
+    // "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
+    "http:uploads/aff33e45e8d404a7fb838a6d4e92ad25",
   category: "카테고리",
 };
 

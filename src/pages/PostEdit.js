@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { Grid, Input, Text, Upload, Image } from "../element/Index";
+import { Grid, Input, Text, Image } from "../element/Index";
 
 const PostEdit = (props) => {
   const [contents, setContents] = React.useState("");

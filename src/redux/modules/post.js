@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import { config } from "../../shared/config";
 
 import axios from "axios";
 
@@ -32,26 +33,29 @@ const initialPost = {
   category: "카테고리",
 };
 
+// Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = () => {
   return function (dispatch, getState, { history }) {
     let post_list = [];
 
     axios({
       method: "get",
-      url: "https://607541d80baf7c0017fa5966.mockapi.io/post",
+      url: `${config.api}/post`,
     }).then((docs) => {
-      const post_list = docs.data;
+      const post_list = docs.data.post;
       console.log(post_list);
       dispatch(setPost(post_list));
     });
   };
 };
 
+// `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`
+
 const getOnePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "get",
-      url: `https://607541d80baf7c0017fa5966.mockapi.io/post/${id}`,
+      url: `${config.api}/post/${id}`,
     })
       .then((docs) => {
         const onePost = docs.data;

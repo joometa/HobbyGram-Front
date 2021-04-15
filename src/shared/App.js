@@ -18,9 +18,9 @@ function App() {
       <Header />
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main} />
-        <Route path="/post" exact component={PostWrite} />
-        <Route path="/post/edit" exact component={PostEdit} />
+        <Route path="/post/category" exact component={PostWrite} />
         <Route path="/post/:id" exact component={PostDetail} />
+        <Route path="/post/:id/edit" exact component={PostEdit} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
       </ConnectedRouter>
