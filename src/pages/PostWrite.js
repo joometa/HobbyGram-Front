@@ -30,6 +30,7 @@ const PostWrite = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log(event);
   };
   const handleClose = (e) => {
     setAnchorEl(null);
@@ -38,8 +39,8 @@ const PostWrite = (props) => {
   // Material UI --end
 
   const addPost = () => {
-    dispatch(postActions.addPostDB(title, imgfile, content, category));
-    // history.replace("/");
+    dispatch(postActions.addPostDB(title, content, imgfile, category));
+    history.replace("/");
   };
 
   // 사진 업로드
@@ -112,7 +113,9 @@ const PostWrite = (props) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>음악</MenuItem>
+            <MenuItem onClick={handleClose} label="music">
+              음악
+            </MenuItem>
             <MenuItem onClick={handleClose}>여행</MenuItem>
             <MenuItem onClick={handleClose}>재테크</MenuItem>
             <MenuItem onClick={handleClose}>반려동물</MenuItem>

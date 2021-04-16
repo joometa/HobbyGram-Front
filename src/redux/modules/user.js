@@ -1,10 +1,13 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import { config } from "../../shared/config";
+
+import axios from "axios";
 
 // 액션 타입
-const LOG_OUT = "LOG_OUT";
-const GET_USER = "GET_USER";
-const SET_USER = "SET_USER";
+const LOG_OUT = "LOG_OUT"; // 로그아웃
+const GET_USER = "GET_USER"; //회원정보 조회
+const SET_USER = "SET_USER"; // 로그인
 
 // 액션 생성함수
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
@@ -18,6 +21,27 @@ const initialState = {
   is_login: false,
 };
 
+const signUpDB = (email, nickname, pwd, pwdcheck) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "post",
+      url: `${config.api}/join`,
+      data: {
+        email: email,
+        name: nickname,
+        password: pwd,
+        password2: pwdcheck,
+      },
+    })
+      .then(() => {
+        history.push("/login");
+      })
+      .catch((err) => {
+        console.log("회원가입 에러", err);
+      });
+  };
+};
+
 // 리듀서
 export default handleActions(
   {
@@ -28,6 +52,8 @@ export default handleActions(
   initialState
 );
 
-const actionCreators = {};
+const actionCreators = {
+  signUpDB,
+};
 
 export { actionCreators };

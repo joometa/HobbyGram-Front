@@ -3,12 +3,35 @@ import styled from "styled-components";
 import { Route, Link } from "react-router-dom";
 
 import Login from "./Login";
+import { useDispatch } from "react-redux";
+import { history } from "../redux/configureStore";
+import { emailCheck, pwdCheck } from "../shared/common";
+
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Signup = () => {
-  const [user_id, setUserId] = React.useState("");
-  const [user_name, setUserName] = React.useState("");
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = React.useState("");
+  const [name, setName] = React.useState("");
   const [pwd, setPwd] = React.useState("");
-  const [pwdCheck, setPwdCheck] = React.useState("");
+  const [pwdcheck, setPwdCheck] = React.useState("");
+
+  const signup = () => {
+    if (!email || !name || !pwd || !pwdcheck) {
+      window.alert("모든 내용을 입력해주세요!");
+      return;
+    }
+    if (!emailCheck(email)) {
+      window.alert("이메일 형식으로 입력해주세요!");
+      return;
+    }
+    if (!pwdCheck(pwd)) {
+      window.alert("8~16자리의 영문과 숫자를 조합해주세요!");
+    }
+    // 인자로 history 넘겨주면 모듈 함수에서 적용할 수 있음.
+    dispatch(userActions.signUpDB(email, name, pwd, pwdcheck));
+  };
 
   return (
     <React.Fragment>
@@ -17,14 +40,14 @@ const Signup = () => {
         <P>아이디</P>
         <Input
           onChange={(e) => {
-            setUserId(e.target.value);
+            setEmail(e.target.value);
           }}
-          placeholder="아이디를 입력해주세요."
+          placeholder="이메일 형식으로 입력해주세요."
         />
         <P>닉네임</P>
         <Input
           onChange={(e) => {
-            setUserName(e.target.value);
+            setName(e.target.value);
           }}
           placeholder="닉네임을 입력해주세요."
         ></Input>
@@ -43,7 +66,7 @@ const Signup = () => {
           placeholder="비밀번호를 한번 더 입력해주세요."
         ></Input>
 
-        <Button>로그인하기</Button>
+        <Button onClick={signup}>회원가입하기</Button>
         <Question>
           <p>회원이신가요?</p>
           <Link to="/login" style={{ marginTop: "16px", marginLeft: "10px" }}>
