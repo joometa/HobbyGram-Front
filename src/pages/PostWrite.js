@@ -38,8 +38,8 @@ const PostWrite = (props) => {
   // Material UI --end
 
   const addPost = () => {
-    dispatch(postActions.addPostDB(title, imgfile, content, category));
-    // history.replace("/");
+    dispatch(postActions.addPostDB(title, content, imgfile, category));
+    history.replace("/");
   };
 
   // 사진 업로드
@@ -76,9 +76,7 @@ const PostWrite = (props) => {
     console.log(reader);
     // 변환된 dataurl을 preview state에 저장
     reader.onload = () => {
-      setPreview(null);
       setPreview(reader.result);
-      setImgFile(reader.result);
       console.log(preview.length);
     };
   };
@@ -135,7 +133,13 @@ const PostWrite = (props) => {
         </Grid>
         <Grid is_flex padding="30px 0px">
           <BasicButton onClick={addPost}>완료</BasicButton>
-          <BasicButton>취소</BasicButton>
+          <BasicButton
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            취소
+          </BasicButton>
         </Grid>
       </Wrapper>
     </React.Fragment>

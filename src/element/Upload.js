@@ -10,12 +10,14 @@ const Upload = (props) => {
   const { _onChange, type } = props;
   return (
     <React.Fragment>
-      <input
-        type={type}
-        onChange={_onChange}
-        ref={fileInput}
-        // disabled={is_uploading}
-      />
+      <form encType="multipart/form-data" style={{ display: "flex" }}>
+        <input
+          type={type}
+          onChange={_onChange}
+          ref={fileInput}
+          // disabled={is_uploading}
+        />
+      </form>
     </React.Fragment>
   );
 };
