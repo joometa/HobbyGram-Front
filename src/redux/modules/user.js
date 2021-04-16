@@ -40,7 +40,8 @@ const signUpDB = (email, nickname, pwd, pwdcheck) => {
       .catch((err) => {
         console.log("회원가입 에러", err);
       });
-
+  };
+};
 
 // 로그인
 const LoginDB = (id, pwd) => {
@@ -53,6 +54,7 @@ const LoginDB = (id, pwd) => {
         password: pwd,
       },
     }).then((res) => {
+      console.log(res.data);
       // const jwtToken = res.data.
       // 서버로 부터 받은 토큰을 쿠키에 저장
       // setCookie('is_login', jwtToken)
@@ -75,6 +77,7 @@ export default handleActions(
 
 const actionCreators = {
   signUpDB,
+  logOut,
 };
 
 export { actionCreators };
