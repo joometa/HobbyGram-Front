@@ -78,6 +78,7 @@ const PostWrite = (props) => {
     reader.onload = () => {
       setPreview(null);
       setPreview(reader.result);
+      setImgFile(reader.result);
       console.log(preview.length);
     };
   };
@@ -111,12 +112,10 @@ const PostWrite = (props) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose} label="music">
-              음악
-            </MenuItem>
-            <MenuItem onClick={handleClose}>travel</MenuItem>
-            <MenuItem onClick={handleClose}>economy</MenuItem>
-            <MenuItem onClick={handleClose}>pet</MenuItem>
+            <MenuItem onClick={handleClose}>음악</MenuItem>
+            <MenuItem onClick={handleClose}>여행</MenuItem>
+            <MenuItem onClick={handleClose}>재테크</MenuItem>
+            <MenuItem onClick={handleClose}>반려동물</MenuItem>
           </Menu>
         </Grid>
 

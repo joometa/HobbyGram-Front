@@ -44,15 +44,19 @@ const addPostDB = (title, content, imgfile, category) => {
     };
     let new_post = [];
 
-    const formdata = new FormData();
+    let formdata = new FormData();
     formdata.append("content", content);
     formdata.append("title", title);
     formdata.append("img", imgfile);
+    formdata.append("category", category);
 
     axios({
       method: "post",
-      url: `${config.api}/post/${category}`,
+      url: `${config.api}/post/write`,
       data: formdata,
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
     }).then((res) => {
       console.log(res);
     });
