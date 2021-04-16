@@ -15,7 +15,7 @@ const Login = () => {
           onChange={(e) => {
             setId(e.target.value);
           }}
-          placeholder="아이디를 입력해주세요."
+          placeholder="이메일 형식으로 입력해주세요."
         />
         <P>비밀번호</P>
         <Input

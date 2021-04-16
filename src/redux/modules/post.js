@@ -36,26 +36,40 @@ const initialPost = {
 
 const addPostDB = (title, content, imgfile, category) => {
   return function (dispatch, getState, { history }) {
-    const post = {
-      ...initialPost,
-      title: title,
-      content: content,
-      category: category,
-    };
-    let new_post = [];
+    // const post = {
+    //   ...initialPost,
+    //   title: title,
+    //   content: content,
+    //   category: category,
+    // };
+    // let new_post = [];
 
-    const formdata = new FormData();
-    formdata.append("content", content);
-    formdata.append("title", title);
+    let formdata = new FormData();
     formdata.append("img", imgfile);
+    formdata.append("title", title);
+    formdata.append("content", content);
+    formdata.append("category", category);
+
+    // formdata 콘솔로그 찍어보는 방법
+    // for (var key of formdata.keys()) {
+    //   console.log(key);
+    // }
+
+    // for (var value of formdata.values()) {
+    //   console.log(value);
+    // }
 
     axios({
       method: "post",
-      url: `${config.api}/post/${category}`,
+      url: `${config.api}/post/write`,
       data: formdata,
-    }).then((res) => {
-      console.log(res);
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("작성에러", err);
+      });
   };
 };
 
