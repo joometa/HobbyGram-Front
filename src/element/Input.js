@@ -37,10 +37,10 @@ Input.defaultProps = {
   multiline: false,
   type: "text",
   _onChange: () => {},
-  label: false,
+  label: null,
   placeholder: "입력하세요.",
   bold: false,
-  value: null,
+  value: "",
 };
 
 const ElInput = styled.input`

@@ -18,6 +18,14 @@ const Header = () => {
           <Button
             style={{ margin: "7px", marginRight: "5px" }}
             onClick={() => {
+              history.push("/write");
+            }}
+          >
+            게시글작성
+          </Button>
+          <Button
+            style={{ margin: "7px", marginRight: "5px" }}
+            onClick={() => {
               history.push("/login");
             }}
           >
@@ -54,6 +62,12 @@ const Button = styled.button`
   border: 0px solid;
   background-color: #e6ccef;
   border-radius: 10px;
+  :hover {
+    background-color: white;
+    transition: all 0.3s;
+    border: 3px solid #e6ccef;
+    font-weight: bold;
+  }
 `;
 
 const Buttondiv = styled.div`

@@ -34,9 +34,14 @@ const initialPost = {
   content: "하이",
 };
 
-const addPostDB = (title, content, imgfile) => {
+const addPostDB = (title, content, imgfile, category) => {
   return function (dispatch, getState, { history }) {
-    const post = { ...initialPost, title: title, content: content };
+    const post = {
+      ...initialPost,
+      title: title,
+      content: content,
+      category: category,
+    };
     let new_post = [];
 
     const formdata = new FormData();
@@ -46,7 +51,7 @@ const addPostDB = (title, content, imgfile) => {
 
     axios({
       method: "post",
-      url: `${config.api}/post`,
+      url: `${config.api}/post/${category}`,
       data: formdata,
     }).then((res) => {
       console.log(res);

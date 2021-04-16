@@ -36,4 +36,10 @@ const Button = styled.button`
   background-color: #e6ccef;
   margin: 0px auto;
   font-size: 17px;
+  :hover {
+    background-color: white;
+    transition: all 0.3s;
+    border: 3px solid #e6ccef;
+    font-weight: bold;
+  }
 `;

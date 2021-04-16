@@ -105,7 +105,7 @@ const PostDetail = (props) => {
           </InfoWrap>
         </Grid>
         <Grid>
-          <IMAGE src={post.img}></IMAGE>
+          <Image detail src={post.img}></Image>
         </Grid>
         <Grid>
           <ContentBox>{post.content}</ContentBox>
@@ -247,15 +247,6 @@ const InfoWrap = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
-`;
-
-const IMAGE = styled.img`
-  display: flex;
-  justify-content: center;
-  width: 70%;
-  height: 70%;
-  margin: 0px auto;
-  background-size: 70% 70%;
 `;
 
 export default PostDetail;

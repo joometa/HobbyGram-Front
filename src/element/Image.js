@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import preview from "../image/no_image.png";
+import preview_img from "../image/no_image.png";
 
 const Image = (props) => {
   const { shape, src, size, overflow, detail } = props;
@@ -24,7 +24,7 @@ const Image = (props) => {
 
 Image.defaultProps = {
   shape: "rectangle",
-  src: preview,
+  src: preview_img,
   size: 36,
   overflow: "hidden",
   label: null,
@@ -35,9 +35,10 @@ const DetailImage = styled.img`
   display: flex;
   justify-content: center;
   width: 100%;
+  min-height: 30rem;
   max-height: 40rem;
   margin: 0px auto;
-  background-image: url("${(props) => props.src}");
+  /* background-image: url("${(props) => props.src}"); */
   background-repeat: no-repeat;
   object-fit: fill;
 `;

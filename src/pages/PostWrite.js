@@ -5,34 +5,41 @@ import { Grid, Input, Text, Upload, Image } from "../element/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 import axios from "axios";
-// import {
-//   FormControl,
-//   FormLabel,
-//   RadioGroup,
-//   FormControlLabel,
-//   Radio,
-// } from "@material-ui/core";
+import { Button, Menu, MenuItem } from "@material-ui/core";
+import { Category } from "@material-ui/icons";
+import preview_img from "../image/no_image.png";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
-  console.log(props);
+
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
+  const [category, setCategory] = React.useState("카테고리 선택");
+  const [imgfile, setImgFile] = React.useState(null);
+  const [preview, setPreview] = React.useState(preview_img);
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
   };
 
-  const changeContents = (e) => {
+  const changeContent = (e) => {
     setContent(e.target.value);
   };
 
-  const [imgfile, setImgFile] = React.useState(null);
-  const [preview, setPreview] = React.useState();
+  // Material UI --start
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (e) => {
+    setAnchorEl(null);
+    setCategory(e.target.childNodes[0].textContent);
+  };
+  // Material UI --end
 
   const addPost = () => {
-    dispatch(postActions.addPostDB(title, imgfile, content));
-    history.replace("/");
+    dispatch(postActions.addPostDB(title, imgfile, content, category));
+    // history.replace("/");
   };
 
   // 사진 업로드
@@ -66,9 +73,12 @@ const PostWrite = (props) => {
     const reader = new FileReader();
     // 현재 선택된 파일을 dataurl로 변환
     reader.readAsDataURL(e.target.files[0]);
+    console.log(reader);
     // 변환된 dataurl을 preview state에 저장
     reader.onload = () => {
+      setPreview(null);
       setPreview(reader.result);
+      console.log(preview.length);
     };
   };
 
@@ -82,33 +92,58 @@ const PostWrite = (props) => {
             placeholder="제목을 입력하세요."
           />
         </Grid>
-        <Grid>
-          <input type="radio" id="male" name="gender" value="male" />
+        <Grid padding="30px 0px 0px 0px">
+          <Button
+            style={{
+              boxShadow: "rgb(0 0 0 / 30%) 0px 1.5px 2.5px 0px",
+              border: "1px solid #dddddd",
+            }}
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            {category}
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose} label="music">
+              음악
+            </MenuItem>
+            <MenuItem onClick={handleClose}>travel</MenuItem>
+            <MenuItem onClick={handleClose}>economy</MenuItem>
+            <MenuItem onClick={handleClose}>pet</MenuItem>
+          </Menu>
         </Grid>
 
         <Grid padding="30px 0px">
           <Upload _onChange={selectFile}>사진선택</Upload>
         </Grid>
         <Grid>
-          <Image src={preview}></Image>
+          <Image detail src={preview}></Image>
         </Grid>
         <Grid>
           <Input
-            _onChange={changeContents}
+            value={content}
+            _onChange={changeContent}
             multiline
             placeholder="내용을 입력하세요."
           />
         </Grid>
         <Grid is_flex padding="30px 0px">
-          <Button onClick={addPost}>완료</Button>
-          <Button>취소</Button>
+          <BasicButton onClick={addPost}>완료</BasicButton>
+          <BasicButton>취소</BasicButton>
         </Grid>
       </Wrapper>
     </React.Fragment>
   );
 };
 
-const Button = styled.button`
+const BasicButton = styled.button`
   width: 100px;
   height: 35px;
   margin: 0px;
