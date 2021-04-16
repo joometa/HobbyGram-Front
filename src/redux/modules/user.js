@@ -1,18 +1,18 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { config } from "../../shared/config";
-
 import axios from "axios";
+import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
+import { history } from "../configureStore";
 
 // 액션 타입
 const LOG_OUT = "LOG_OUT"; // 로그아웃
 const GET_USER = "GET_USER"; //회원정보 조회
 const SET_USER = "SET_USER"; // 로그인
-
 // 액션 생성함수
-const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const logOut = createAction(LOG_OUT, (user) => ({ user }));
 
 //  초기값
 // is_login : 로그인 상태인지 아닌지 여부 확인
@@ -21,6 +21,7 @@ const initialState = {
   is_login: false,
 };
 
+// 회원가입
 const signUpDB = (email, nickname, pwd, pwdcheck) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -39,6 +40,26 @@ const signUpDB = (email, nickname, pwd, pwdcheck) => {
       .catch((err) => {
         console.log("회원가입 에러", err);
       });
+
+
+// 로그인
+const LoginDB = (id, pwd) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "post",
+      url: `${config.api}/login`,
+      data: {
+        email: id,
+        password: pwd,
+      },
+    }).then((res) => {
+      // const jwtToken = res.data.
+      // 서버로 부터 받은 토큰을 쿠키에 저장
+      // setCookie('is_login', jwtToken)
+      // 통신 시 헤더에 default 값으로 저장
+      // axios.defaults.headers.common['Authorization'] = `${jwtToken}`
+      const user = {};
+    });
   };
 };
 

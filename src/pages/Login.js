@@ -1,10 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { Route, Link } from "react-router-dom";
+// import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
+
+  const login = () => {
+    if (id === "" || pwd === "") {
+      window.alert("로그인 정보를 모두 입력해주세요.");
+      return;
+    }
+    // dispatch(userActions.LoginDB(id, pwd));
+  };
 
   return (
     <React.Fragment>

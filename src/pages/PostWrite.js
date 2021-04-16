@@ -77,9 +77,7 @@ const PostWrite = (props) => {
     console.log(reader);
     // 변환된 dataurl을 preview state에 저장
     reader.onload = () => {
-      setPreview(null);
       setPreview(reader.result);
-      setImgFile(reader.result);
       console.log(preview.length);
     };
   };
@@ -138,7 +136,13 @@ const PostWrite = (props) => {
         </Grid>
         <Grid is_flex padding="30px 0px">
           <BasicButton onClick={addPost}>완료</BasicButton>
-          <BasicButton>취소</BasicButton>
+          <BasicButton
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            취소
+          </BasicButton>
         </Grid>
       </Wrapper>
     </React.Fragment>
