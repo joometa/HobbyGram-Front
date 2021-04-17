@@ -3,17 +3,21 @@ import styled from "styled-components";
 import { Route, Link } from "react-router-dom";
 // import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
 import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
 
 const Login = () => {
-  const [id, setId] = React.useState("");
+  const dispatch = useDispatch();
+  const [email, setEmail] = React.useState("");
   const [pwd, setPwd] = React.useState("");
 
   const login = () => {
-    if (id === "" || pwd === "") {
+    if (email === "" || pwd === "") {
       window.alert("로그인 정보를 모두 입력해주세요.");
       return;
     }
-    // dispatch(userActions.LoginDB(id, pwd));
+    dispatch(userActions.LoginDB(email, pwd));
+    history.replace("/");
   };
 
   return (
@@ -23,18 +27,19 @@ const Login = () => {
         <P>아이디</P>
         <Input
           onChange={(e) => {
-            setId(e.target.value);
+            setEmail(e.target.value);
           }}
           placeholder="이메일 형식으로 입력해주세요."
         />
         <P>비밀번호</P>
         <Input
+          type="password"
           onChange={(e) => {
             setPwd(e.target.value);
           }}
           placeholder="비밀번호를 입력해주세요."
         ></Input>
-        <Button>로그인하기</Button>
+        <Button onClick={login}>로그인하기</Button>
         <Question>
           <p>아직 회원이 아니신가요?</p>
           <Link to="/signup" style={{ marginTop: "16px", marginLeft: "10px" }}>

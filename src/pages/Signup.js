@@ -53,6 +53,7 @@ const Signup = () => {
         ></Input>
         <P>비밀번호</P>
         <Input
+          type="password"
           onChange={(e) => {
             setPwd(e.target.value);
           }}
@@ -60,6 +61,7 @@ const Signup = () => {
         ></Input>
         <P>비밀번호 확인</P>
         <Input
+          type="password"
           onChange={(e) => {
             setPwdCheck(e.target.value);
           }}
@@ -106,6 +108,7 @@ const Input = styled.input`
   width: 400px;
   height: 40px;
   margin: 0px auto;
+  padding-left: 5px;
 `;
 
 const Button = styled.button`

@@ -44,23 +44,27 @@ const signUpDB = (email, nickname, pwd, pwdcheck) => {
 };
 
 // 로그인
-const LoginDB = (id, pwd) => {
+const LoginDB = (email, pwd) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "post",
       url: `${config.api}/login`,
       data: {
-        email: id,
+        email: email,
         password: pwd,
       },
     }).then((res) => {
       console.log(res.data);
-      // const jwtToken = res.data.
+      const jwtToken = res.data.result.user.token;
       // 서버로 부터 받은 토큰을 쿠키에 저장
-      // setCookie('is_login', jwtToken)
+      setCookie("is_login", jwtToken);
       // 통신 시 헤더에 default 값으로 저장
-      // axios.defaults.headers.common['Authorization'] = `${jwtToken}`
-      const user = {};
+      axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
+      const user = {
+        email: email,
+        name: res.data.result.user.name,
+      };
+      dispatch(setUser(user));
     });
   };
 };
@@ -68,16 +72,29 @@ const LoginDB = (id, pwd) => {
 // 리듀서
 export default handleActions(
   {
-    [SET_USER]: (state, action) => produce(state, (draft) => {}),
-    [LOG_OUT]: (state, action) => produce(state, (draft) => {}),
+    [SET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        // 로그인시 받은 회원 정보
+        console.log(action.payload);
+        draft.user = action.payload.user;
+        draft.is_login = true;
+      }),
+    [LOG_OUT]: (state, action) =>
+      produce(state, (draft) => {
+        deleteCookie("is_login");
+        draft.user = null;
+        draft.is_login = false;
+      }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
 
 const actionCreators = {
-  signUpDB,
   logOut,
+  setUser,
+  LoginDB,
+  signUpDB,
 };
 
 export { actionCreators };
