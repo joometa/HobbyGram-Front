@@ -2,47 +2,93 @@ import React from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
+import { useSelector, useDispatch } from "react-redux";
+import { getCookie } from "../shared/Cookie";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = () => {
-  return (
-    <React.Fragment>
-      <Div>
-        <Font
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          Hobbygram
-        </Font>
-        <Buttondiv>
-          <Button
-            style={{ margin: "7px", marginRight: "5px" }}
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  console.log(user);
+  const is_login = getCookie("is_login") ? true : false;
+  console.log(is_login);
+  const logout = () => {
+    dispatch();
+  };
+  //로그인 상태일 때
+  if (is_login) {
+    return (
+      <React.Fragment>
+        <Div>
+          <Font
             onClick={() => {
-              history.push("/write");
+              history.push("/");
             }}
           >
-            게시글작성
-          </Button>
-          <Button
-            style={{ margin: "7px", marginRight: "5px" }}
+            Hobbygram
+          </Font>
+          <Buttondiv>
+            <Button
+              style={{ margin: "7px", marginRight: "5px" }}
+              onClick={() => {
+                history.push("/write");
+              }}
+            >
+              게시글작성
+            </Button>
+            <Button
+              style={{ margin: "7px", marginRight: "5px" }}
+              onClick={() => {
+                history.push("/login");
+              }}
+            >
+              로그아웃
+            </Button>
+          </Buttondiv>
+        </Div>
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Div>
+          <Font
             onClick={() => {
-              history.push("/login");
+              history.push("/");
             }}
           >
-            로그인
-          </Button>
-          <Button
-            style={{ margin: "7px", marginRight: "15px" }}
-            onClick={() => {
-              history.push("/signup");
-            }}
-          >
-            회원가입
-          </Button>
-        </Buttondiv>
-      </Div>
-    </React.Fragment>
-  );
+            Hobbygram
+          </Font>
+          <Buttondiv>
+            <Button
+              style={{ margin: "7px", marginRight: "5px" }}
+              onClick={() => {
+                history.push("/write");
+              }}
+            >
+              게시글작성
+            </Button>
+            <Button
+              style={{ margin: "7px", marginRight: "5px" }}
+              onClick={() => {
+                history.push("/login");
+              }}
+            >
+              로그인
+            </Button>
+            <Button
+              style={{ margin: "7px", marginRight: "15px" }}
+              onClick={() => {
+                history.push("/signup");
+              }}
+            >
+              회원가입
+            </Button>
+          </Buttondiv>
+        </Div>
+      </React.Fragment>
+    );
+  }
 };
 
 export default Header;

@@ -59,7 +59,7 @@ const addPostDB = (title, content, imgfile, category) => {
         "Content-Type": "multipart/form-data",
       },
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       const new_post = {
         title: res.data.newPost.title,
         category: res.data.newPost.category,
