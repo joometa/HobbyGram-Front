@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const CommentPost = (props) => {
   const { user, content, createdAt } = props;
+
   return (
     <React.Fragment>
       <CommentPostWrap>

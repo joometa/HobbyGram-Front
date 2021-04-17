@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { config } from "../../shared/config";
 import moment from "moment";
+import { getCookie } from "../../shared/Cookie";
 
 import axios from "axios";
 
@@ -37,6 +38,8 @@ const initialPost = {
 
 const addPostDB = (title, content, imgfile, category) => {
   return function (dispatch, getState, { history }) {
+    // const jwtToken = getCookie("is_login");
+    // console.log(jwtToken);
     let formdata = new FormData();
     formdata.append("title", title);
     formdata.append("img", imgfile);
@@ -59,18 +62,18 @@ const addPostDB = (title, content, imgfile, category) => {
         "Content-Type": "multipart/form-data",
       },
     }).then((res) => {
-      // console.log(res);
-      const new_post = {
-        title: res.data.newPost.title,
-        category: res.data.newPost.category,
-        content: res.data.newPost.content,
-        createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
-        recommendCnt: res.data.newPost.recommendCnt,
-        comment: res.data.newPost.comment,
-        recommendUser: res.data.newPost.recommendUser,
-        img: res.data.newPost.img,
-      };
-      dispatch(addPost(new_post));
+      console.log(res);
+      // const new_post = {
+      //   title: res.data.newPost.title,
+      //   category: res.data.newPost.category,
+      //   content: res.data.newPost.content,
+      //   createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+      //   recommendCnt: res.data.newPost.recommendCnt,
+      //   comment: res.data.newPost.comment,
+      //   recommendUser: res.data.newPost.recommendUser,
+      //   img: res.data.newPost.img,
+      // };
+      // dispatch(addPost(new_post));
     });
   };
 };

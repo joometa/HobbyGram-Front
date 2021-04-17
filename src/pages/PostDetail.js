@@ -15,10 +15,14 @@ import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
+  const user_name = useSelector((state) => state.user.user.name);
+  const [comment, setComment] = React.useState("");
 
+  //포스트 id 추출
   const post = useSelector((state) => state.post.post);
   const post_id = props.match.params.id;
   console.log(post_id);
+  // 댓글 불러오기
   const comment_list = useSelector((state) => state.comment.list);
 
   React.useEffect(() => {
@@ -34,6 +38,10 @@ const PostDetail = (props) => {
     } else {
       return;
     }
+  };
+
+  const addComment = () => {
+    dispatch(commentActions.addCommentDB(user_name, comment, post_id));
   };
 
   return (
@@ -113,8 +121,13 @@ const PostDetail = (props) => {
         <Grid margin="1rem 0px 0px 0px">
           <CommentBox>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <Input placeholder="댓글 내용을 입력하세요." />
-              <CommentAddBtn>게시</CommentAddBtn>
+              <Input
+                _onChange={(e) => {
+                  setComment(e.target.value);
+                }}
+                placeholder="댓글 내용을 입력하세요."
+              />
+              <CommentAddBtn onClick={addComment}>게시</CommentAddBtn>
             </div>
             <CommentListBox>
               {comment_list.map((p, idx) => {

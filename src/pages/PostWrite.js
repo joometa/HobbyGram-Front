@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Input, Text, Upload, Image } from "../element/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
@@ -8,15 +8,20 @@ import axios from "axios";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 import { Category } from "@material-ui/icons";
 import preview_img from "../image/no_image.png";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
-
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
   const [category, setCategory] = React.useState("카테고리 선택");
   const [imgfile, setImgFile] = React.useState(null);
   const [preview, setPreview] = React.useState(preview_img);
+
+  const user = useSelector((state) => state.user);
+  console.log(user);
+  const user_name = user.user.name;
+  console.log(user_name);
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
