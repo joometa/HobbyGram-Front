@@ -17,9 +17,13 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
 
   const post = useSelector((state) => state.post.post);
+  console.log(post);
   const post_id = props.match.params.id;
   console.log(post_id);
   const comment_list = useSelector((state) => state.comment.list);
+
+  const user = useSelector((state) => state.user);
+  console.log(user);
 
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
@@ -237,7 +241,7 @@ const Info_Box = styled.div`
 `;
 
 const InfoText = styled.span`
-  font-size: 1.3rem;
+  font-size: 16px;
   line-height: 1.5;
   color: rgb(134, 142, 150);
 `;

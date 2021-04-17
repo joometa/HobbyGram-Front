@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Input, Text, Upload, Image } from "../element/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
@@ -17,6 +17,10 @@ const PostWrite = (props) => {
   const [category, setCategory] = React.useState("카테고리 선택");
   const [imgfile, setImgFile] = React.useState(null);
   const [preview, setPreview] = React.useState(preview_img);
+
+  const user = useSelector((state) => state.user);
+  const username = user.user.name;
+  console.log(username);
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
@@ -39,7 +43,9 @@ const PostWrite = (props) => {
   // Material UI --end
 
   const addPost = () => {
-    dispatch(postActions.addPostDB(title, content, imgfile, category));
+    dispatch(
+      postActions.addPostDB(title, content, imgfile, category, username)
+    );
     history.replace("/");
   };
 

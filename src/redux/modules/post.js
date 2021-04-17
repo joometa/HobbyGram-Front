@@ -35,13 +35,14 @@ const initialPost = {
   content: "하이",
 };
 
-const addPostDB = (title, content, imgfile, category) => {
+const addPostDB = (title, content, imgfile, category, username) => {
   return function (dispatch, getState, { history }) {
     let formdata = new FormData();
     formdata.append("title", title);
     formdata.append("img", imgfile);
     formdata.append("content", content);
     formdata.append("category", category);
+    formdata.append("user", username);
 
     // // formdata 내부 확인하는 방법
     // for (var key of formdata.keys()) {
@@ -59,7 +60,7 @@ const addPostDB = (title, content, imgfile, category) => {
         "Content-Type": "multipart/form-data",
       },
     }).then((res) => {
-      // console.log(res);
+      console.log(res);
       const new_post = {
         title: res.data.newPost.title,
         category: res.data.newPost.category,
@@ -69,6 +70,7 @@ const addPostDB = (title, content, imgfile, category) => {
         comment: res.data.newPost.comment,
         recommendUser: res.data.newPost.recommendUser,
         img: res.data.newPost.img,
+        user: res.data.newPost.user,
       };
       dispatch(addPost(new_post));
     });

@@ -25,7 +25,7 @@ const getCommentDB = (post_id) => {
     let list = [];
     axios({
       method: "get",
-      url: `http://15.164.164.65/post${post_id}`,
+      url: `http://15.164.164.65/post/detail/${post_id}`,
     }).then((docs) => {
       if (!docs.data.comment) {
         return;
