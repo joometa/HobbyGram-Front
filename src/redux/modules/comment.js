@@ -20,6 +20,25 @@ const InitialState = {
 
 // Mock-API : https://607541d80baf7c0017fa5966.mockapi.io/post
 
+const addCommentDB = (user_name, comment, post_id) => {
+  return function (dispatch, getState, { history }) {
+    const createdAt = moment().format("YYYY-MM-DD HH:mm:ss");
+
+    const comment_post = {
+      user: user_name,
+      comment: comment,
+      craetedAt: createdAt,
+    };
+    axios({
+      method: "post",
+      url: `http://15.164.164.65/post/detail/${post_id}`,
+      // data: comment_post,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+};
+
 const getCommentDB = (post_id) => {
   return function (dispatch, getState, { history }) {
     let list = [];
@@ -33,6 +52,7 @@ const getCommentDB = (post_id) => {
 
       // const post_idx = docs.data.findIndex((p) => p.id === post_id);
       list = docs.data.comment;
+      console.log(docs);
 
       // const post_idx = docs.data.findIndex((p) => p.id === post_id);
       // console.log(docs.data[post_idx].comment);
@@ -63,6 +83,7 @@ export default handleActions(
 const actionCreators = {
   setComment,
   getCommentDB,
+  addCommentDB,
 };
 
 export { actionCreators };

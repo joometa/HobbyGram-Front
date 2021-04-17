@@ -10,8 +10,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const is_login = getCookie("is_login") ? true : false;
-  console.log(user);
-  console.log(is_login);
 
   const logout = () => {
     dispatch(userActions.logOut());

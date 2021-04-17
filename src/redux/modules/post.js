@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { config } from "../../shared/config";
 import moment from "moment";
+import { getCookie } from "../../shared/Cookie";
 
 import axios from "axios";
 
@@ -37,6 +38,8 @@ const initialPost = {
 
 const addPostDB = (title, content, imgfile, category, username) => {
   return function (dispatch, getState, { history }) {
+    // const jwtToken = getCookie("is_login");
+    // console.log(jwtToken);
     let formdata = new FormData();
     formdata.append("title", title);
     formdata.append("img", imgfile);

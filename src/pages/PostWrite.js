@@ -8,10 +8,10 @@ import axios from "axios";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 import { Category } from "@material-ui/icons";
 import preview_img from "../image/no_image.png";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
-
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
   const [category, setCategory] = React.useState("카테고리 선택");
