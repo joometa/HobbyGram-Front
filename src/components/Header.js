@@ -9,18 +9,16 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const is_login = getCookie("is_login") ? true : false;
   console.log(user);
-  const cookie = getCookie("is_login") ? true : false;
-  const is_login = user.is_login;
   console.log(is_login);
-  console.log(user.user);
 
   const logout = () => {
     dispatch(userActions.logOut());
-    history.replace("/");
+    history.push("/");
   };
-  //로그인 상태일 때
-  if (is_login) {
+  // 로그인 상태일 때
+  if (is_login && user) {
     return (
       <React.Fragment>
         <Div>
