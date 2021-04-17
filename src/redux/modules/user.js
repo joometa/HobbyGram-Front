@@ -74,19 +74,22 @@ const getUserDB = () => {
   return function (dispatch, getState, { history }) {
     // 로그인 시 쿠키에 이미 is_login으로 토큰이 저장되어 있기 때문에
     const jwtToken = getCookie("is_login");
+    console.log(jwtToken);
     // 새로고침하면 헤더 default도 날라가기 때문에 다시 토큰을 달아준다.
-    axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
+    // 백엔드에서 헤더로 넘어온 Authorization 에서 토큰 값에서 토큰값을 뽑아주기로 함.
+    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
+
+    // console.log(axios.defaults.headers);
+
     axios({
       method: "post",
-      url: ``, // 유저정보만 넘겨주는 api 따로 하나 있어야 할 것 같음.
-      data: {
-        token: jwtToken,
-      },
+      url: `${config.api}/getUser`,
     })
       .then((res) => {
+        console.log(res);
         const user = {
-          email: res.data.result.user.email,
-          name: res.data.result.user.name,
+          email: res.data.email,
+          name: res.data.name,
         };
         dispatch(getUser(user));
       })
@@ -108,6 +111,7 @@ export default handleActions(
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
+        console.log("로그아웃!");
         //쿠키 삭제
         deleteCookie("is_login");
         // 유저정보 삭제 하고 로그인상태 false로 변경

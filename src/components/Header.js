@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
@@ -11,10 +10,14 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   console.log(user);
-  const is_login = getCookie("is_login") ? true : false;
+  const cookie = getCookie("is_login") ? true : false;
+  const is_login = user.is_login;
   console.log(is_login);
+  console.log(user.user);
+
   const logout = () => {
-    dispatch();
+    dispatch(userActions.logOut());
+    history.replace("/");
   };
   //로그인 상태일 때
   if (is_login) {
@@ -39,9 +42,7 @@ const Header = () => {
             </Button>
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
-              onClick={() => {
-                history.push("/login");
-              }}
+              onClick={logout}
             >
               로그아웃
             </Button>
@@ -61,14 +62,6 @@ const Header = () => {
             Hobbygram
           </Font>
           <Buttondiv>
-            <Button
-              style={{ margin: "7px", marginRight: "5px" }}
-              onClick={() => {
-                history.push("/write");
-              }}
-            >
-              게시글작성
-            </Button>
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
               onClick={() => {
