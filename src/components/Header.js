@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
@@ -10,14 +9,16 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  console.log(user);
   const is_login = getCookie("is_login") ? true : false;
+  console.log(user);
   console.log(is_login);
+
   const logout = () => {
-    dispatch();
+    dispatch(userActions.logOut());
+    history.push("/");
   };
-  //로그인 상태일 때
-  if (is_login) {
+  // 로그인 상태일 때
+  if (is_login && user) {
     return (
       <React.Fragment>
         <Div>
@@ -39,9 +40,7 @@ const Header = () => {
             </Button>
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
-              onClick={() => {
-                history.push("/login");
-              }}
+              onClick={logout}
             >
               로그아웃
             </Button>
@@ -61,14 +60,6 @@ const Header = () => {
             Hobbygram
           </Font>
           <Buttondiv>
-            <Button
-              style={{ margin: "7px", marginRight: "5px" }}
-              onClick={() => {
-                history.push("/write");
-              }}
-            >
-              게시글작성
-            </Button>
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
               onClick={() => {

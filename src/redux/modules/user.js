@@ -75,18 +75,16 @@ const getUserDB = () => {
     // 로그인 시 쿠키에 이미 is_login으로 토큰이 저장되어 있기 때문에
     const jwtToken = getCookie("is_login");
     // 새로고침하면 헤더 default도 날라가기 때문에 다시 토큰을 달아준다.
-    axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
     axios({
       method: "post",
-      url: ``, // 유저정보만 넘겨주는 api 따로 하나 있어야 할 것 같음.
-      data: {
-        token: jwtToken,
-      },
+      url: `${config.api}/getUser`,
     })
       .then((res) => {
+        console.log(res);
         const user = {
-          email: res.data.result.user.email,
-          name: res.data.result.user.name,
+          email: res.data.email,
+          name: res.data.name,
         };
         dispatch(getUser(user));
       })
