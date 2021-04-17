@@ -1,16 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Category = () => {
+  const dispatch = useDispatch();
+  const [text, setText] = useState("");
+
+  React.useEffect(() => {
+    dispatch(postActions.setPostDB(text));
+  }, [text]);
+
   return (
     <React.Fragment>
       <Div>
         <div style={{ flexDirection: "column" }}>
           <div style={{ marginBottom: "100px" }}></div>
-          <Button style={{ marginRight: "5px" }}>음악</Button>
-          <Button style={{ marginRight: "5px" }}>여행</Button>
-          <Button style={{ marginRight: "5px" }}>재테크</Button>
-          <Button style={{ width: "250px" }}>반려동물</Button>
+          <Button
+            style={{ marginRight: "5px" }}
+            onClick={() => {
+              setText("음악");
+            }}
+          >
+            음악
+          </Button>
+          <Button
+            style={{ marginRight: "5px" }}
+            onClick={() => {
+              setText("여행");
+            }}
+          >
+            여행
+          </Button>
+          <Button
+            style={{ marginRight: "5px" }}
+            onClick={() => {
+              setText("재테크");
+            }}
+          >
+            재테크
+          </Button>
+          <Button
+            style={{ width: "250px" }}
+            onClick={() => {
+              setText("반려동물");
+            }}
+          >
+            반려동물
+          </Button>
         </div>
       </Div>
     </React.Fragment>
