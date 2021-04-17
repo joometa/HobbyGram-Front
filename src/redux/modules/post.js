@@ -77,19 +77,31 @@ const addPostDB = (title, content, imgfile, category) => {
 
 // API-URL : http://15.164.164.65/post
 // Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
-const setPostDB = () => {
+const setPostDB = (text = null) => {
   return function (dispatch, getState, { history }) {
     let post_list = [];
 
-    axios({
-      method: "get",
-      url: `${config.api}/post`,
-    }).then((docs) => {
-      // console.log(docs.data);
-      const post_list = docs.data;
-      // console.log(post_list);
-      dispatch(setPost(post_list));
-    });
+    if (text === null) {
+      axios({
+        method: "get",
+        url: `${config.api}/post`,
+      }).then((docs) => {
+        // console.log(docs.data);
+        const post_list = docs.data;
+        // console.log(post_list);
+        dispatch(setPost(post_list));
+      });
+    } else {
+      axios({
+        method: "get",
+        url: `${config.api}/post/${text}`,
+      }).then((docs) => {
+        // console.log(docs.data);
+        const post_list = docs.data;
+        // console.log(post_list);
+        dispatch(setPost(post_list));
+      });
+    }
   };
 };
 

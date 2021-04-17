@@ -12,7 +12,21 @@ import PostDetail from "../pages/PostDetail";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
+import { getCookie } from "../shared/Cookie";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 function App() {
+  const dispatch = useDispatch();
+  const cookie = getCookie("is_login") ? true : false;
+
+  // 쿠키가 있으면 새로고침 시 회원정보를 불러와 is_login = true를 유지 시켜준다.
+  React.useEffect(() => {
+    if (cookie) {
+      dispatch(userActions.getUserDB());
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <Header />

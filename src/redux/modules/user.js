@@ -56,7 +56,7 @@ const LoginDB = (email, pwd) => {
     }).then((res) => {
       console.log(res.data);
       const jwtToken = res.data.result.user.token;
-      // 서버로 부터 받은 토큰을 쿠키에 저장
+      // 서버로 부터 받은 토큰을 쿠키에 저장 (key:value 형태)
       setCookie("is_login", jwtToken);
       // 통신 시 헤더에 default 값으로 저장
       axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
@@ -66,6 +66,33 @@ const LoginDB = (email, pwd) => {
       };
       dispatch(setUser(user));
     });
+  };
+};
+
+// 로그인 후 회원 정보 조회
+const getUserDB = () => {
+  return function (dispatch, getState, { history }) {
+    // 로그인 시 쿠키에 이미 is_login으로 토큰이 저장되어 있기 때문에
+    const jwtToken = getCookie("is_login");
+    // 새로고침하면 헤더 default도 날라가기 때문에 다시 토큰을 달아준다.
+    axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
+    axios({
+      method: "post",
+      url: ``, // 유저정보만 넘겨주는 api 따로 하나 있어야 할 것 같음.
+      data: {
+        token: jwtToken,
+      },
+    })
+      .then((res) => {
+        const user = {
+          email: res.data.result.user.email,
+          name: res.data.result.user.name,
+        };
+        dispatch(getUser(user));
+      })
+      .catch((err) => {
+        console.log("유저정보 조회 에러", err);
+      });
   };
 };
 
@@ -87,7 +114,11 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [GET_USER]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = action.payload.user;
+        draft.is_login = true;
+      }),
   },
   initialState
 );
@@ -97,6 +128,7 @@ const actionCreators = {
   setUser,
   LoginDB,
   signUpDB,
+  getUserDB,
 };
 
 export { actionCreators };
