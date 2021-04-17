@@ -25,7 +25,6 @@ const PostDetail = (props) => {
   console.log(post_id);
   // 댓글 불러오기
   const comment_list = useSelector((state) => state.comment.list);
-
   const user = useSelector((state) => state.user);
   console.log(user);
 
