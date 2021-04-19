@@ -12,7 +12,7 @@ const DELETE_COMMENT = "DELETE_COMMENT"; // 댓글 삭제
 // 액션 생성함수
 const setComment = createAction(SET_COMMENT, (list) => ({ list }));
 const addComment = createAction(ADD_COMMENT, (post) => ({ post }));
-const deleteComment = createAction(DELETE_COMMENT, (id) => ({ id }));
+const deleteComment = createAction(DELETE_COMMENT, (list) => ({ list }));
 
 // Initial State
 const InitialState = {
@@ -48,27 +48,44 @@ const addCommentDB = (user_name, comment, post_id) => {
 // 현재 로그인유저 정보와 댓글 작성자 정보 비교 후 같으면 삭제
 const deleteCommentDB = (comment_id) => {
   return function (dispatch, getState, { history }) {
-    console.log("넘어왔다");
     axios({
       method: "delete",
       url: `${config.api}/comment/${comment_id}`,
-    }).then((res) => {
-      console.log(res.data.result);
-      dispatch(deleteComment(comment_id));
-    });
+      data: {
+        _id: comment_id,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        dispatch(deleteComment(comment_id));
+      })
+      .catch((err) => {
+        console.log("댓글삭제 에러", err);
+      });
   };
 };
 
-// 댓글 가져오기(필요없을듯 함)
-const getCommentDB = (comment_list) => {
+// 댓글 가져오기
+const getCommentDB = (post_id) => {
   return function (dispatch, getState, { history }) {
-    console.log(comment_list);
-    console.log("댓글가져오기");
-    if (!comment_list) {
-      return;
-    } else {
-      dispatch(setComment(comment_list));
-    }
+    let list = [];
+    axios({
+      method: "get",
+      url: `${config.api}/comment/${post_id}`,
+    })
+      .then((docs) => {
+        const comment_list = docs.data.comments;
+        console.log(comment_list);
+        dispatch(setComment(comment_list));
+      })
+      .catch((err) => {
+        console.log("댓글 가져오기 에러", err);
+      });
+
+    // const post_idx = docs.data.findIndex((p) => p.id === post_id);
+    // console.log(docs.data[post_idx].comment);
+    // list = docs.data[post_idx].comment;
+    // dispatch(setComment(list));
   };
 };
 
@@ -90,8 +107,13 @@ export default handleActions(
 
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        const del_comment = draft.list.find((p) => p.id === action.payload.id);
-        console.log(del_comment);
+        let new_comment_list = draft.list.filter((c) => {
+          if (c._id !== action.payload.list) {
+            return c;
+          }
+        });
+        draft.list = new_comment_list;
+        console.log(new_comment_list);
       }),
   },
   InitialState
