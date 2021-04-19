@@ -18,13 +18,13 @@ const PostDetail = (props) => {
   const dispatch = useDispatch();
 
   // 유저정보 불러오기
-  const user_name = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
 
   const [comment, setComment] = React.useState("");
 
   //포스트 id 추출
   const post_id = props.match.params.id;
-  console.log(post_id);
+  // console.log(post_id);
 
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
@@ -38,6 +38,8 @@ const PostDetail = (props) => {
   const comment_list = post.comment;
   console.log(comment_list);
 
+  dispatch(commentActions.getCommentDB(comment_list));
+
   const deletePost = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(postActions.deletePostDB(post_id));
@@ -49,7 +51,7 @@ const PostDetail = (props) => {
   };
 
   const addComment = () => {
-    dispatch(commentActions.addCommentDB(user_name.name, comment, post_id));
+    dispatch(commentActions.addCommentDB(user.name, comment, post_id));
   };
 
   return (

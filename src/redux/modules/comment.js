@@ -12,7 +12,7 @@ const DELETE_COMMENT = "DELETE_COMMENT"; // 댓글 삭제
 // 액션 생성함수
 const setComment = createAction(SET_COMMENT, (list) => ({ list }));
 const addComment = createAction(ADD_COMMENT, (post) => ({ post }));
-const deleteComment = createAction(DELETE_COMMENT, () => ({}));
+const deleteComment = createAction(DELETE_COMMENT, (id) => ({ id }));
 
 // Initial State
 const InitialState = {
@@ -47,34 +47,28 @@ const addCommentDB = (user_name, comment, post_id) => {
 // DB 댓글정보 삭제
 // 현재 로그인유저 정보와 댓글 작성자 정보 비교 후 같으면 삭제
 const deleteCommentDB = (comment_id) => {
-  console.log("넘어왔다");
-  axios({
-    method: "delete",
-    url: `${config.api}/comment/${comment_id}`,
-  }).then((res) => {
-    console.log(res.data.result);
-    console.log("통신했다.");
-  });
+  return function (dispatch, getState, { history }) {
+    console.log("넘어왔다");
+    axios({
+      method: "delete",
+      url: `${config.api}/comment/${comment_id}`,
+    }).then((res) => {
+      console.log(res.data.result);
+      dispatch(deleteComment(comment_id));
+    });
+  };
 };
 
 // 댓글 가져오기(필요없을듯 함)
-const getCommentDB = (post_id) => {
+const getCommentDB = (comment_list) => {
   return function (dispatch, getState, { history }) {
-    let list = [];
-    axios({
-      method: "get",
-      url: `${config.api}/post/detail/${post_id}`,
-    }).then((docs) => {
-      if (!docs.data.comment) {
-        return;
-      }
-      console.log(docs.data);
-
-      // const post_idx = docs.data.findIndex((p) => p.id === post_id);
-      // console.log(docs.data[post_idx].comment);
-      // list = docs.data[post_idx].comment;
-      // dispatch(setComment(list));
-    });
+    console.log(comment_list);
+    console.log("댓글가져오기");
+    if (!comment_list) {
+      return;
+    } else {
+      dispatch(setComment(comment_list));
+    }
   };
 };
 
@@ -94,7 +88,11 @@ export default handleActions(
         draft.list.unshift(new_comment);
       }),
 
-    [DELETE_COMMENT]: (state, action) => produce(state, (draft) => {}),
+    [DELETE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        const del_comment = draft.list.find((p) => p.id === action.payload.id);
+        console.log(del_comment);
+      }),
   },
   InitialState
 );

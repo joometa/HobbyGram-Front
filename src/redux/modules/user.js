@@ -17,7 +17,7 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }));
 //  초기값
 // is_login : 로그인 상태인지 아닌지 여부 확인
 const initialState = {
-  user: null,
+  user: "",
   is_login: false,
 };
 
@@ -74,7 +74,7 @@ const getUserDB = () => {
   return function (dispatch, getState, { history }) {
     // 로그인 시 쿠키에 이미 is_login으로 토큰이 저장되어 있기 때문에
     const jwtToken = getCookie("is_login");
-    console.log(jwtToken);
+    // console.log(jwtToken);
     // 새로고침하면 헤더 default도 날라가기 때문에 다시 토큰을 달아준다.
     // 백엔드에서 헤더로 넘어온 Authorization 에서 토큰 값에서 토큰값을 뽑아주기로 함.
     axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;

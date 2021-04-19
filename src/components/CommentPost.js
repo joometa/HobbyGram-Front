@@ -3,16 +3,25 @@ import styled from "styled-components";
 import moment from "moment";
 import "moment/locale/ko";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const CommentPost = (props) => {
   const { user, content, createdAt } = props;
   const dispatch = useDispatch();
   const comment_id = props._id;
-  console.log(comment_id);
+
+  // 로그인한 유저 정보 불러오기
+  const login_user = useSelector((state) => state.user);
 
   const deleteComment = () => {
-    dispatch(commentActions.deleteCommentDB(comment_id));
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(commentActions.deleteCommentDB(comment_id));
+      window.alert("삭제되었습니다!");
+      // 0 은 새로고침
+      // history.go(0);
+    } else {
+      return;
+    }
   };
   return (
     <React.Fragment>
@@ -45,9 +54,13 @@ const CommentPost = (props) => {
         >
           {moment(new Date(createdAt)).fromNow()}
         </div>
-        <div style={{ display: "flex", width: "5rem", marginLeft: "15px" }}>
-          <Button onClick={deleteComment}>삭제</Button>
-        </div>
+        {login_user.user.name === user ? (
+          <div style={{ display: "flex", width: "5rem", marginLeft: "15px" }}>
+            <Button onClick={deleteComment}>삭제</Button>
+          </div>
+        ) : (
+          <></>
+        )}
       </CommentPostWrap>
     </React.Fragment>
   );
