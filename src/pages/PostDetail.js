@@ -251,7 +251,7 @@ const ContentBox = styled.div`
   width: 100%;
   font-size: 1.3rem;
   padding: 12px 4px;
-  height: 20rem;
+  height: 100%;
   padding: 2rem;
 `;
 
@@ -261,7 +261,7 @@ const CommentBox = styled.div`
   width: 100%;
   font-size: 1.3rem;
   padding: 12px 4px;
-  height: 20rem;
+  height: 100%;
   background-color: #ebe8e8;
   padding: 2rem;
 `;
