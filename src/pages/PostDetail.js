@@ -9,16 +9,17 @@ import CommentButton from "../components/CommentButton";
 import CommentPost from "../components/CommentPost";
 import HeartButton from "../components/HeartButton";
 
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import {
+  actionCreators,
+  actionCreators as commentActions,
+} from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
-
-  // 유저정보 불러오기
-  const user_name = useSelector((state) => state.user.user);
 
   const [comment, setComment] = React.useState("");
 
@@ -28,15 +29,21 @@ const PostDetail = (props) => {
 
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
+    dispatch(commentActions.getCommentDB(post_id));
+    dispatch(userActions.getUserDB()); // 유저 정보 불러오기
   }, []);
 
-  //게시글 정보 불러오기
+  // 게시글 정보 불러오기
   const post = useSelector((state) => state.post.post);
   console.log(post);
 
   // 댓글 불러오기
-  const comment_list = post.comment;
+  const comment_list = useSelector((state) => state.comment.list);
   console.log(comment_list);
+
+  // 유저정보 불러오기
+  const user_name = useSelector((state) => state.user.user);
+  console.log(user_name);
 
   const deletePost = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -55,26 +62,30 @@ const PostDetail = (props) => {
   return (
     <React.Fragment>
       <Wrapper>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            margin: "0px 0px 0px 0px",
-          }}
-        >
-          <div style={{ marginRight: "0.5rem" }}>
-            <Button
-              onClick={() => {
-                history.push(`/post/${post_id}/edit`);
-              }}
-            >
-              수정
-            </Button>
+        {user_name.name == post.user ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              margin: "0px 0px 0px 0px",
+            }}
+          >
+            <div style={{ marginRight: "0.5rem" }}>
+              <Button
+                onClick={() => {
+                  history.push(`/post/${post_id}/edit`);
+                }}
+              >
+                수정
+              </Button>
+            </div>
+            <div>
+              <Button onClick={deletePost}>삭제</Button>
+            </div>
           </div>
-          <div>
-            <Button onClick={deletePost}>삭제</Button>
-          </div>
-        </div>
+        ) : (
+          <></> // 빈 값 <React.Fragment>랑 같은 것
+        )}
         <Grid padding="0px">
           <Text bold size="40px">
             {post.title}

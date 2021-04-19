@@ -2,7 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { config } from "../../shared/config";
 import moment from "moment";
-import { getCookie } from "../../shared/Cookie";
 
 import axios from "axios";
 
@@ -166,8 +165,8 @@ const deletePostDB = (id) => {
         _id: id,
       },
     })
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res);
         dispatch(deletePost(id));
       })
       .catch((err) => {
@@ -199,7 +198,7 @@ export default handleActions(
       produce(state, (draft) => {
         // 받아온 id값과 맞지 않는 id의 데이터들을 새로운 배열에 넣어서 기존 list에 덮어쓰기해준다.
         let new_post_list = draft.list.filter((p) => {
-          console.log(action.payload);
+          console.log(p);
           if (p.id !== action.payload.post) {
             return p;
           }

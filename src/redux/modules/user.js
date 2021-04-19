@@ -17,7 +17,7 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }));
 //  초기값
 // is_login : 로그인 상태인지 아닌지 여부 확인
 const initialState = {
-  user: null,
+  user: "",
   is_login: false,
 };
 

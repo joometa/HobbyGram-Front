@@ -5,14 +5,20 @@ import "moment/locale/ko";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useDispatch } from "react-redux";
 
+import { history } from "../redux/configureStore";
+
 const CommentPost = (props) => {
   const { user, content, createdAt } = props;
   const dispatch = useDispatch();
+
+  // 댓글 id 가져오기
   const comment_id = props._id;
   console.log(comment_id);
 
   const deleteComment = () => {
     dispatch(commentActions.deleteCommentDB(comment_id));
+    window.alert("댓글이 삭제되었습니다!");
+    history.go(0); // 현재 페이지 새로고침
   };
   return (
     <React.Fragment>
