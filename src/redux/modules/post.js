@@ -117,8 +117,9 @@ const getOnePostDB = (id) => {
       url: `${config.api}/post/detail/${id}`,
     })
       .then((docs) => {
-        console.log(docs.data);
+        // console.log(docs.data);
         const onePost = docs.data.post;
+        console.log(onePost);
         dispatch(getPost(onePost));
       })
       .catch((err) => {
@@ -187,10 +188,13 @@ export default handleActions(
         const new_post = action.payload.post;
         draft.list.unshift(new_post);
       }),
+
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload);
         draft.post = action.payload.post;
       }),
+
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
         // 받아온 id값과 맞지 않는 id의 데이터들을 새로운 배열에 넣어서 기존 list에 덮어쓰기해준다.

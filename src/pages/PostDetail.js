@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
 import { Grid, Input, Text, Image } from "../element/Index";
+import moment from "moment";
 
 import CommentButton from "../components/CommentButton";
 import CommentPost from "../components/CommentPost";
@@ -15,24 +16,27 @@ import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
-  const user_name = useSelector((state) => state.user.user.name);
+
+  // 유저정보 불러오기
+  const user_name = useSelector((state) => state.user.user);
+
   const [comment, setComment] = React.useState("");
 
   //포스트 id 추출
-  const post = useSelector((state) => state.post.post);
-  console.log(post);
   const post_id = props.match.params.id;
   console.log(post_id);
-  // 댓글 불러오기
-  const comment_list = useSelector((state) => state.comment.list);
-
-  const user = useSelector((state) => state.user);
-  console.log(user);
 
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
-    dispatch(commentActions.getCommentDB(post_id));
   }, []);
+
+  //게시글 정보 불러오기
+  const post = useSelector((state) => state.post.post);
+  console.log(post);
+
+  // 댓글 불러오기
+  const comment_list = post.comment;
+  console.log(comment_list);
 
   const deletePost = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -45,7 +49,7 @@ const PostDetail = (props) => {
   };
 
   const addComment = () => {
-    dispatch(commentActions.addCommentDB(user_name, comment, post_id));
+    dispatch(commentActions.addCommentDB(user_name.name, comment, post_id));
   };
 
   return (
@@ -77,7 +81,7 @@ const PostDetail = (props) => {
           </Text>
           <InfoWrap>
             <Info_Box>
-              <InfoText>{post.createdAt}</InfoText>
+              <InfoText>{moment(post.createdAt).format("YYYY-MM-DD")}</InfoText>
               <span style={{ marginLeft: "0.4rem", marginRight: "0.4rem" }}>
                 ·
               </span>
@@ -134,9 +138,13 @@ const PostDetail = (props) => {
               <CommentAddBtn onClick={addComment}>게시</CommentAddBtn>
             </div>
             <CommentListBox>
-              {comment_list.map((p, idx) => {
-                return <CommentPost key={p.idx} {...p} />;
-              })}
+              {comment_list ? (
+                comment_list.map((p, idx) => {
+                  return <CommentPost key={p._id} {...p} />;
+                })
+              ) : (
+                <></>
+              )}
             </CommentListBox>
           </CommentBox>
         </Grid>
