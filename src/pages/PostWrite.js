@@ -9,6 +9,7 @@ import { Button, Menu, MenuItem } from "@material-ui/core";
 import { Category } from "@material-ui/icons";
 import preview_img from "../image/no_image.png";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { titleCheck, contentCheck } from "../shared/common";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
@@ -34,8 +35,8 @@ const PostWrite = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event);
   };
+  // 카테고리 선택시 발생하는 이벤트 (드롭다운 close, 카테고리 값 변동)
   const handleClose = (e) => {
     setAnchorEl(null);
     setCategory(e.target.childNodes[0].textContent);
@@ -43,35 +44,26 @@ const PostWrite = (props) => {
   // Material UI --end
 
   const addPost = () => {
+    if (!title || !content || !category || !imgfile) {
+      window.alert("제목, 카테고리, 이미지, 내용은 필수 기입 항목입니다.");
+      return;
+    }
+
+    if (!titleCheck(title)) {
+      window.alert("제목을 20자 이내로 작성해주세요.");
+      return;
+    }
+
+    if (!contentCheck(content)) {
+      window.alert("내용을 150자 이내로 작성해주세요.");
+      return;
+    }
+
     dispatch(
       postActions.addPostDB(title, content, imgfile, category, username)
     );
     history.replace("/");
   };
-
-  // 사진 업로드
-  // const fileInput = React.useRef();
-  // const selectfile = (e) => {
-  //   //이미지 파일정보
-  //   setFile(e.target.files[0]);
-  //   console.log(e.target.files[0]);
-
-  //   const fd = new FormData();
-
-  //   fd.append("fileName", e.target.files[0]);
-  //   axios({
-  //     method: "post",
-  //     // url: `${api}/post/:category`,
-  //     data: fd,
-  //   })
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log("에러메세지", err);
-  //     });
-  // };
-  const fileInput = React.useRef();
 
   const selectFile = (e) => {
     //file state에 현재 선택된 파일 저장

@@ -10,3 +10,17 @@ export const pwdCheck = (pwd) => {
 
   return _reg.test(pwd);
 };
+
+// 게시글작성 제목 글자수 제한(20자)
+export const titleCheck = (title) => {
+  let _reg = /^.{1,20}$/;
+
+  return _reg.test(title);
+};
+
+// 게시글작성 내용 글자수 제한(150자)
+export const contentCheck = (content) => {
+  let _reg = /^.{1,150}$/;
+
+  return _reg.test(content);
+};
