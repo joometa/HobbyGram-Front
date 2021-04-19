@@ -21,7 +21,7 @@ const CommentPost = (props) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteCommentDB(comment_id));
       window.alert("삭제되었습니다!");
-      history.go(0); // 현재 페이지 새로고침
+      // history.go(0); // 현재 페이지 새로고침
     } else {
       return;
     }

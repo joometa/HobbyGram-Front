@@ -56,7 +56,12 @@ const PostDetail = (props) => {
   };
 
   const addComment = () => {
+    if (!comment) {
+      window.alert("댓글 내용을 입력해주세요.");
+      return;
+    }
     dispatch(commentActions.addCommentDB(user.name, comment, post_id));
+    window.alert("댓글을 게시하였습니다.");
   };
 
   return (
@@ -113,7 +118,7 @@ const PostDetail = (props) => {
                 }}
               >
                 <CommentButton />
-                {props.commentCnt}
+                {comment_list.length}
               </div>
               <div style={{ width: "2rem" }}></div>
               <div
