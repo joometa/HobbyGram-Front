@@ -21,8 +21,7 @@ const CommentPost = (props) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentActions.deleteCommentDB(comment_id));
       window.alert("삭제되었습니다!");
-      // 0 은 새로고침
-      // history.go(0);
+      history.go(0); // 현재 페이지 새로고침
     } else {
       return;
     }
@@ -83,15 +82,17 @@ const CommentPostWrap = styled.div`
   & {
     font-size: 0.9rem;
   }
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 12px;
 `;
 
 const Button = styled.button`
   min-width: 2.6rem;
   min-height: 35px;
-  margin: 0px;
-  color: red;
+  margin: 0px auto;
+  color: gray;
   border: none;
-  background-color: #ebe8e8;
+  background-color: #ccd6f1;
   border-radius: 10px;
   font-weight: 700;
   font-size: 0.9rem;
