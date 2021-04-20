@@ -41,7 +41,7 @@ const PostWrap = styled.div`
   display: flex;
   width: 1000px;
   margin: 0px auto;
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
   justify-content: space-around;
 `;
 

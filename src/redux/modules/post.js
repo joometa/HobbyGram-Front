@@ -245,6 +245,7 @@ const toggleLikeDB = (post_id, is_like) => {
     });
   };
 };
+
 // 리듀서
 export default handleActions(
   {

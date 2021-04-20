@@ -60,9 +60,10 @@ const PostDetail = (props) => {
     console.log("클릭");
     const is_like = props.is_like;
     dispatch(postActions.toggleLikeDB(post_id, is_like));
+    console.log(is_like);
   };
 
-  //댓글작성 실행함수
+  // 댓글작성 실행함수
   const addComment = () => {
     if (!comment) {
       window.alert("댓글 내용을 입력해주세요.");
