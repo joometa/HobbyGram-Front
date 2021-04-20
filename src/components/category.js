@@ -19,7 +19,7 @@ const Category = () => {
         <div style={{ flexDirection: "column" }}>
           <div style={{ marginBottom: "100px" }}></div>
           <Button
-            style={{ marginRight: "5px" }}
+            style={{ marginRight: "4rem" }}
             onClick={() => {
               setText("음악");
             }}
@@ -28,7 +28,7 @@ const Category = () => {
           </Button>
 
           <Button
-            style={{ marginRight: "5px" }}
+            style={{ marginRight: "4rem" }}
             onClick={() => {
               setText("여행");
             }}
@@ -37,7 +37,7 @@ const Category = () => {
           </Button>
 
           <Button
-            style={{ marginRight: "5px" }}
+            style={{ marginRight: "4rem" }}
             onClick={() => {
               setText("재테크");
             }}
@@ -63,7 +63,7 @@ export default Category;
 const Div = styled.div`
   width: 1000px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0px auto;
   /* background-color: #f5f5f5; */
   margin-bottom: 30px;
@@ -79,7 +79,7 @@ const Button = styled.button`
   background-size: 150px 150px;
   background-color: white;
   margin: 0px auto;
-  color: white;
+  padding-top: 7.5rem;
   font-weight: 800;
   font-size: 17px;
   :hover {
