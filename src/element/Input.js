@@ -48,7 +48,7 @@ const ElInput = styled.input`
   border: 1px solid #dddddd;
   width: 100%;
   padding: 12px 4px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   ${(props) => (props.placeholder ? `placeholder:${props.placeholder};` : "")};
   ${(props) => (props.bold ? `font-weight: bold;` : "")};
   ::placeholder {

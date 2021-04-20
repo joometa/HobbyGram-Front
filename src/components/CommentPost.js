@@ -88,7 +88,7 @@ const CommentPostWrap = styled.div`
 
 const Button = styled.button`
   min-width: 2.6rem;
-  min-height: 35px;
+  min-height: 30px;
   margin: 0px auto;
   color: gray;
   border: none;
