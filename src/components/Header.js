@@ -39,7 +39,7 @@ const Header = () => {
               게시글작성
             </Button>
             <Button
-              style={{ margin: "7px", marginRight: "5px" }}
+              style={{ margin: "7px", marginRight: "15px" }}
               onClick={logout}
             >
               로그아웃
@@ -91,6 +91,8 @@ const Div = styled.div`
   width: 100%;
   height: 60px;
   background-color: #f6f6f6;
+  position: sticky;
+  top: 0px;
 `;
 
 const Button = styled.button`

@@ -103,7 +103,7 @@ const PostDetail = (props) => {
           <></> // 빈 값 <React.Fragment>랑 같은 것
         )}
         <Grid padding="0px">
-          <Text bold size="40px">
+          <Text bold size="30px">
             {post.title}
           </Text>
           <InfoWrap>
@@ -214,7 +214,7 @@ const Button = styled.button`
 `;
 
 const CommentAddBtn = styled.button`
-  width: 5rem;
+  width: 4.5rem;
   margin-left: 0.5rem;
   padding: 0.75rem 4px;
   align-items: center;
@@ -227,7 +227,7 @@ const CommentAddBtn = styled.button`
 `;
 
 const Wrapper = styled.div`
-  width: 70rem;
+  width: 50rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 6rem;
