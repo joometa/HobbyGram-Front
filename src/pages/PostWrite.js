@@ -40,7 +40,7 @@ const PostWrite = (props) => {
   const handleClose = (e) => {
     setAnchorEl(null);
 
-    // 드롭다운활성화하고 선택안했을때 오류 방지
+    // 드롭다운 활성화하고 선택안했을때 오류 방지
     if (e.target.childNodes.length === 0) {
       return;
     }
@@ -75,10 +75,12 @@ const PostWrite = (props) => {
     setImgFile(e.target.files[0]);
     console.log(e.target.files);
     const reader = new FileReader();
-    // 현재 선택된 파일을 dataurl로 변환
+    // 만약 파일이 선택되지 않았을 경우 그냥 반환한다.
     if (!e.target.files[0]) {
       return;
     }
+
+    // 현재 선택된 파일을 dataurl로 변환
     reader.readAsDataURL(e.target.files[0]);
     console.log(reader);
     // 변환된 dataurl을 preview state에 저장

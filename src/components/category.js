@@ -84,9 +84,10 @@ const Button = styled.button`
   font-weight: 800;
   font-size: 17px;
   :hover {
-    background-color: white;
+    /* background-color: #ffffff;
     transition: all 0.3s;
-    border: 3px solid #e6ccef;
+    border: 3px solid solid; */
     font-weight: bold;
+    transform: translateY(-4px);
   }
 `;

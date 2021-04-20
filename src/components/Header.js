@@ -132,9 +132,10 @@ const Font = styled.div`
 `;
 
 const Nickname = styled.div`
-  width: 100px;
+  width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-right: 10px;
+  align-items: center;
 `;
