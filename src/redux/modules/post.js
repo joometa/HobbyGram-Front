@@ -124,6 +124,7 @@ const getOnePostDB = (id) => {
     let is_like = getState().post.is_like;
 
     let _user = getState().user.user;
+    console.log(_user);
 
     axios({
       method: "get",
@@ -146,6 +147,7 @@ const getOnePostDB = (id) => {
 
         // 좋아요 버튼 상황별 활성화 위해 is_like로 현재 좋아요 상태 체크 할 것임
         // 좋아요한 유저리스트에 정보가 없으면 is_like는 비활성화상태(false) 있으면 활성화(true)
+
         is_like =
           onePost.recommendUser.findIndex((p) => p._id === _user.id) === -1
             ? false
@@ -153,6 +155,7 @@ const getOnePostDB = (id) => {
 
         console.log(is_like);
         console.log(onePost.recommendUser);
+        console.log(_user);
         dispatch(getPost(onePost, is_like));
       })
       .catch((err) => {
