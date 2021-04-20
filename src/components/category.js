@@ -73,6 +73,7 @@ const Div = styled.div`
 const Button = styled.button`
   width: 150px;
   height: 150px;
+  font: inherit;
   border: hidden;
   font-size: 15px;
   background-image: url(${icon});
@@ -83,9 +84,10 @@ const Button = styled.button`
   font-weight: 800;
   font-size: 17px;
   :hover {
-    background-color: white;
+    /* background-color: #ffffff;
     transition: all 0.3s;
-    border: 3px solid #e6ccef;
+    border: 3px solid solid; */
     font-weight: bold;
+    transform: translateY(-4px);
   }
 `;
