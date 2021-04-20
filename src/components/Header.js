@@ -98,6 +98,7 @@ const Div = styled.div`
   background-color: #f6f6f6;
   position: sticky;
   top: 0px;
+  z-index: 999;
 `;
 
 const Button = styled.button`
@@ -135,4 +136,6 @@ const Nickname = styled.div`
   width: 100px;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
 `;

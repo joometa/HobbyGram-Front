@@ -39,6 +39,11 @@ const PostWrite = (props) => {
   // 카테고리 선택시 발생하는 이벤트 (드롭다운 close, 카테고리 값 변동)
   const handleClose = (e) => {
     setAnchorEl(null);
+
+    // 드롭다운활성화하고 선택안했을때 오류 방지
+    if (e.target.childNodes.length === 0) {
+      return;
+    }
     setCategory(e.target.childNodes[0].textContent);
   };
   // Material UI --end
@@ -71,6 +76,9 @@ const PostWrite = (props) => {
     console.log(e.target.files);
     const reader = new FileReader();
     // 현재 선택된 파일을 dataurl로 변환
+    if (!e.target.files[0]) {
+      return;
+    }
     reader.readAsDataURL(e.target.files[0]);
     console.log(reader);
     // 변환된 dataurl을 preview state에 저장

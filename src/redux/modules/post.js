@@ -91,14 +91,12 @@ const addPostDB = (title, content, imgfile, category, username) => {
 
 // API-URL : http://15.164.164.65/post
 // Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
-const setPostDB = (text = null) => {
+const setPostDB = (text = null, page = 1) => {
   return function (dispatch, getState, { history }) {
-    let post_list = [];
-
     if (text === null) {
       axios({
         method: "get",
-        url: `${config.api}/post`,
+        url: `${config.api}/post?page=${page}`,
       }).then((docs) => {
         // console.log(docs.data);
         const post_list = docs.data;
@@ -147,15 +145,15 @@ const getOnePostDB = (id) => {
 
         // 좋아요 버튼 상황별 활성화 위해 is_like로 현재 좋아요 상태 체크 할 것임
         // 좋아요한 유저리스트에 정보가 없으면 is_like는 비활성화상태(false) 있으면 활성화(true)
-
+        console.log(_user.id);
         is_like =
-          onePost.recommendUser.findIndex((p) => p._id === _user.id) === -1
+          onePost.recommendUser.findIndex((p) => p === _user.id) === -1
             ? false
             : true;
-
+        console.log(onePost.recommendUser.findIndex((p) => p === _user.id));
         console.log(is_like);
         console.log(onePost.recommendUser);
-        console.log(_user);
+
         dispatch(getPost(onePost, is_like));
       })
       .catch((err) => {

@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import Category from "../components/category";
-
-import ChattingBox from "../components/ChattingBox";
 import PostList from "../components/PostList";
+// import Paging from "../components/Paging";
 
 const Main = () => {
   return (
@@ -13,6 +12,7 @@ const Main = () => {
       <Category></Category>
       {/* <ChattingBox></ChattingBox> */}
       <PostList></PostList>
+      {/* <Paging /> */}
     </React.Fragment>
   );
 };

@@ -17,8 +17,6 @@ import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
-  const is_like = useSelector((state) => state.post.is_like);
-  console.log(is_like);
 
   const [comment, setComment] = React.useState("");
 
@@ -26,11 +24,14 @@ const PostDetail = (props) => {
   const post_id = props.match.params.id;
   // console.log(post_id);
 
+  // 유저정보 불러오기
+  const user = useSelector((state) => state.user.user);
+  // console.log(user);
+
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
     dispatch(commentActions.getCommentDB(post_id));
-    dispatch(userActions.getUserDB()); // 유저 정보 불러오기
-  }, []);
+  }, [user]);
 
   // 게시글 정보 불러오기
   const post = useSelector((state) => state.post.post);
@@ -39,10 +40,6 @@ const PostDetail = (props) => {
   // 댓글 불러오기
   const comment_list = useSelector((state) => state.comment.list);
   // console.log(comment_list);
-
-  // 유저정보 불러오기
-  const user = useSelector((state) => state.user.user);
-  // console.log(user);
 
   //게시글 삭제함수
   const deletePost = () => {
