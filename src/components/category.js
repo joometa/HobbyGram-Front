@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { actionCreators as postActions } from "../redux/modules/post";
 
+import icon from "../shared/icon.png";
+
 const Category = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
@@ -24,6 +26,7 @@ const Category = () => {
           >
             음악
           </Button>
+
           <Button
             style={{ marginRight: "5px" }}
             onClick={() => {
@@ -32,6 +35,7 @@ const Category = () => {
           >
             여행
           </Button>
+
           <Button
             style={{ marginRight: "5px" }}
             onClick={() => {
@@ -40,8 +44,8 @@ const Category = () => {
           >
             재테크
           </Button>
+
           <Button
-            style={{ width: "250px" }}
             onClick={() => {
               setText("반려동물");
             }}
@@ -63,15 +67,20 @@ const Div = styled.div`
   margin: 0px auto;
   /* background-color: #f5f5f5; */
   margin-bottom: 30px;
+  box-sizing: border-box;
 `;
 
 const Button = styled.button`
-  width: 245px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   border: hidden;
   font-size: 15px;
-  background-color: #e6ccef;
+  background-image: url(${icon});
+  background-size: 150px 150px;
+  background-color: white;
   margin: 0px auto;
+  color: white;
+  font-weight: 800;
   font-size: 17px;
   :hover {
     background-color: white;
