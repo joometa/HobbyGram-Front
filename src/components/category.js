@@ -73,6 +73,7 @@ const Div = styled.div`
 const Button = styled.button`
   width: 150px;
   height: 150px;
+  font: inherit;
   border: hidden;
   font-size: 15px;
   background-image: url(${icon});
