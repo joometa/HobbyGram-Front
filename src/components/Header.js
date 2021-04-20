@@ -10,6 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const is_login = getCookie("is_login") ? true : false;
+  console.log(user);
 
   // 로그아웃 실행함수
   const logout = () => {
@@ -25,18 +26,22 @@ const Header = () => {
           <Font
             onClick={() => {
               history.push("/");
+              history.go(0); // 메인 페이지로 돌아간 후 새로고침
             }}
           >
             Hobbygram
           </Font>
           <Buttondiv>
+            <Nickname>
+              <div style={{ fontWeight: "700" }}>{user.user.name}</div>님
+            </Nickname>
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
               onClick={() => {
                 history.push("/write");
               }}
             >
-              게시글작성
+              게시글 작성
             </Button>
             <Button
               style={{ margin: "7px", marginRight: "15px" }}
@@ -124,4 +129,10 @@ const Font = styled.div`
   color: #a445c5;
   margin-left: 15px;
   cursor: pointer;
+`;
+
+const Nickname = styled.div`
+  width: 100px;
+  display: flex;
+  flex-direction: row;
 `;
