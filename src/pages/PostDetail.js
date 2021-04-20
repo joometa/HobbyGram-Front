@@ -226,6 +226,7 @@ const CommentAddBtn = styled.button`
 
 const Wrapper = styled.div`
   width: 50rem;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 6rem;

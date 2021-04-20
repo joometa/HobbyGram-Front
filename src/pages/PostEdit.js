@@ -39,11 +39,11 @@ const PostEdit = (props) => {
     <React.Fragment>
       <Wrapper>
         <Grid>
-          <h1>제목</h1>
+          <h1>게시글 수정</h1>
           <TitleInput value={title} onChange={changeTitle}></TitleInput>
         </Grid>
         <Grid>
-          <Image src={post.img}></Image>
+          <Image detail src={post.img}></Image>
         </Grid>
         <Grid>
           <Input

@@ -9,7 +9,7 @@ const Main = () => {
   return (
     <React.Fragment>
       <Title>Hobbygram</Title>
-      <Category></Category>
+      <Category />
       {/* <ChattingBox></ChattingBox> */}
       <PostList></PostList>
       {/* <Paging /> */}

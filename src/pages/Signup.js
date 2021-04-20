@@ -28,6 +28,7 @@ const Signup = () => {
     }
     if (!pwdCheck(pwd)) {
       window.alert("8~16자리의 영문과 숫자를 조합해주세요!");
+      return;
     }
     // 인자로 history 넘겨주면 모듈 함수에서 적용할 수 있음.
     dispatch(userActions.signUpDB(email, name, pwd, pwdcheck));

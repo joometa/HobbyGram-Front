@@ -168,6 +168,7 @@ const BasicButton = styled.button`
 `;
 
 const Wrapper = styled.div`
+  font: inherit;
   width: 50rem;
   margin-left: auto;
   margin-right: auto;

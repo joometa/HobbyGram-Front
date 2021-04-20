@@ -14,7 +14,10 @@ const EDIT_POST = "EDIT_POST"; // 게시글 수정
 
 const TOGGLE_LIKE = "TOGGLE_LIKE"; // 좋아요 토글
 
-const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
+const setPost = createAction(SET_POST, (post_list, text) => ({
+  post_list,
+  text,
+}));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const getPost = createAction(GET_POST, (post, is_like) => ({ post, is_like }));
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
@@ -30,6 +33,7 @@ const initialState = {
   list: [],
   post: [],
   is_like: false,
+  text: null,
 };
 
 const initialPost = {
@@ -101,6 +105,10 @@ const setPostDB = (text = null, page = 1) => {
         // console.log(docs.data);
         const post_list = docs.data;
         console.log(post_list);
+        if (post_list.post.length == 0) {
+          window.alert("마지막 페이지입니다");
+          return;
+        }
         dispatch(setPost(post_list));
       });
     } else {
@@ -111,7 +119,11 @@ const setPostDB = (text = null, page = 1) => {
         // console.log(docs.data);
         const post_list = docs.data;
         // console.log(post_list);
-        dispatch(setPost(post_list));
+        if (post_list.post.length == 0) {
+          window.alert("마지막 페이지입니다");
+          return;
+        }
+        dispatch(setPost(post_list, text));
       });
     }
   };
@@ -252,6 +264,7 @@ export default handleActions(
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.post_list.post;
+        draft.text = action.payload.text;
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {

@@ -102,8 +102,12 @@ const Div = styled.div`
 `;
 
 const Button = styled.button`
+  font: inherit;
+  font-size: 0.8rem;
+  align-items: center;
   width: 100px;
   height: 35px;
+  padding-top: 0.3rem;
   margin: 0px;
   border: 0px solid;
   background-color: #e6ccef;

@@ -35,10 +35,12 @@ const signUpDB = (email, nickname, pwd, pwdcheck) => {
       },
     })
       .then(() => {
+        window.alert("회원가입을 축하드립니다!");
         history.push("/login");
       })
       .catch((err) => {
         console.log("회원가입 에러", err);
+        window.alert("이미 중복된 아이디입니다. 확인해주세요");
       });
   };
 };
