@@ -158,7 +158,7 @@ const BasicButton = styled.button`
 `;
 
 const Wrapper = styled.div`
-  width: 70rem;
+  width: 50rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 6rem;
