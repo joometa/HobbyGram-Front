@@ -5,6 +5,7 @@ import heart_red from "../image/heart_red.png";
 import heart_gray from "../image/heart_gray.png";
 
 const HeartButton = (props) => {
+  // const is_like = useSelector((state) => state.post.is_like);
   const icon_url = props.is_like ? heart_red : heart_gray;
 
   return (
@@ -15,7 +16,7 @@ const HeartButton = (props) => {
 };
 
 const Heart = styled.div`
-  width: 1.7rem;
+  width: 1.8rem;
   height: 1.5rem;
   display: flex;
   background: url(${(props) => props.icon_url});

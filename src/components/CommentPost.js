@@ -34,6 +34,7 @@ const CommentPost = (props) => {
             width: "10rem",
             display: "flex",
             alignItems: "center",
+            fontWeight: "bold",
           }}
         >
           {user}
@@ -53,6 +54,7 @@ const CommentPost = (props) => {
             alignItems: "center",
             display: "flex",
             justifyContent: "flex-end",
+            color: "#888686",
           }}
         >
           {moment(new Date(createdAt)).fromNow()}
@@ -98,7 +100,7 @@ const Button = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   :hover {
-    color: #9c0404;
+    color: red;
   }
 `;
 

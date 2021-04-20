@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { config } from "../../shared/config";
 import moment from "moment";
+import { getCookie } from "../../shared/Cookie";
 
 import axios from "axios";
 
@@ -11,15 +12,24 @@ const GET_POST = "GET_POST"; // 게시글 상세 불러오기
 const DELETE_POST = "DELETE_POST"; // 게시글 삭제
 const EDIT_POST = "EDIT_POST"; // 게시글 수정
 
+const TOGGLE_LIKE = "TOGGLE_LIKE"; // 좋아요 토글
+
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
-const getPost = createAction(GET_POST, (post) => ({ post }));
+const getPost = createAction(GET_POST, (post, is_like) => ({ post, is_like }));
 const deletePost = createAction(DELETE_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (post) => ({ post }));
+
+// 좋아요
+const toggleLike = createAction(TOGGLE_LIKE, (post, is_like) => ({
+  post,
+  is_like,
+}));
 
 const initialState = {
   list: [],
   post: [],
+  is_like: false,
 };
 
 const initialPost = {
@@ -92,7 +102,7 @@ const setPostDB = (text = null) => {
       }).then((docs) => {
         // console.log(docs.data);
         const post_list = docs.data;
-        // console.log(post_list);
+        console.log(post_list);
         dispatch(setPost(post_list));
       });
     } else {
@@ -111,6 +121,10 @@ const setPostDB = (text = null) => {
 
 const getOnePostDB = (id) => {
   return function (dispatch, getState, { history }) {
+    let is_like = getState().post.is_like;
+
+    let _user = getState().user.user;
+
     axios({
       method: "get",
       url: `${config.api}/post/detail/${id}`,
@@ -119,7 +133,27 @@ const getOnePostDB = (id) => {
         // console.log(docs.data);
         const onePost = docs.data.post;
         console.log(onePost);
-        dispatch(getPost(onePost));
+
+        // success가 true면 추천 유저정보에 로그인유저의 id값 추가, false면 추천유저정보리스트에서
+        // 로그인한 유저의 id값을 찾고 그 값을 제거
+        // if (res.data.success) {
+        //   recommendUser.append(_user.id);
+        // } else {
+        //   const idx = recommendUser.findIndex((user) => user === _user.id);
+        //   console.log(idx);
+        //   recommendUser.splice(idx, 1);
+        // }
+
+        // 좋아요 버튼 상황별 활성화 위해 is_like로 현재 좋아요 상태 체크 할 것임
+        // 좋아요한 유저리스트에 정보가 없으면 is_like는 비활성화상태(false) 있으면 활성화(true)
+        is_like =
+          onePost.recommendUser.findIndex((p) => p._id === _user.id) === -1
+            ? false
+            : true;
+
+        console.log(is_like);
+        console.log(onePost.recommendUser);
+        dispatch(getPost(onePost, is_like));
       })
       .catch((err) => {
         console.log("에러", err);
@@ -175,6 +209,42 @@ const deletePostDB = (id) => {
   };
 };
 
+const toggleLikeDB = (post_id, is_like) => {
+  return function (dispatch, getState, { history }) {
+    // 현재 포스트의 정보
+    let _post = getState().post.post;
+
+    // 현재 포스트의 좋아요 수
+    let recommendCnt = _post.recommendCnt;
+
+    // 현재 포스트를 좋아요한 유저들의 리스트
+    let recommendUser = _post.recommendUser;
+
+    // 로그인한 유저의 정보
+    let _user = getState().user.user;
+
+    axios({
+      method: "POST",
+      url: `${config.api}/post/recommend/${post_id}`,
+    }).then((res) => {
+      console.log(res.data.success);
+      // success 가 true이면 좋아요 +1, false면 좋아요 -1
+      recommendCnt = res.data.success ? recommendCnt + 1 : recommendCnt - 1;
+
+      is_like = res.data.success ? true : false;
+
+      // 변동된 좋아요 수 반영한 현재 포스트 : 좋아요유저는 데이터상에서 추가하기로함
+      const like_post = {
+        ..._post,
+        recommendCnt: recommendCnt,
+      };
+      console.log(like_post);
+
+      dispatch(toggleLike(like_post, is_like));
+    });
+  };
+};
+// 리듀서
 export default handleActions(
   {
     [SET_POST]: (state, action) =>
@@ -192,6 +262,7 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload);
         draft.post = action.payload.post;
+        draft.is_like = action.payload.is_like;
       }),
 
     [DELETE_POST]: (state, action) =>
@@ -215,6 +286,13 @@ export default handleActions(
         draft.list[idx] = draft.post; // 수정된 값이 들어간 post를 list[idx] 값에 넣어준다.
         console.log(idx);
       }),
+
+    [TOGGLE_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload);
+        draft.post = action.payload.post;
+        draft.is_like = action.payload.is_like;
+      }),
   },
   initialState
 );
@@ -228,6 +306,7 @@ const actionCreators = {
   editPostDB,
   deletePostDB,
   addPostDB,
+  toggleLikeDB,
 };
 
 export { actionCreators };

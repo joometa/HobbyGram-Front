@@ -86,10 +86,11 @@ const getUserDB = () => {
       url: `${config.api}/getUser`,
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         const user = {
           email: res.data.email,
           name: res.data.name,
+          id: res.data.userId,
         };
         dispatch(getUser(user));
       })

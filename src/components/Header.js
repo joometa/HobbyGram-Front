@@ -11,8 +11,10 @@ const Header = () => {
   const user = useSelector((state) => state.user);
   const is_login = getCookie("is_login") ? true : false;
 
+  // 로그아웃 실행함수
   const logout = () => {
     dispatch(userActions.logOut());
+    window.alert("로그아웃 되었습니다.");
     history.push("/");
   };
   // 로그인 상태일 때

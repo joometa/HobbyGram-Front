@@ -9,10 +9,7 @@ import CommentButton from "../components/CommentButton";
 import CommentPost from "../components/CommentPost";
 import HeartButton from "../components/HeartButton";
 
-import {
-  actionCreators,
-  actionCreators as commentActions,
-} from "../redux/modules/comment";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -20,6 +17,8 @@ import { history } from "../redux/configureStore";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
+  const is_like = useSelector((state) => state.post.is_like);
+  console.log(is_like);
 
   const [comment, setComment] = React.useState("");
 
@@ -39,12 +38,13 @@ const PostDetail = (props) => {
 
   // 댓글 불러오기
   const comment_list = useSelector((state) => state.comment.list);
-  console.log(comment_list);
+  // console.log(comment_list);
 
   // 유저정보 불러오기
   const user = useSelector((state) => state.user.user);
-  console.log(user);
+  // console.log(user);
 
+  //게시글 삭제함수
   const deletePost = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(postActions.deletePostDB(post_id));
@@ -55,6 +55,17 @@ const PostDetail = (props) => {
     }
   };
 
+  // 좋아요 실행함수
+  const changeLike = (e) => {
+    // 이벤트 버블링,캡쳐링 방지
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("클릭");
+    const is_like = props.is_like;
+    dispatch(postActions.toggleLikeDB(post_id, is_like));
+  };
+
+  //댓글작성 실행함수
   const addComment = () => {
     if (!comment) {
       window.alert("댓글 내용을 입력해주세요.");
@@ -130,8 +141,8 @@ const PostDetail = (props) => {
                   justifyContent: "space-between",
                 }}
               >
-                <HeartButton />
-                {props.recommendCnt}
+                <HeartButton _onClick={changeLike} />
+                {post.recommendCnt}
               </div>
             </LikeCommentBox>
           </InfoWrap>
@@ -183,6 +194,7 @@ PostDetail.defaultProps = {
   comment_user: "박민경",
   comment_content: "이게 대체 뭔소리에요??",
   comment_createdAt: "2021-04-13",
+  is_like: false,
 };
 
 const CommentListBox = styled.div`
