@@ -58,6 +58,11 @@ const PostBox = styled.div`
     transform: translateY(-4px);
     box-shadow: rgb(0 0 0 / 15%) 0px 12px 20px 0px;
   }
+  @media all and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Image_Wrap = styled.div`

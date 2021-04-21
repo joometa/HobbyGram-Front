@@ -40,7 +40,7 @@ const DetailImage = styled.img`
   margin: 0px auto;
   /* background-image: url("${(props) => props.src}"); */
   background-repeat: no-repeat;
-  object-fit: fill;
+  object-fit: contain;
 `;
 
 const AspectOutter = styled.div`

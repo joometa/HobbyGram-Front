@@ -240,7 +240,7 @@ const Wrapper = styled.div`
   box-shadow: rgb(0 0 0 / 30%) 0px 4px 16px 0px;
   border-radius: 10px;
 
-  @media (max-width: 1270px) {
+  /* @media (max-width: 1270px) {
     width: calc(70% - 2rem);
   }
 
@@ -249,7 +249,18 @@ const Wrapper = styled.div`
   }
   @media (max-width: 767px) {
     width: calc(50% - 0.5rem);
+  } */
+
+  /* width 1024px 미만일 때 적용 */
+  @media all and (min-width: 1024px) {
+    width: 50%;
   }
+  @media all and (max-width: 769px) {
+    width: 30%;
+  }
+  /* @media all and (max-width: 376px) {
+    width: 50%;
+  } */
 `;
 
 const LikeCommentBox = styled.div`
@@ -262,13 +273,18 @@ const LikeCommentBox = styled.div`
 `;
 
 const ContentBox = styled.div`
+  overflow: scroll;
   box-sizing: border-box;
   border: 1px solid #dddddd;
   width: 100%;
   font-size: 1.3rem;
   padding: 12px 4px;
-  height: 100%;
+  height: 25rem;
   padding: 2rem;
+  margin-top: 1rem;
+  @media all and (max-width: 1024px) {
+    height: 10rem;
+  }
 `;
 
 const CommentBox = styled.div`

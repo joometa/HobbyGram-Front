@@ -24,6 +24,6 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   margin: 0px auto;
-  font-size: 70px;
+  font-size: 5rem;
   margin-top: 1.5rem;
 `;

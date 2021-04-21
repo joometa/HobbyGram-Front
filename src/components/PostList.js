@@ -73,12 +73,17 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  /* width 768px 미만일 때 적용 */
+  /* @media screen and (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  } */
 `;
 
 const PostWrap = styled.div`
   flex-wrap: wrap;
   display: flex;
-  width: 1000px;
+  width: 62.5rem;
   margin: 0px auto;
   /* background-color: #e6e6e6; */
   justify-content: space-around;

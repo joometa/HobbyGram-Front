@@ -31,7 +31,7 @@ const CommentPost = (props) => {
       <CommentPostWrap>
         <div
           style={{
-            width: "10rem",
+            width: "14rem",
             display: "flex",
             alignItems: "center",
             fontWeight: "bold",
