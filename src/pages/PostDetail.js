@@ -40,6 +40,9 @@ const PostDetail = (props) => {
   // 댓글 불러오기
   const comment_list = useSelector((state) => state.comment.list);
   // console.log(comment_list);
+  if (!comment_list) {
+    return null;
+  }
 
   //게시글 삭제함수
   const deletePost = () => {

@@ -101,6 +101,8 @@ const Input = styled.input`
   width: 25rem;
   height: 40px;
   margin: 0px auto;
+  padding-left: 5px;
+
   @media all and (max-width: 414px) {
     width: 100%;
   }

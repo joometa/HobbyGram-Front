@@ -59,11 +59,6 @@ const PostWrite = (props) => {
       return;
     }
 
-    if (!contentCheck(content)) {
-      window.alert("내용을 150자 이내로 작성해주세요.");
-      return;
-    }
-
     dispatch(
       postActions.addPostDB(title, content, imgfile, category, username)
     );
