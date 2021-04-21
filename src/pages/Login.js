@@ -133,6 +133,16 @@ const Question = styled.div`
   flex-direction: row;
   margin-left: 19rem;
   justify-content: flex-end;
+  @media all and (max-width: 1024px) {
+    width: auto;
+    margin: 0;
+  }
+
+  @media all and (max-width: 768px) {
+    width: auto;
+    margin: 0;
+  }
+
   @media all and (max-width: 414px) {
     width: auto;
     font-size: 0.8rem;

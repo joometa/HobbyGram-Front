@@ -166,8 +166,23 @@ const Question = styled.div`
   justify-content: flex-end;
   @media all and (max-width: 414px) {
     margin: 0;
+    font-size: 0.8rem;
+    & > p {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+    }
   }
   @media all and (max-width: 375px) {
     margin: 0;
+    font-size: 0.8rem;
+    justify-content: center;
+    & > p {
+      margin: 0;
+      margin-left: 2rem;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+    }
   }
 `;
