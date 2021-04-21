@@ -123,7 +123,7 @@ const PostWrite = (props) => {
               음악
             </MenuItem>
             <MenuItem onClick={handleClose}>여행</MenuItem>
-            <MenuItem onClick={handleClose}>재테크</MenuItem>
+            <MenuItem onClick={handleClose}>맛집</MenuItem>
             <MenuItem onClick={handleClose}>반려동물</MenuItem>
           </Menu>
         </Grid>
@@ -187,7 +187,7 @@ const BasicButton = styled.button`
     margin: 0px 1.5rem;
   }
   @media (max-width: 414px) {
-    width: 3.5rem;
+    width: 3rem;
     font-size: 0.6rem;
     height: 1.7rem;
     margin: 0px 1.5rem;
