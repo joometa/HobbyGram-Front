@@ -125,7 +125,7 @@ const Wrap = styled.div`
 const PostWrap = styled.div`
   flex-wrap: wrap;
   display: flex;
-  width: 1000px;
+  width: 62.5rem;
   margin: 0px auto;
   justify-content: space-around;
 `;

@@ -58,20 +58,7 @@ const PostBox = styled.div`
     transform: translateY(-4px);
     box-shadow: rgb(0 0 0 / 15%) 0px 12px 20px 0px;
   }
-  /* @media (min-width: 1024px) {
-    width: 18rem;
-    height: auto;
-  }
 
-  @media (max-width: 1023px) {
-    width: 18rem;
-    height: auto;
-  }
-
-  @media (max-width: 767px) {
-    width: 80vw;
-    height: auto;
-  } */
   @media (max-width: 1024px) {
     width: 21rem;
   }

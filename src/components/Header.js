@@ -33,7 +33,7 @@ const Header = () => {
           </Font>
           <Buttondiv>
             <Nickname>
-              <div style={{ fontWeight: "700" }}>{user.user.name}</div>님
+              <Username>{user.user.name}</Username>님
             </Nickname>
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
@@ -186,10 +186,11 @@ const Buttondiv = styled.div`
 `;
 
 const Font = styled.div`
+  display: flex;
   font-family: "Lobster", cursive;
-  font-size: 40px;
+  font-size: 2.5rem;
   color: #a445c5;
-  margin-left: 15px;
+  margin-left: 1rem;
   cursor: pointer;
   @media (max-width: 1024px) {
   }
@@ -208,10 +209,19 @@ const Font = styled.div`
 `;
 
 const Nickname = styled.div`
-  width: 200px;
+  width: 12.5rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-right: 10px;
   align-items: center;
+`;
+
+const Username = styled.div`
+  font-weight: 700;
+  width: 7rem;
+  margin-right: 5px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
 `;
