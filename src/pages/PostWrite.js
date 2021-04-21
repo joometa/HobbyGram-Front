@@ -119,11 +119,9 @@ const PostWrite = (props) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose} label="music">
-              음악
-            </MenuItem>
+            <MenuItem onClick={handleClose}>음악</MenuItem>
             <MenuItem onClick={handleClose}>여행</MenuItem>
-            <MenuItem onClick={handleClose}>재테크</MenuItem>
+            <MenuItem onClick={handleClose}>맛집</MenuItem>
             <MenuItem onClick={handleClose}>반려동물</MenuItem>
           </Menu>
         </Grid>
