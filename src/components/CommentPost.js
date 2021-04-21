@@ -29,38 +29,18 @@ const CommentPost = (props) => {
   return (
     <React.Fragment>
       <CommentPostWrap>
-        <div
-          style={{
-            width: "14rem",
-            display: "flex",
-            alignItems: "center",
-            fontWeight: "bold",
-          }}
-        >
-          {user}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            alignItems: "center",
-          }}
-        >
-          {content}
-        </div>
-        <div
-          style={{
-            width: "11rem",
-            alignItems: "center",
-            display: "flex",
-            justifyContent: "flex-end",
-            color: "#888686",
-          }}
-        >
-          {moment(new Date(createdAt)).fromNow()}
-        </div>
+        <Nickname>{user}</Nickname>
+        <Content>{content}</Content>
+        <Time>{moment(new Date(createdAt)).fromNow()}</Time>
         {login_user.user.name === user ? (
-          <div style={{ display: "flex", width: "5rem", marginLeft: "15px" }}>
+          <div
+            style={{
+              display: "flex",
+              width: "5rem",
+              marginLeft: "15px",
+              alignItems: "center",
+            }}
+          >
             <Button onClick={deleteComment}>삭제</Button>
           </div>
         ) : (
@@ -81,16 +61,16 @@ const CommentPostWrap = styled.div`
   display: flex;
   justify-content: "space-between";
   margin-bottom: 1rem;
-  & {
-    font-size: 0.9rem;
-  }
   border-bottom: 1px solid #dddddd;
-  padding-bottom: 12px;
+  padding-bottom: 0.8rem;
+  @media all and (max-width: 375px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const Button = styled.button`
   min-width: 2.6rem;
-  min-height: 30px;
+  height: 30px;
   margin: 0px auto;
   color: gray;
   border: none;
@@ -101,6 +81,43 @@ const Button = styled.button`
   cursor: pointer;
   :hover {
     color: red;
+  }
+  @media all and (max-width: 375px) {
+    min-width: 1rem;
+    width: 2rem;
+    height: 1.8rem;
+    font-size: 0.5rem;
+  }
+`;
+
+const Nickname = styled.div`
+  min-width: 10rem;
+  width: auto;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  @media all and (max-width: 375px) {
+    min-width: 2rem;
+    width: auto;
+  }
+`;
+
+const Content = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+`;
+
+const Time = styled.div`
+  width: 11rem;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  color: #888686;
+  @media all and (max-width: 375px) {
+    width: 6rem;
   }
 `;
 

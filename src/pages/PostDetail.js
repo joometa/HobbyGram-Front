@@ -77,13 +77,7 @@ const PostDetail = (props) => {
     <React.Fragment>
       <Wrapper>
         {user.name == post.user ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              margin: "0px 0px 0px 0px",
-            }}
-          >
+          <Topbutton>
             <div style={{ marginRight: "0.5rem" }}>
               <Button
                 onClick={() => {
@@ -96,7 +90,7 @@ const PostDetail = (props) => {
             <div>
               <Button onClick={deletePost}>삭제</Button>
             </div>
-          </div>
+          </Topbutton>
         ) : (
           <></> // 빈 값 <React.Fragment>랑 같은 것
         )}
@@ -222,6 +216,11 @@ const CommentAddBtn = styled.button`
   font-weight: 700;
   font-size: 1rem;
   box-shadow: rgb(0 0 0 / 30%) 0px 1.5px 2.5px 0px;
+  @media all and (max-width: 375px) {
+    height: 2.4rem;
+    font-size: 0.8rem;
+    width: 3rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -255,12 +254,14 @@ const Wrapper = styled.div`
   @media all and (min-width: 1024px) {
     width: 50%;
   }
-  @media all and (max-width: 769px) {
-    width: 30%;
+  @media all and (max-width: 768px) {
+    width: 60%;
   }
-  /* @media all and (max-width: 376px) {
-    width: 50%;
-  } */
+  @media all and (max-width: 376px) {
+    width: 80%;
+    padding: 1rem;
+    margin: 1rem;
+  }
 `;
 
 const LikeCommentBox = styled.div`
@@ -285,6 +286,9 @@ const ContentBox = styled.div`
   @media all and (max-width: 1024px) {
     height: 10rem;
   }
+  @media all and (max-width: 375px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const CommentBox = styled.div`
@@ -296,6 +300,10 @@ const CommentBox = styled.div`
   height: 100%;
   background-color: #f5f8ff;
   padding: 2rem;
+  @media all and (max-width: 375px) {
+    font-size: 0.8rem;
+    padding: 0.7rem;
+  }
 `;
 
 const Info_Box = styled.div`
@@ -305,9 +313,12 @@ const Info_Box = styled.div`
 `;
 
 const InfoText = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.5;
   color: rgb(134, 142, 150);
+  @media all and (max-width: 375px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const InfoWrap = styled.div`
@@ -315,6 +326,19 @@ const InfoWrap = styled.div`
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
+`;
+
+const Topbutton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px 0px 0px 0px;
+
+  @media all and (max-width: 375px) {
+    & > div > button {
+      font-size: 0.5rem;
+      height: 2rem;
+    }
+  }
 `;
 
 export default PostDetail;
