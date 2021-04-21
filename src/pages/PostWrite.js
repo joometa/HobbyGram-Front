@@ -185,7 +185,7 @@ const BasicButton = styled.button`
     margin: 0px 1.5rem;
   }
   @media (max-width: 414px) {
-    width: 3.5rem;
+    width: 3rem;
     font-size: 0.6rem;
     height: 1.7rem;
     margin: 0px 1.5rem;

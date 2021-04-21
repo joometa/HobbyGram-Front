@@ -137,6 +137,10 @@ const Question = styled.div`
     width: auto;
     margin: 0;
   }
+  @media all and (min-width: 1024px) {
+    width: auto;
+    margin: 0;
+  }
 
   @media all and (max-width: 768px) {
     width: auto;
