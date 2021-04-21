@@ -40,6 +40,25 @@ const DetailImage = styled.img`
   margin: 0px auto;
   background-repeat: no-repeat;
   object-fit: contain;
+
+  @media (max-width: 1024px) {
+    min-height: 16rem;
+    max-height: 23rem;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 14rem;
+    max-height: 18rem;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 540px) {
+    min-height: 12rem;
+    max-height: 16rem;
+    margin-bottom: 10px;
+  }
+
   @media (max-width: 414px) {
     min-height: 11rem;
     max-height: 15rem;
@@ -51,6 +70,12 @@ const DetailImage = styled.img`
     box-sizing: border-box;
     min-height: 10.5rem;
     max-height: 15rem;
+  }
+  @media (max-width: 280px) {
+    margin: 0px;
+    box-sizing: border-box;
+    min-height: 8rem;
+    max-height: 12rem;
   }
 `;
 

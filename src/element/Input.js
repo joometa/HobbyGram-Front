@@ -56,16 +56,22 @@ const ElInput = styled.input`
     font: inherit;
     font-size: 1rem;
   }
-  @media (max-width: 375px) {
-    font: inherit;
-    font-size: 0.8rem;
-    padding: 10px 10px;
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
     ::placeholder {
-      font: inherit;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 540px) {
+    font-size: 0.8rem;
+    ::placeholder {
       font-size: 0.8rem;
     }
   }
-  @media all and (max-width: 375px) {
+
+  @media (max-width: 375px) {
+    font-size: 0.8rem;
     ::placeholder {
       font-size: 0.8rem;
     }
@@ -77,18 +83,35 @@ const ElTextarea = styled.textarea`
   box-sizing: border-box;
   border: 1px solid #dddddd;
   width: 100%;
-  font-size: 1.3rem;
-  padding: 12px 4px;
+  font-size: 1rem;
+  padding: 10px 10px;
   ${(props) => (props.placeholder ? `placeholder:${props.placeholder};` : "")};
   ::placeholder {
     font: inherit;
     font-size: 1rem;
   }
+  @media (max-width: 768px) {
+    height: 14rem;
+    overflow: scroll;
+    font-size: 0.9rem;
+
+    ::placeholder {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 540px) {
+    height: 11rem;
+    overflow: scroll;
+    ::placeholder {
+      font-size: 0.8rem;
+    }
+  }
+
   @media (max-width: 414px) {
     height: 10rem;
     overflow: scroll;
     font-size: 0.8rem;
-    padding: 10px 10px;
     ::placeholder {
       font-size: 0.8rem;
     }

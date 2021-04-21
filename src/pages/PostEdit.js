@@ -39,7 +39,7 @@ const PostEdit = (props) => {
     <React.Fragment>
       <Wrapper>
         <Grid>
-          <h1>게시글 수정</h1>
+          <h3>게시글 수정</h3>
           <TitleInput value={title} onChange={changeTitle}></TitleInput>
         </Grid>
         <Grid>
@@ -79,9 +79,42 @@ const Button = styled.button`
   height: 35px;
   margin: 0px;
   border: 0px solid;
+  font: inherit;
   background-color: #ccd6f1;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 30%) 0px 1.5px 2.5px 0px;
+  @media (max-width: 1024px) {
+    width: 5rem;
+    font-size: 0.9rem;
+    height: 2rem;
+    margin: 0px 2.2rem;
+  }
+  @media (max-width: 768px) {
+    width: 4.5rem;
+    font-size: 0.8rem;
+    height: 1.9rem;
+    margin: 0px 2rem;
+  }
+
+  @media (max-width: 540px) {
+    width: 4.5rem;
+    font-size: 0.7rem;
+    height: 1.7rem;
+    margin: 0px 1.5rem;
+  }
+  @media (max-width: 414px) {
+    width: 4rem;
+    font-size: 0.6rem;
+    height: 1.7rem;
+    margin: 0px 1.5rem;
+  }
+
+  @media (max-width: 375px) {
+    width: 4rem;
+    font-size: 0.7rem;
+    height: 1.7rem;
+    margin: 0px 1.5rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -99,23 +132,62 @@ const Wrapper = styled.div`
   box-shadow: rgb(0 0 0 / 30%) 0px 4px 16px 0px;
   border-radius: 10px;
 
-  @media (max-width: 1270px) {
-    width: calc(70% - 2rem);
+  @media (max-width: 1024px) {
+    width: 40rem;
+    margin-top: 2rem;
   }
-
-  @media (max-width: 1056px) {
-    width: calc(50% - 2rem);
+  @media (max-width: 768px) {
+    width: 28rem;
+    margin-top: 2rem;
   }
-  @media (max-width: 767px) {
-    width: calc(50% - 0.5rem);
+  @media (max-width: 540px) {
+    width: 21rem;
+    margin-top: 1.5rem;
+    padding: 4rem;
+  }
+  @media (max-width: 414px) {
+    width: 16.5rem;
+    padding: 3rem;
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 375px) {
+    width: 13rem;
+    padding: 3rem;
+    margin-top: 2rem;
+    & > h1 {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 280px) {
+    width: 9.7rem;
+    padding: 3rem;
+    margin-top: 1rem;
   }
 `;
 
 const TitleInput = styled.input`
   width: 100%;
   height: 40px;
-  font-size: 30px;
+  font: inherit;
+  font-size: 1.3rem;
   margin: 10px auto;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 1px gray;
+  @media (max-width: 414px) {
+    font-size: 1rem;
+    height: 1rem;
+    padding: 10px 10px;
+    width: auto;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 1rem;
+    height: 1rem;
+    padding: 10px 10px;
+    width: auto;
+  }
 `;
 
 export default PostEdit;
