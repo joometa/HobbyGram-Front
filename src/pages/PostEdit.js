@@ -175,11 +175,14 @@ const TitleInput = styled.input`
   border-left: none;
   border-right: none;
   border-bottom: solid 1px gray;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   @media (max-width: 414px) {
     font-size: 1rem;
     height: 1rem;
     padding: 10px 10px;
-    width: auto;
+    width: 90%;
   }
 
   @media (max-width: 375px) {

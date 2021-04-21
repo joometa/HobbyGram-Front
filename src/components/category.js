@@ -35,10 +35,10 @@ const Category = () => {
           </ButtonBox>
           <ButtonBox
             onClick={() => {
-              setText("재테크");
+              setText("맛집");
             }}
           >
-            <Icon>재테크</Icon>
+            <Icon>맛집</Icon>
           </ButtonBox>
           <ButtonBox
             onClick={() => {
