@@ -63,6 +63,10 @@ const CommentPostWrap = styled.div`
   margin-bottom: 1rem;
   border-bottom: 1px solid #dddddd;
   padding-bottom: 0.8rem;
+  @media all and (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
   @media all and (max-width: 375px) {
     font-size: 0.6rem;
   }
@@ -98,6 +102,11 @@ const Nickname = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  @media all and (max-width: 768px) {
+    min-width: 3rem;
+    width: auto;
+  }
+
   @media all and (max-width: 375px) {
     min-width: 2rem;
     width: auto;
@@ -116,6 +125,10 @@ const Time = styled.div`
   display: flex;
   justify-content: flex-end;
   color: #888686;
+  @media all and (max-width: 768px) {
+    width: 7rem;
+  }
+
   @media all and (max-width: 375px) {
     width: 6rem;
   }
