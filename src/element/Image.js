@@ -38,9 +38,20 @@ const DetailImage = styled.img`
   min-height: 30rem;
   max-height: 40rem;
   margin: 0px auto;
-  /* background-image: url("${(props) => props.src}"); */
   background-repeat: no-repeat;
   object-fit: contain;
+  @media (max-width: 414px) {
+    min-height: 11rem;
+    max-height: 15rem;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 375px) {
+    margin: 0px;
+    box-sizing: border-box;
+    min-height: 10.5rem;
+    max-height: 15rem;
+  }
 `;
 
 const AspectOutter = styled.div`

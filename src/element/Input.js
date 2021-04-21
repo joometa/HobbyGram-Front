@@ -10,7 +10,7 @@ const Input = (props) => {
       <Grid>
         {label && <Text margin="0px">{label}</Text>}
         <ElTextarea
-          rows={15}
+          rows={10}
           onChange={_onChange}
           placeholder={placeholder}
           value={value}
@@ -47,12 +47,23 @@ const ElInput = styled.input`
   box-sizing: border-box;
   border: 1px solid #dddddd;
   width: 100%;
-  padding: 12px 4px;
+  padding: 10px 10px;
+  font: inherit;
   font-size: 1rem;
   ${(props) => (props.placeholder ? `placeholder:${props.placeholder};` : "")};
   ${(props) => (props.bold ? `font-weight: bold;` : "")};
   ::placeholder {
-    font: 400 18px Arial;
+    font: inherit;
+    font-size: 1rem;
+  }
+  @media (max-width: 375px) {
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 10px 10px;
+    ::placeholder {
+      font: inherit;
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -65,7 +76,28 @@ const ElTextarea = styled.textarea`
   padding: 12px 4px;
   ${(props) => (props.placeholder ? `placeholder:${props.placeholder};` : "")};
   ::placeholder {
-    font: 400 18px Arial;
+    font: inherit;
+    font-size: 1rem;
+  }
+  @media (max-width: 414px) {
+    height: 10rem;
+    overflow: scroll;
+    font-size: 0.8rem;
+    padding: 10px 10px;
+    ::placeholder {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 375px) {
+    height: 10rem;
+    overflow: scroll;
+    font-size: 0.8rem;
+    padding: 10px 10px;
+    ::placeholder {
+      font: inherit;
+      font-size: 0.8rem;
+    }
   }
 `;
 

@@ -131,9 +131,7 @@ const PostWrite = (props) => {
         <Grid padding="30px 0px">
           <Upload _onChange={selectFile}>사진선택</Upload>
         </Grid>
-        <Grid>
-          <Image detail src={preview}></Image>
-        </Grid>
+        <Image detail src={preview}></Image>
         <Grid>
           <Input
             value={content}
@@ -161,10 +159,25 @@ const BasicButton = styled.button`
   width: 100px;
   height: 35px;
   margin: 0px;
+  font: inherit;
   border: 0px solid;
   background-color: #ccd6f1;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 30%) 0px 1.5px 2.5px 0px;
+
+  @media (max-width: 414px) {
+    width: 3rem;
+    font-size: 0.6rem;
+    height: 1.7rem;
+    margin: 0px 1.5rem;
+  }
+
+  @media (max-width: 375px) {
+    width: 3rem;
+    font-size: 0.7rem;
+    height: 1.7rem;
+    margin: 0px 1.5rem;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -183,6 +196,33 @@ const Wrapper = styled.div`
   box-shadow: rgb(0 0 0 / 30%) 0px 4px 16px 0px;
   border-radius: 10px;
 
+  @media (max-width: 1024px) {
+    width: 40rem;
+  }
+  @media (max-width: 768px) {
+    width: 28rem;
+  }
+  @media (max-width: 414px) {
+    width: 16.5rem;
+    padding: 3rem;
+    margin-top: 1.5rem;
+    & > div > button {
+      font: inherit;
+      font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 375px) {
+    width: 13rem;
+    padding: 3rem;
+    margin-top: 2rem;
+    & > div > button {
+      font: inherit;
+      font-size: 0.7rem;
+    }
+  }
+  @media (max-width: 280px) {
+  }
+  /* 
   @media (max-width: 1270px) {
     width: calc(70% - 2rem);
   }
@@ -192,7 +232,7 @@ const Wrapper = styled.div`
   }
   @media (max-width: 767px) {
     width: calc(50% - 0.5rem);
-  }
+  } */
 `;
 
 export default PostWrite;
