@@ -38,7 +38,7 @@ const Category = () => {
               setText("재테크");
             }}
           >
-            <Icon>재테크</Icon>
+            <Icon>맛집</Icon>
           </ButtonBox>
           <ButtonBox
             onClick={() => {
