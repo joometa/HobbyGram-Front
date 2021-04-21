@@ -73,6 +73,53 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  @media (max-width: 1024px) {
+    & > button {
+      background-size: 4rem 4rem;
+      width: 4rem;
+      height: 4rem;
+    }
+    & > div {
+      width: 75%;
+    }
+  }
+  @media (max-width: 768px) {
+    & > button {
+      background-size: 3rem 3rem;
+      width: 3rem;
+      height: 3rem;
+    }
+    & > div {
+      width: 70%;
+    }
+  }
+  @media (max-width: 414px) {
+    & > button {
+      background-size: 2.2rem 2.2rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      margin: 0px 10px;
+    }
+    & > div {
+      width: 70%;
+    }
+  }
+  @media (max-width: 375px) {
+    & > button {
+      background-size: 2rem 2rem;
+      width: 2rem;
+      height: 2rem;
+      margin: 0px 10px;
+    }
+  }
+  @media (max-width: 280px) {
+    & > button {
+      background-size: 1.5rem 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin: 0px 5px;
+    }
+  }
 `;
 
 const PostWrap = styled.div`
@@ -80,7 +127,6 @@ const PostWrap = styled.div`
   display: flex;
   width: 1000px;
   margin: 0px auto;
-  /* background-color: #e6e6e6; */
   justify-content: space-around;
 `;
 
@@ -90,7 +136,7 @@ const LeftArrow = styled.button`
   background-color: #ffffff;
   width: 4.5rem;
   height: 4.5rem;
-  margin: 0px auto;
+  margin-left: 1.5rem;
   border: none;
 `;
 
@@ -100,6 +146,6 @@ const RightArrow = styled.button`
   background-color: #ffffff;
   width: 4.5rem;
   height: 4.5rem;
-  margin: 0px auto;
+  margin-right: 1.5rem;
   border: none;
 `;

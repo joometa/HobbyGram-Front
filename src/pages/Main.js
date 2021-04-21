@@ -10,9 +10,7 @@ const Main = () => {
     <React.Fragment>
       <Title>Hobbygram</Title>
       <Category />
-      {/* <ChattingBox></ChattingBox> */}
       <PostList></PostList>
-      {/* <Paging /> */}
     </React.Fragment>
   );
 };
@@ -26,4 +24,16 @@ const Title = styled.div`
   margin: 0px auto;
   font-size: 70px;
   margin-top: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 4.7rem;
+  }
+  @media (max-width: 414px) {
+    font-size: 3.2rem;
+  }
+  @media (max-width: 375px) {
+    font-size: 3rem;
+  }
+  @media (max-width: 280px) {
+    font-size: 2.8rem;
+  }
 `;

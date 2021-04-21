@@ -41,7 +41,7 @@ const Header = () => {
                 history.push("/write");
               }}
             >
-              게시글 작성
+              새글작성
             </Button>
             <Button
               style={{ margin: "7px", marginRight: "15px" }}
@@ -93,17 +93,20 @@ export default Header;
 const Div = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 100vw;
   height: 60px;
   background-color: #f6f6f6;
   position: sticky;
   top: 0px;
   z-index: 999;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
 `;
 
 const Button = styled.button`
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   align-items: center;
   width: 100px;
   height: 35px;
@@ -121,10 +124,65 @@ const Button = styled.button`
 
 const Buttondiv = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   margin: 0px auto;
   justify-content: flex-end;
   align-items: center;
+  @media (max-width: 1024px) {
+    font-size: 1rem;
+    width: 70%;
+    margin: 0px;
+    & > div {
+      width: 90%;
+    }
+    & > button {
+      font-size: 1rem;
+      width: 7.5rem;
+    }
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    width: 80%;
+    & > div {
+      width: 70%;
+    }
+    & > button {
+      font-size: 0.9rem;
+      width: 7.5rem;
+    }
+  }
+  @media (max-width: 414px) {
+    font-size: 0.8rem;
+    width: 72%;
+    & > div {
+      width: 75%;
+    }
+    & > button {
+      font-size: 0.7rem;
+      width: 8rem;
+    }
+  }
+  @media (max-width: 375px) {
+    font-size: 0.8rem;
+    & > div {
+      width: 80%;
+    }
+    & > button {
+      font-size: 0.5rem;
+      width: auto;
+    }
+  }
+  @media (max-width: 280px) {
+    font-size: 0.5rem;
+    width: 65%;
+    & > div {
+      width: 80%;
+    }
+    & > button {
+      font-size: 0.4rem;
+      width: 5rem;
+    }
+  }
 `;
 
 const Font = styled.div`
@@ -133,6 +191,20 @@ const Font = styled.div`
   color: #a445c5;
   margin-left: 15px;
   cursor: pointer;
+  @media (max-width: 1024px) {
+  }
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 414px) {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 375px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 280px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const Nickname = styled.div`

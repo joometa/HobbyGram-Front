@@ -16,79 +16,154 @@ const Category = () => {
 
   return (
     <React.Fragment>
-      <Div>
-        <div style={{ flexDirection: "column" }}>
-          <div style={{ marginBottom: "100px" }}></div>
-          <Button
-            style={{ marginRight: "4rem" }}
+      <Wrap>
+        <Div>
+          <div style={{ marginBottom: "2.5rem" }}></div>
+          <ButtonBox
             onClick={() => {
               setText("음악");
             }}
           >
-            음악
-          </Button>
-
-          <Button
-            style={{ marginRight: "4rem" }}
+            <Icon>음악</Icon>
+          </ButtonBox>
+          <ButtonBox
             onClick={() => {
               setText("여행");
             }}
           >
-            여행
-          </Button>
-
-          <Button
-            style={{ marginRight: "4rem" }}
+            <Icon>여행</Icon>
+          </ButtonBox>
+          <ButtonBox
             onClick={() => {
               setText("재테크");
             }}
           >
-            재테크
-          </Button>
-
-          <Button
+            <Icon>재테크</Icon>
+          </ButtonBox>
+          <ButtonBox
             onClick={() => {
               setText("반려동물");
             }}
           >
-            반려동물
-          </Button>
-        </div>
-      </Div>
+            <Icon>반려동물</Icon>
+          </ButtonBox>
+        </Div>
+      </Wrap>
     </React.Fragment>
   );
 };
 
 export default Category;
 
-const Div = styled.div`
-  width: 1000px;
+const Wrap = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  margin: 0px auto;
-  /* background-color: #f5f5f5; */
+  align-items: center;
+  margin: 15px auto 0px auto;
   margin-bottom: 30px;
   box-sizing: border-box;
 `;
 
-const Button = styled.button`
-  width: 150px;
-  height: 150px;
+const Div = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media (max-width: 1024px) {
+    width: 80%;
+    height: auto;
+    justify-content: center;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+  }
+`;
+const ButtonBox = styled.div`
+  flex-direction: column;
+  text-align: center;
+  width: 9rem;
+  height: 9rem;
+  display: flex;
   font: inherit;
-  border: hidden;
-  font-size: 15px;
-  background-image: url(${icon});
-  background-size: 150px 150px;
-  background-color: white;
-  margin: 0px auto;
-  padding-top: 7.5rem;
   font-weight: 800;
   font-size: 17px;
+  margin: 0px 3rem;
+
   :hover {
-    /* background-color: #ffffff;
     transition: all 0.3s;
-    border: 3px solid solid; */
     font-weight: bold;
     transform: translateY(-4px);
   }
+
+  @media (max-width: 1024px) {
+    width: 9rem;
+    height: auto;
+    justify-content: center;
+    margin: 0px;
+    & div {
+      width: 9rem;
+      height: 9rem;
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    width: 6.5rem;
+    height: auto;
+    justify-content: center;
+    margin: 0px;
+    & div {
+      width: 6.5rem;
+      height: 6.5rem;
+      font-size: 15px;
+    }
+  }
+  @media (max-width: 414px) {
+    width: 4.7rem;
+    height: auto;
+    justify-content: center;
+    margin: 0px;
+    & div {
+      width: 5rem;
+      height: 5rem;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    width: 5rem;
+    height: auto;
+    justify-content: center;
+    margin: 0px;
+    & div {
+      width: 5rem;
+      height: 5rem;
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 280px) {
+    width: 6rem;
+    height: auto;
+    justify-content: center;
+    margin: 0px;
+    & div {
+      width: 5.5rem;
+      height: 5.5rem;
+      font-size: 12px;
+    }
+  }
+`;
+const Icon = styled.div`
+  display: flex;
+  width: 9rem;
+  height: 9rem;
+  background-size: cover;
+  background-image: url("${icon}");
+  align-items: flex-end;
+  justify-content: center;
 `;

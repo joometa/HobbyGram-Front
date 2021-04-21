@@ -58,6 +58,39 @@ const PostBox = styled.div`
     transform: translateY(-4px);
     box-shadow: rgb(0 0 0 / 15%) 0px 12px 20px 0px;
   }
+  /* @media (min-width: 1024px) {
+    width: 18rem;
+    height: auto;
+  }
+
+  @media (max-width: 1023px) {
+    width: 18rem;
+    height: auto;
+  }
+
+  @media (max-width: 767px) {
+    width: 80vw;
+    height: auto;
+  } */
+  @media (max-width: 1024px) {
+    width: 21rem;
+  }
+  @media (max-width: 768px) {
+    width: 34rem;
+  }
+
+  @media (max-width: 540px) {
+    width: 22rem;
+  }
+  @media (max-width: 414px) {
+    width: 19rem;
+  }
+  @media (max-width: 375px) {
+    width: 16.5rem;
+  }
+  @media (max-width: 280px) {
+    width: 12rem;
+  }
 `;
 
 const Image_Wrap = styled.div`
