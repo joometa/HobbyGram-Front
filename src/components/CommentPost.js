@@ -70,6 +70,9 @@ const CommentPostWrap = styled.div`
   @media all and (max-width: 768px) {
     font-size: 0.8rem;
   }
+  @media all and (max-width: 414px) {
+    font-size: 0.6rem;
+  }
 
   @media all and (max-width: 375px) {
     font-size: 0.6rem;
@@ -89,6 +92,12 @@ const Button = styled.button`
   cursor: pointer;
   :hover {
     color: red;
+  }
+  @media all and (max-width: 414px) {
+    min-width: 1rem;
+    width: 2rem;
+    height: 1.8rem;
+    font-size: 0.5rem;
   }
   @media all and (max-width: 375px) {
     min-width: 1rem;
@@ -115,6 +124,10 @@ const Nickname = styled.div`
     width: auto;
   }
 
+  @media all and (max-width: 414px) {
+    min-width: 2rem;
+    width: auto;
+  }
   @media all and (max-width: 375px) {
     min-width: 2rem;
     width: auto;
@@ -141,6 +154,9 @@ const Time = styled.div`
     width: 7rem;
   }
 
+  @media all and (max-width: 414px) {
+    width: 6rem;
+  }
   @media all and (max-width: 375px) {
     width: 6rem;
   }

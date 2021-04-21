@@ -24,6 +24,9 @@ const P = styled.p`
   font-weight: ${(props) => (props.bold ? "600" : "400")};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   text-align: ${(props) => props.align};
+  @media all and (max-width: 414px) {
+    font-size: 1.5rem;
+  }
   @media all and (max-width: 375px) {
     font-size: 1.5rem;
   }

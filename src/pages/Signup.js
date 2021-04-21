@@ -87,13 +87,27 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 500px;
+  width: 32rem;
   margin: 0px auto;
-  margin-top: 100px;
+  margin-top: 6.25rem;
   border: 2px solid #f9ebff;
   border-radius: 20px;
   padding: 50px 50px 50px 50px;
   background-color: #f4f4f4;
+  @media all and (max-width: 414px) {
+    width: auto;
+    margin: 1rem;
+    & h1 {
+      font-size: 1.5rem;
+    }
+  }
+  @media all and (max-width: 375px) {
+    width: auto;
+    margin: 1rem;
+    & h1 {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 const P = styled.p`
@@ -103,23 +117,37 @@ const P = styled.p`
   margin-bottom: 5px;
   margin-left: 50px;
   margin-top: 10px;
+  @media all and (max-width: 414px) {
+    margin-left: 0;
+    font-size: 1rem;
+  }
+  @media all and (max-width: 375px) {
+    margin-left: 0;
+    font-size: 1rem;
+  }
 `;
 
 const Input = styled.input`
-  width: 400px;
+  width: 25rem;
   height: 40px;
   margin: 0px auto;
   padding-left: 5px;
+  @media all and (max-width: 414px) {
+    width: 100%;
+  }
+  @media all and (max-width: 375px) {
+    width: 100%;
+  }
 `;
 
 const Button = styled.button`
-  width: 200px;
-  height: 45px;
+  width: 12.5rem;
+  height: 3rem;
   margin: 30px auto;
   background-color: #e6ccef;
   border: 0px solid #e6ccef;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
 `;
 
 const H1 = styled.h1`
@@ -130,9 +158,16 @@ const H1 = styled.h1`
 `;
 
 const Question = styled.div`
-  width: 200px;
+  font-size: 1rem;
+  width: 12.5rem;
   display: flex;
   flex-direction: row;
-  margin-left: 300px;
+  margin-left: 19rem;
   justify-content: flex-end;
+  @media all and (max-width: 414px) {
+    margin: 0;
+  }
+  @media all and (max-width: 375px) {
+    margin: 0;
+  }
 `;

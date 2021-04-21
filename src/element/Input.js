@@ -56,7 +56,7 @@ const ElInput = styled.input`
     font: inherit;
     font-size: 1rem;
   }
-  @media (max-width: 375px) {
+  @media (max-width: 414px) {
     font: inherit;
     font-size: 0.8rem;
     padding: 10px 10px;
@@ -65,8 +65,12 @@ const ElInput = styled.input`
       font-size: 0.8rem;
     }
   }
-  @media all and (max-width: 375px) {
+  @media (max-width: 375px) {
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 10px 10px;
     ::placeholder {
+      font: inherit;
       font-size: 0.8rem;
     }
   }
