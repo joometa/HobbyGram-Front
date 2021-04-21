@@ -65,6 +65,7 @@ const Header = () => {
             Hobbygram
           </Font>
           <Buttondiv>
+            <Nickname />
             <Button
               style={{ margin: "7px", marginRight: "5px" }}
               onClick={() => {
@@ -163,13 +164,14 @@ const Buttondiv = styled.div`
     }
   }
   @media (max-width: 375px) {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     & > div {
-      width: 80%;
+      width: 4rem;
+      font-size: 0.7rem;
     }
     & > button {
       font-size: 0.5rem;
-      width: auto;
+      width: 4rem;
     }
   }
   @media (max-width: 280px) {
@@ -192,8 +194,6 @@ const Font = styled.div`
   color: #a445c5;
   margin-left: 1rem;
   cursor: pointer;
-  @media (max-width: 1024px) {
-  }
   @media (max-width: 768px) {
     font-size: 1.4rem;
   }

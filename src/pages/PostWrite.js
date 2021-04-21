@@ -164,7 +164,28 @@ const BasicButton = styled.button`
   background-color: #ccd6f1;
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 30%) 0px 1.5px 2.5px 0px;
+  :hover {
+    background-color: #bccdfb;
+  }
+  @media (max-width: 1024px) {
+    width: 5rem;
+    font-size: 0.9rem;
+    height: 2rem;
+    margin: 0px 2.2rem;
+  }
+  @media (max-width: 768px) {
+    width: 4.5rem;
+    font-size: 0.8rem;
+    height: 1.9rem;
+    margin: 0px 2rem;
+  }
 
+  @media (max-width: 540px) {
+    width: 4.5rem;
+    font-size: 0.7rem;
+    height: 1.7rem;
+    margin: 0px 1.5rem;
+  }
   @media (max-width: 414px) {
     width: 3rem;
     font-size: 0.6rem;
@@ -195,12 +216,35 @@ const Wrapper = styled.div`
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 30%) 0px 4px 16px 0px;
   border-radius: 10px;
+  & > div > button {
+    font: inherit;
+    font-size: 1rem;
+  }
 
   @media (max-width: 1024px) {
     width: 40rem;
+    margin-top: 2rem;
+    & > div > button {
+      font: inherit;
+      font-size: 1rem;
+    }
   }
   @media (max-width: 768px) {
     width: 28rem;
+    margin-top: 2rem;
+    & > div > button {
+      font: inherit;
+      font-size: 0.8rem;
+    }
+  }
+  @media (max-width: 540px) {
+    width: 21rem;
+    margin-top: 1.5rem;
+    padding: 4rem;
+    & > div > button {
+      font: inherit;
+      font-size: 0.8rem;
+    }
   }
   @media (max-width: 414px) {
     width: 16.5rem;
@@ -221,18 +265,10 @@ const Wrapper = styled.div`
     }
   }
   @media (max-width: 280px) {
+    width: 9.7rem;
+    padding: 3rem;
+    margin-top: 1rem;
   }
-  /* 
-  @media (max-width: 1270px) {
-    width: calc(70% - 2rem);
-  }
-
-  @media (max-width: 1056px) {
-    width: calc(50% - 2rem);
-  }
-  @media (max-width: 767px) {
-    width: calc(50% - 0.5rem);
-  } */
 `;
 
 export default PostWrite;
