@@ -65,6 +65,11 @@ const ElInput = styled.input`
       font-size: 0.8rem;
     }
   }
+  @media all and (max-width: 375px) {
+    ::placeholder {
+      font-size: 0.8rem;
+    }
+  }
 `;
 
 const ElTextarea = styled.textarea`
