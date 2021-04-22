@@ -52,6 +52,7 @@ const deleteCommentDB = (comment_id) => {
       },
     })
       .then((res) => {
+        // console.log(res);
         dispatch(deleteComment(comment_id));
       })
       .catch((err) => {

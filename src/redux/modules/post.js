@@ -174,6 +174,7 @@ const editPostDB = (content, title, id) => {
   };
 };
 
+// 게시글 DB에서 삭제
 const deletePostDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -193,6 +194,7 @@ const deletePostDB = (id) => {
   };
 };
 
+// 좋아요 DB 반영
 const toggleLikeDB = (post_id, is_like) => {
   return function (dispatch, getState, { history }) {
     // 현재 포스트의 정보
