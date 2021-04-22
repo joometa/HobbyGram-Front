@@ -1,5 +1,6 @@
 // 쿠키에 값을 저장, 삭제, 조회
 
+// 쿠키 생성
 const setCookie = (name, value, exp = 1) => {
   let date = new Date();
 

@@ -1,5 +1,7 @@
 import React from "react";
 
+// 이미지 추가하기 버튼
+
 const Upload = (props) => {
   const fileInput = React.useRef();
 

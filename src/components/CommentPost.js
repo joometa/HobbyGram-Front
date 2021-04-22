@@ -30,6 +30,8 @@ const CommentPost = (props) => {
         <Nickname>{user}</Nickname>
         <Content>{content}</Content>
         <Time>{moment(new Date(createdAt)).fromNow()}</Time>
+
+        {/* 로그인 유저의 이름과 작성자의 이름이 일치하면 댓글삭제버튼 보이게  */}
         {login_user.user.name === user ? (
           <div
             style={{

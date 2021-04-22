@@ -16,9 +16,9 @@ const PostWrite = (props) => {
   const [imgfile, setImgFile] = React.useState(null);
   const [preview, setPreview] = React.useState(preview_img);
 
+  // 로그인한 유저정보 불러오기
   const user = useSelector((state) => state.user);
   const username = user.user.name;
-  console.log(username);
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
@@ -28,7 +28,7 @@ const PostWrite = (props) => {
     setContent(e.target.value);
   };
 
-  // Material UI --start
+  // Material UI -- 함수 시작지점
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,14 +43,16 @@ const PostWrite = (props) => {
     }
     setCategory(e.target.childNodes[0].textContent);
   };
-  // Material UI --end
+  // Material UI --함수 끝
 
   const addPost = () => {
+    // 아무내용 입력안하고 게시글 작성버튼 누를시
     if (!title || !content || !category || !imgfile) {
       window.alert("제목, 카테고리, 이미지, 내용은 필수 기입 항목입니다.");
       return;
     }
 
+    // 제목을 너무 길게 작성할 시 정규표현식으로 거르고 알림창생성
     if (!titleCheck(title)) {
       window.alert("제목을 20자 이내로 작성해주세요.");
       return;
@@ -62,23 +64,26 @@ const PostWrite = (props) => {
     history.replace("/");
   };
 
+  // 미리보기 설정(이미지 url로 변환후 화면에 표시)
   const selectFile = (e) => {
-    //file state에 현재 선택된 파일 저장
+    //file state에 현재 선택된 파일정보 저장
     setImgFile(e.target.files[0]);
-    console.log(e.target.files);
+
+    // FileReader 내장함수 사용
     const reader = new FileReader();
-    // 만약 파일이 선택되지 않았을 경우 그냥 반환한다.
+
+    // 만약 파일이 선택되지 않았을 경우 그냥 반환한다.(오류방지)
     if (!e.target.files[0]) {
       return;
     }
 
     // 현재 선택된 파일을 dataurl로 변환
     reader.readAsDataURL(e.target.files[0]);
-    console.log(reader);
-    // 변환된 dataurl을 preview state에 저장
+
+    // 변환된 dataurl을 preview state에 저장(미리보기화면에 표출)
     reader.onload = () => {
       setPreview(reader.result);
-      console.log(preview.length);
+      // console.log(preview.length);
     };
   };
 

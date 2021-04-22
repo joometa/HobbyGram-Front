@@ -36,14 +36,14 @@ const addCommentDB = (user_name, comment, post_id) => {
         createdAt: res.data.comment.createdAt,
         comment_id: moment(),
       };
-      console.log(new_comment_post);
+      // console.log(new_comment_post);
       dispatch(addComment(new_comment_post));
     });
   };
 };
 
 // DB 댓글정보 삭제
-// 현재 로그인유저 정보와 댓글 작성자 정보 비교 후 같으면 삭제
+// 현재 로그인유저 정보와 댓글 작성자 정보 비교 후 같으면 삭제(서버단에서 토큰값 이용해서 비교해주기로 함)
 const deleteCommentDB = (comment_id) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -64,6 +64,7 @@ const deleteCommentDB = (comment_id) => {
 };
 
 // 댓글 리스트 가져오기
+// 포스트 정보 안에 댓글리스트가 같이 들어있기때문에 post_id 값을 이용해서 댓글리스트 찾고 가져와야함
 const getCommentDB = (post_id) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -72,7 +73,7 @@ const getCommentDB = (post_id) => {
     })
       .then((docs) => {
         const comment_list = docs.data.comments;
-        console.log(comment_list);
+        // console.log(comment_list);
         dispatch(setComment(comment_list));
       })
       .catch((err) => {

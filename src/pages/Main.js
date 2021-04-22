@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import Category from "../components/category";
 import PostList from "../components/PostList";
-// import Paging from "../components/Paging";
 
 const Main = () => {
   return (

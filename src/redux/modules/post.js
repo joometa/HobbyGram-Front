@@ -50,8 +50,7 @@ const initialState = {
 
 const addPostDB = (title, content, imgfile, category, username) => {
   return function (dispatch, getState, { history }) {
-    // const jwtToken = getCookie("is_login");
-    // console.log(jwtToken);
+    // 이미지가 포함되어있기때문에 formdata로 서버와 소통한다.
     let formdata = new FormData();
     formdata.append("title", title);
     formdata.append("img", imgfile);
@@ -130,10 +129,11 @@ const setPostDB = (text = null, page = 1) => {
 
 const getOnePostDB = (id) => {
   return function (dispatch, getState, { history }) {
+    // 좋아요 상태 state 값에서 가져오기
     let is_like = getState().post.is_like;
 
+    // 로그인한 유저의 정보 state 값에서 가져오기
     let _user = getState().user.user;
-    console.log(_user);
 
     axios({
       method: "get",
@@ -142,28 +142,15 @@ const getOnePostDB = (id) => {
       .then((docs) => {
         // console.log(docs.data);
         const onePost = docs.data.post;
-        console.log(onePost);
-
-        // success가 true면 추천 유저정보에 로그인유저의 id값 추가, false면 추천유저정보리스트에서
-        // 로그인한 유저의 id값을 찾고 그 값을 제거
-        // if (res.data.success) {
-        //   recommendUser.append(_user.id);
-        // } else {
-        //   const idx = recommendUser.findIndex((user) => user === _user.id);
-        //   console.log(idx);
-        //   recommendUser.splice(idx, 1);
-        // }
+        // console.log(onePost);
 
         // 좋아요 버튼 상황별 활성화 위해 is_like로 현재 좋아요 상태 체크 할 것임
         // 좋아요한 유저리스트에 정보가 없으면 is_like는 비활성화상태(false) 있으면 활성화(true)
-        console.log(_user.id);
+        // console.log(_user.id);
         is_like =
           onePost.recommendUser.findIndex((p) => p === _user.id) === -1
             ? false
             : true;
-        console.log(onePost.recommendUser.findIndex((p) => p === _user.id));
-        console.log(is_like);
-        console.log(onePost.recommendUser);
 
         dispatch(getPost(onePost, is_like));
       })
@@ -235,14 +222,15 @@ const toggleLikeDB = (post_id, is_like) => {
       // success 가 true이면 좋아요 +1, false면 좋아요 -1
       recommendCnt = res.data.success ? recommendCnt + 1 : recommendCnt - 1;
 
+      // 좋아요 상태 success로 T/F 구분
       is_like = res.data.success ? true : false;
 
-      // 변동된 좋아요 수 반영한 현재 포스트 : 좋아요유저는 데이터상에서 추가하기로함
+      // 변동된 좋아요 수 반영한 현재 포스트 - 좋아요유저는 데이터상에서 추가하기로함
       const like_post = {
         ..._post,
         recommendCnt: recommendCnt,
       };
-      console.log(like_post);
+      // console.log(like_post);
 
       dispatch(toggleLike(like_post, is_like));
     });
@@ -294,7 +282,7 @@ export default handleActions(
 
     [TOGGLE_LIKE]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
+        // 좋아요 숫자가 변동된 post 정보를 업데이트 해주고 is_like 상태도 업데이트 해준다.
         draft.post = action.payload.post;
         draft.is_like = action.payload.is_like;
       }),

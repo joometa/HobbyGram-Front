@@ -21,12 +21,11 @@ const PostDetail = (props) => {
 
   //포스트 id 추출
   const post_id = props.match.params.id;
-  // console.log(post_id);
 
   // 유저정보 불러오기
   const user = useSelector((state) => state.user.user);
-  // console.log(user);
 
+  // 유저정보가 변할때(로그인유저바뀔때) 내가쓴게시글인지 내가쓴 댓글인지 확인 후 렌더링(수정,삭제 버튼 표시유무/ 좋아요 눌렀는지 표시)
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
     dispatch(commentActions.getCommentDB(post_id));
@@ -34,11 +33,11 @@ const PostDetail = (props) => {
 
   // 게시글 정보 불러오기
   const post = useSelector((state) => state.post.post);
-  console.log(post);
 
   // 댓글 불러오기
   const comment_list = useSelector((state) => state.comment.list);
-  // console.log(comment_list);
+
+  // 댓글없으면 그냥 없는대로 렌더링(오류방지)
   if (!comment_list) {
     return null;
   }
@@ -59,14 +58,15 @@ const PostDetail = (props) => {
     // 이벤트 버블링,캡쳐링 방지
     e.preventDefault();
     e.stopPropagation();
-    console.log("클릭");
+
+    // 좋아요 현재 상태값 갖고 좋아요 함수 실행
     const is_like = props.is_like;
     dispatch(postActions.toggleLikeDB(post_id, is_like));
-    console.log(is_like);
   };
 
   // 댓글작성 실행함수
   const addComment = () => {
+    // 댓글 입력내용없이 작성버튼누를시 내용입력하라는 알림창 생성
     if (!comment) {
       window.alert("댓글 내용을 입력해주세요.");
       return;
@@ -78,6 +78,7 @@ const PostDetail = (props) => {
   return (
     <React.Fragment>
       <Wrapper>
+        {/* 유저 이름과 작성자 이름이 동일하면 수정/삭제 버튼 생성, 아니면 빈값 */}
         {user.name === post.user ? (
           <Topbutton>
             <div style={{ marginRight: "0.5rem" }}>
@@ -96,6 +97,7 @@ const PostDetail = (props) => {
         ) : (
           <></> // 빈 값 <React.Fragment>랑 같은 것
         )}
+
         <Grid padding="0px">
           <Text bold size="30px">
             {post.title}
@@ -159,6 +161,7 @@ const PostDetail = (props) => {
               <CommentAddBtn onClick={addComment}>게시</CommentAddBtn>
             </div>
             <CommentListBox>
+              {/* 댓글이 있는 게시글이면 댓글 표시, 없으면 빈값 */}
               {comment_list ? (
                 comment_list.map((p, idx) => {
                   return <CommentPost key={p._id} {...p} />;

@@ -5,6 +5,7 @@ export const emailCheck = (email) => {
   return _reg.test(email);
 };
 
+// 비밀번호 체크(8자-16자)
 export const pwdCheck = (pwd) => {
   let _reg = /^[!@#-_.*a-zA-z0-9].{7,16}$/;
 
