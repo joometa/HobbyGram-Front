@@ -1,4 +1,4 @@
-# DANOSHOP 클론코딩
+# HobbyGram(미니프로젝트)
 
 <!-- ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/68773118/115060264-a0c68000-9f22-11eb-8c3d-c009883847c3.gif) -->
 
