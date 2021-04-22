@@ -12,7 +12,11 @@ import RArrow from "../shared/RArrow.png";
 
 const PostList = () => {
   const dispatch = useDispatch();
+
+  // 카테고리 값 불러오기
   const text = useSelector((state) => state.post.text);
+
+  // 페이지네이션 초기값 1페이지로 설정
   const [page, setPage] = useState(1);
 
   // 다음 페이지로 이동
@@ -23,7 +27,7 @@ const PostList = () => {
   // 이전 페이지로 이동
   const pageDown = () => {
     if (page === 1) {
-      // 첫 페이지일 때 바로 변환
+      // 첫 페이지일 때 클릭하면 현재가 첫페이지라는 알림울리고 끝내기
       window.alert("첫 페이지입니다.");
       return;
     }
@@ -31,11 +35,12 @@ const PostList = () => {
   };
 
   React.useEffect(() => {
-    dispatch(postActions.setPostDB(text, page));
-  }, [page]);
+    dispatch(postActions.setPostDB(text, page)); // 현재 카테고리(text)와 페이지 번호(page)에 해당되는 포스트값들 불러오는 함수 실행
+  }, [page]); // page 숫자 변할때마다 가져와야하는 포스트들이 달라지기때문에 두번째항에 page 입력
 
   const post_list = useSelector((state) => state.post.list); // post는 모듈js를 뜻함 post 모듈에서 initialState에 list 값을 가져옴
 
+  // 첫 실행시 전체 게시글 정보 불러오는 함수 실행(카테고리 구분 x)
   React.useEffect(() => {
     dispatch(postActions.setPostDB());
   }, []);

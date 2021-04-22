@@ -10,7 +10,6 @@ const Category = () => {
   const [text, setText] = useState("");
 
   React.useEffect(() => {
-    console.log("1");
     dispatch(postActions.setPostDB(text));
   }, [text]);
 
