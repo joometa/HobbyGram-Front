@@ -9,8 +9,8 @@ const Category = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
 
+  // 버튼 클릭 시 카테고리 값을 text로 보내서 해당된 게시글만 불러오기.
   React.useEffect(() => {
-    console.log("1");
     dispatch(postActions.setPostDB(text));
   }, [text]);
 

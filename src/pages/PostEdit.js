@@ -13,10 +13,9 @@ const PostEdit = (props) => {
 
   const post_id = props.match.params.id;
 
-  // 수정 시 현재 게시물의 content를 수정 인풋창에 띄워주기 위해 state의 default값을 props.content로 설정
+  // 수정 시 현재 게시물의 content를 수정 인풋창에 띄워주기 위해 state의 default값을 post.content로 설정
   const [contents, setContents] = React.useState(post.content);
   const [title, setTitle] = React.useState(post.title);
-  const [img, setImg] = React.useState(post.img);
 
   const changeContents = (e) => {
     setContents(e.target.value);
@@ -26,12 +25,14 @@ const PostEdit = (props) => {
     setTitle(e.target.value);
   };
 
+  // 수정 전 포스트 정보 가져오기
   React.useEffect(() => {
     dispatch(postActions.getOnePostDB(post_id));
   }, []);
 
+  // 수정하기
   const editPost = () => {
-    dispatch(postActions.editPostDB(contents, img, title, post_id));
+    dispatch(postActions.editPostDB(contents, title, post_id));
     history.push("/");
   };
 

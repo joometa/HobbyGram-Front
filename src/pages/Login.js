@@ -10,10 +10,12 @@ const Login = () => {
   const [pwd, setPwd] = React.useState("");
 
   const login = () => {
+    // 하나라도 입력하지 않을 경우
     if (email === "" || pwd === "") {
       window.alert("로그인 정보를 모두 입력해주세요.");
       return;
     }
+    // 인풋 입력값 받아서 로그인 함수 실행
     dispatch(userActions.LoginDB(email, pwd));
   };
 

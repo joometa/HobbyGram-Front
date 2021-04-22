@@ -23,19 +23,21 @@ const PostList = () => {
   // 이전 페이지로 이동
   const pageDown = () => {
     if (page === 1) {
-      // 첫 페이지일 때 바로 변환
+      // 첫 페이지일 때 바로 반환
       window.alert("첫 페이지입니다.");
       return;
     }
     setPage(page - 1);
   };
 
+  // 페이지 변경 시마다 그 페이지에 상속된 게시글 정보 불러옴
   React.useEffect(() => {
     dispatch(postActions.setPostDB(text, page));
   }, [page]);
 
-  const post_list = useSelector((state) => state.post.list); // post는 모듈js를 뜻함 post 모듈에서 initialState에 list 값을 가져옴
+  const post_list = useSelector((state) => state.post.list); // post는 모듈js를 뜻함 post.js 모듈에서 initialState에 list 값을 가져옴
 
+  // 처음 실행 시 모든 게시글의 정보 불러오기
   React.useEffect(() => {
     dispatch(postActions.setPostDB());
   }, []);

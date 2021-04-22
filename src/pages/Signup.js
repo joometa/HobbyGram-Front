@@ -15,19 +15,21 @@ const Signup = () => {
   const [pwdcheck, setPwdCheck] = React.useState("");
 
   const signup = () => {
+    // 값이 하나라도 없다면 alert 띄워주기
     if (!email || !name || !pwd || !pwdcheck) {
       window.alert("모든 내용을 입력해주세요!");
       return;
     }
+    // 이메일 정규표현식에 맞지 않을 때
     if (!emailCheck(email)) {
       window.alert("이메일 형식으로 입력해주세요!");
       return;
     }
+    // 비밀번호 정규표현식에 맞지 않을 때
     if (!pwdCheck(pwd)) {
       window.alert("8~16자리의 영문과 숫자를 조합해주세요!");
       return;
     }
-    // 인자로 history 넘겨주면 모듈 함수에서 적용할 수 있음.
     dispatch(userActions.signUpDB(email, name, pwd, pwdcheck));
   };
 

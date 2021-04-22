@@ -92,8 +92,6 @@ const addPostDB = (title, content, imgfile, category, username) => {
   };
 };
 
-// API-URL : http://15.164.164.65/post
-// Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = (text = null, page = 1) => {
   return function (dispatch, getState, { history }) {
     // 카테고리 값이 없으면 전체 목록 보여주기
@@ -175,24 +173,22 @@ const getOnePostDB = (id) => {
   };
 };
 
-const editPostDB = (content, img, title, id) => {
+const editPostDB = (content, title, id) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: "patch",
       url: `${config.api}/post/${id}`,
       data: {
         content: content,
-        // img: img,
         title: title,
       },
     })
       .then(() => {
         let new_post_data = {
-          // 새로 받은 값들을 바꿔준다.
+          // 새로 받은 값들로 덮어쓰기한다.
           title: title,
           _id: id,
           content: content,
-          // img:img,
         };
         console.log(new_post_data);
         dispatch(editPost(new_post_data));
@@ -283,7 +279,7 @@ export default handleActions(
             return p;
           }
         });
-        draft.list = new_post_list;
+        draft.list = new_post_list; // 새롭게 바뀐 리스트를 현재의 리스트로 변경
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -291,7 +287,7 @@ export default handleActions(
         let idx = draft.list.findIndex(
           (p) => p._id === action.payload.post._id
         );
-        draft.post = action.payload.post;
+        draft.post = action.payload.post; // 하나의 포스트의 값들을 최신 값으로 바꿔주고,
         draft.list[idx] = draft.post; // 수정된 값이 들어간 post를 list[idx] 값에 넣어준다.
         console.log(idx);
       }),

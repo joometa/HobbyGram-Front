@@ -8,9 +8,12 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = () => {
   const dispatch = useDispatch();
+  // 먼저 유저 정보를 불러온다.
   const user = useSelector((state) => state.user);
-  const is_login = getCookie("is_login") ? true : false;
   console.log(user);
+  // 쿠키에서 로그인 여부를 가져와, 로그인 상태의 뷰와 비로그인 상태일 때의 뷰를 나눠줌.
+  const is_login = getCookie("is_login") ? true : false;
+  console.log(is_login);
 
   // 로그아웃 실행함수
   const logout = () => {
@@ -18,19 +21,20 @@ const Header = () => {
     window.alert("로그아웃 되었습니다.");
     history.push("/");
   };
+
   // 로그인 상태일 때
   if (is_login && user) {
     return (
       <React.Fragment>
         <Div>
-          <Font
+          <Logo
             onClick={() => {
               history.push("/");
               history.go(0); // 메인 페이지로 돌아간 후 새로고침
             }}
           >
             Hobbygram
-          </Font>
+          </Logo>
           <Buttondiv>
             <Nickname>
               <Username>{user.user.name}</Username>님
@@ -53,17 +57,19 @@ const Header = () => {
         </Div>
       </React.Fragment>
     );
+
+    // 비로그인 상태일 때
   } else {
     return (
       <React.Fragment>
         <Div>
-          <Font
+          <Logo
             onClick={() => {
               history.push("/");
             }}
           >
             Hobbygram
-          </Font>
+          </Logo>
           <Buttondiv>
             <Nickname />
             <Button
@@ -187,7 +193,7 @@ const Buttondiv = styled.div`
   }
 `;
 
-const Font = styled.div`
+const Logo = styled.div`
   display: flex;
   font-family: "Lobster", cursive;
   font-size: 2.5rem;

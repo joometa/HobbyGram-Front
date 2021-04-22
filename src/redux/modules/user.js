@@ -26,6 +26,7 @@ const signUpDB = (email, nickname, pwd, pwdcheck) => {
     axios({
       method: "post",
       url: `${config.api}/join`,
+      // 회원가입 시 입력 데이터 보내기(보내기만 하면 끝)
       data: {
         email: email,
         name: nickname,
