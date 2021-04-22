@@ -12,9 +12,11 @@
 
 ## 프로젝트 설명
 
-### 기간 / 팀구성
+### 기간
 
-(2021.04.12 ~ 2021.04.22)
+2021.04.12 ~ 2021.04.22
+
+### 팀 구성 & Tools
 
 - Front-end
   - 이정주(React)
@@ -23,17 +25,15 @@
   - 박현준(Node.js)
   - 김연재(Node.js)
 
-<!-- ![image](https://user-images.githubusercontent.com/68773118/115060388-c489c600-9f22-11eb-8b1d-d88cc5d25ad1.png) -->
+### Hobbygram이란?
 
-### 시현영상 [Youtube]()
+#### 시현영상 [Youtube]()
 
 ```
-리액트를 이용한 팀 프로젝트를 진행했습니다.
+React와 Node.js가 서로 처음 만나 프로젝트를 만들게 되었습니다. 'CRUD의 기능을 확실하게 담으면서 완벽하게 복습하자'는 취지로 시작하였습니다.
+
+네이버 카페 커뮤니티에서 영감을 받아 사용자가 원하는 취미를 카테고리화하여 그 속에서 공통된 취미를 가진 사람들끼리 소통할 수 있는 커뮤니티 사이트를 만들었습니다.
 ```
-
-## 🛠 Tools
-
-React, Node.js
 
 ## 🕹 기능정보
 
@@ -57,17 +57,24 @@ React, Node.js
 
 ### 협업환경 구축
 
-- notion을 이용하여 진행현황과 요청사항을 공유할 수 있도록 했습니다.
-- gather, slack, zoom을 적절히 혼용하여 실시간 회의를 진행했습니다.
+![](https://images.velog.io/images/pmk4236/post/e9f7a31d-6ab3-40ea-b128-328e3d0f5676/%E1%84%82%E1%85%A9%E1%84%89%E1%85%A7%E1%86%AB.png)
 
-<!-- ![](https://images.velog.io/images/mygomi/post/7f26afec-e3ab-4e7e-b2e4-c736d7253276/2.png) -->
+![](https://images.velog.io/images/pmk4236/post/2ea0a59f-e48b-456c-947f-7196736dce7f/%E1%84%89%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A2%E1%86%A8.png)
+
+![](https://images.velog.io/images/pmk4236/post/7423686d-5fc6-46a5-b55c-133355ba404d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-04-22%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%203.01.55.png)
+
+- notion을 이용해 변동사항을 실시간으로 적용하여 팀원들의 소통을 원활하게 하였습니다.
+- gather, slack을 이용해 팀원 간의 피드백, 요청사항 등 빠르게 처리할 수 있었습니다.
+- Sourcetree를 이용하여 깃 merge와 충돌 해결을 원활히 하였고, 반드시 merge 전에 팀원에게 양해를 구하고 진행을 해야하는 룰을 적용하였습니다.
+
 <br>
 
 #### API 설계
 
-<!-- 이번 프로젝트를 통해 <span style="color:#FF7948">API설계의 중요성</span>을 실감할 수 있었습니다.
-API 설계 필요성에 대한 인식 부족과 미흡한 설계로 프로젝트 진행 도중, 후반부에 오류가 몇 차례 발생하였고 프론트-백이 실시간으로 코드 에러를 해결해나가며 API설계를 수정하는 일이 있었기 때문입니다.
-request, response data형태를 사전에 잘 설계하여야 하고 협의된 내용을 반드시 지켜야 함을 (또는 수정하더라도 반드시 사전협의와 소통이 필요하다는 것을) 알게 되었습니다. -->
+![](https://images.velog.io/images/pmk4236/post/2e012393-c36c-419e-b26a-26bedf34d4e8/api.jpeg)
+
+이번 프로젝트는 특히 노션을 적극 활용하여 백엔드와 API 설계를 튼튼하게 하였습니다.
+덕분에 조금의 소통을 더하여 큰 무리없이 데이터 통신을 할 수 있었고, 그 덕에 프로젝트 진도율이 좋았습니다.
 
 <!-- ![](https://images.velog.io/images/mygomi/post/ece67f36-fd84-4edd-83f6-dfa807194e08/image.png) -->
 
