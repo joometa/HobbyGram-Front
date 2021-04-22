@@ -24,8 +24,6 @@ const InitialState = {
 // DB에 댓글 추가
 const addCommentDB = (user_name, comment, post_id) => {
   return function (dispatch, getState, { history }) {
-    const createdAt = moment().format("YYYY-MM-DD HH:mm:ss");
-
     axios({
       method: "post",
       url: `${config.api}/comment/${post_id}`,
@@ -65,10 +63,9 @@ const deleteCommentDB = (comment_id) => {
   };
 };
 
-// 댓글 가져오기
+// 댓글 리스트 가져오기
 const getCommentDB = (post_id) => {
   return function (dispatch, getState, { history }) {
-    let list = [];
     axios({
       method: "get",
       url: `${config.api}/comment/${post_id}`,
@@ -81,11 +78,6 @@ const getCommentDB = (post_id) => {
       .catch((err) => {
         console.log("댓글 가져오기 에러", err);
       });
-
-    // const post_idx = docs.data.findIndex((p) => p.id === post_id);
-    // console.log(docs.data[post_idx].comment);
-    // list = docs.data[post_idx].comment;
-    // dispatch(setComment(list));
   };
 };
 
@@ -102,18 +94,19 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.post);
         const new_comment = action.payload.post;
+        //가장 앞에 새로운 댓글 추가하기
         draft.list.unshift(new_comment);
       }),
 
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
+        // 액션으로 넘어온 삭제될 댓글을 제외하고 filter 하여 댓글리스트 업데이트
         let new_comment_list = draft.list.filter((c) => {
           if (c._id !== action.payload.list) {
             return c;
           }
         });
         draft.list = new_comment_list;
-        console.log(new_comment_list);
       }),
   },
   InitialState

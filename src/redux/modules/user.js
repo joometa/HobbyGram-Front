@@ -3,7 +3,6 @@ import { produce } from "immer";
 import { config } from "../../shared/config";
 import axios from "axios";
 import { setCookie, deleteCookie, getCookie } from "../../shared/Cookie";
-import { history } from "../configureStore";
 
 // 액션 타입
 const LOG_OUT = "LOG_OUT"; // 로그아웃
@@ -55,19 +54,25 @@ const LoginDB = (email, pwd) => {
         email: email,
         password: pwd,
       },
-    }).then((res) => {
-      console.log(res.data);
-      const jwtToken = res.data.result.user.token;
-      // 서버로 부터 받은 토큰을 쿠키에 저장 (key:value 형태)
-      setCookie("is_login", jwtToken);
-      // 통신 시 헤더에 default 값으로 저장
-      axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
-      const user = {
-        email: email,
-        name: res.data.result.user.name,
-      };
-      dispatch(setUser(user));
-    });
+    })
+      .then((res) => {
+        console.log(res.data);
+        const jwtToken = res.data.result.user.token;
+        // 서버로 부터 받은 토큰을 쿠키에 저장 (key:value 형태)
+        setCookie("is_login", jwtToken);
+        // 통신 시 헤더에 default 값으로 저장
+        axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
+        const user = {
+          email: email,
+          name: res.data.result.user.name,
+        };
+        dispatch(setUser(user));
+        history.replace("/");
+      })
+      .catch((err) => {
+        window.alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+        return;
+      });
   };
 };
 

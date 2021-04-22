@@ -2,7 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { config } from "../../shared/config";
 import moment from "moment";
-import { getCookie } from "../../shared/Cookie";
 
 import axios from "axios";
 
@@ -36,18 +35,18 @@ const initialState = {
   text: null,
 };
 
-const initialPost = {
-  _id: null,
-  title:
-    "제목이 들어갈 자리입니다. 그래서 아무도 제목말고는 볼 수 없어요. 진짜에요.",
-  user: "작성자",
-  commentCnt: 0,
-  recommendCnt: 0,
-  img:
-    "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
-  category: "카테고리",
-  content: "하이",
-};
+// const initialPost = {
+//   _id: null,
+//   title:
+//     "제목이 들어갈 자리입니다. 그래서 아무도 제목말고는 볼 수 없어요. 진짜에요.",
+//   user: "작성자",
+//   commentCnt: 0,
+//   recommendCnt: 0,
+//   img:
+//     "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
+//   category: "카테고리",
+//   content: "하이",
+// };
 
 const addPostDB = (title, content, imgfile, category, username) => {
   return function (dispatch, getState, { history }) {
@@ -105,7 +104,7 @@ const setPostDB = (text = null, page = 1) => {
         // console.log(docs.data);
         const post_list = docs.data;
         console.log(post_list);
-        if (post_list.post.length == 0) {
+        if (post_list.post.length === 0) {
           window.alert("마지막 페이지입니다");
           return;
         }
@@ -119,7 +118,7 @@ const setPostDB = (text = null, page = 1) => {
         // console.log(docs.data);
         const post_list = docs.data;
         // console.log(post_list);
-        if (post_list.post.length == 0) {
+        if (post_list.post.length === 0) {
           window.alert("마지막 페이지입니다");
           return;
         }
@@ -230,12 +229,6 @@ const toggleLikeDB = (post_id, is_like) => {
     // 현재 포스트의 좋아요 수
     let recommendCnt = _post.recommendCnt;
 
-    // 현재 포스트를 좋아요한 유저들의 리스트
-    let recommendUser = _post.recommendUser;
-
-    // 로그인한 유저의 정보
-    let _user = getState().user.user;
-
     axios({
       method: "POST",
       url: `${config.api}/post/recommend/${post_id}`,
@@ -284,7 +277,6 @@ export default handleActions(
       produce(state, (draft) => {
         // 받아온 id값과 맞지 않는 id의 데이터들을 새로운 배열에 넣어서 기존 list에 덮어쓰기해준다.
         let new_post_list = draft.list.filter((p) => {
-          console.log(p);
           if (p.id !== action.payload.post) {
             return p;
           }

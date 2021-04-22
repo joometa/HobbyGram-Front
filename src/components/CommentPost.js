@@ -5,8 +5,6 @@ import "moment/locale/ko";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useDispatch, useSelector } from "react-redux";
 
-import { history } from "../redux/configureStore";
-
 const CommentPost = (props) => {
   const { user, content, createdAt } = props;
   const dispatch = useDispatch();

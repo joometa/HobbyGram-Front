@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Route, Link } from "react-router-dom";
-// import { setCookie, deleteCookie, getCookie } from "../shared/Cookie";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { history } from "../redux/configureStore";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,7 +15,6 @@ const Login = () => {
       return;
     }
     dispatch(userActions.LoginDB(email, pwd));
-    history.replace("/");
   };
 
   return (

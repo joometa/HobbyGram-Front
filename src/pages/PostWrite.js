@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, Input, Text, Upload, Image } from "../element/Index";
+import { Grid, Input, Upload, Image } from "../element/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
-import axios from "axios";
 import { Button, Menu, MenuItem } from "@material-ui/core";
-import { Category } from "@material-ui/icons";
 import preview_img from "../image/no_image.png";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { titleCheck, contentCheck } from "../shared/common";
+import { titleCheck } from "../shared/common";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();

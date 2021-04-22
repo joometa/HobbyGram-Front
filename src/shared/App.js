@@ -22,7 +22,7 @@ function App() {
   const dispatch = useDispatch();
   const cookie = getCookie("is_login") ? true : false;
 
-  // 쿠키가 있으면 새로고침 시 회원정보를 불러와 is_login = true를 유지 시켜준다.
+  // 쿠키가 있으면 새로고침 시 회원정보를 불러와 is_login = true를 유지 시켜준다.(로그인 후 날아가는 유저정보 유지장치)
   React.useEffect(() => {
     if (cookie) {
       dispatch(userActions.getUserDB());

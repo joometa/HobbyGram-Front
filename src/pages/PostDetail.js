@@ -11,7 +11,6 @@ import HeartButton from "../components/HeartButton";
 
 import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
-import { actionCreators as userActions } from "../redux/modules/user";
 
 import { history } from "../redux/configureStore";
 
@@ -79,7 +78,7 @@ const PostDetail = (props) => {
   return (
     <React.Fragment>
       <Wrapper>
-        {user.name == post.user ? (
+        {user.name === post.user ? (
           <Topbutton>
             <div style={{ marginRight: "0.5rem" }}>
               <Button
@@ -102,7 +101,7 @@ const PostDetail = (props) => {
             {post.title}
           </Text>
           <InfoWrap>
-            <Info_Box>
+            <InfoBox>
               <InfoText>{moment(post.createdAt).format("YYYY-MM-DD")}</InfoText>
               <span style={{ marginLeft: "0.4rem", marginRight: "0.4rem" }}>
                 ·
@@ -112,7 +111,7 @@ const PostDetail = (props) => {
                 ·
               </span>
               <InfoText>{post.category}</InfoText>
-            </Info_Box>
+            </InfoBox>
             <LikeCommentBox>
               <div
                 style={{
@@ -313,7 +312,7 @@ const CommentBox = styled.div`
   }
 `;
 
-const Info_Box = styled.div`
+const InfoBox = styled.div`
   font-size: 0.75rem;
   line-height: 1.5;
   color: rgb(134, 142, 150);

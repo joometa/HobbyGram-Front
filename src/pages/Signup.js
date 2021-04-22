@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Route, Link } from "react-router-dom";
-
-import Login from "./Login";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { history } from "../redux/configureStore";
 import { emailCheck, pwdCheck } from "../shared/common";
 
 import { actionCreators as userActions } from "../redux/modules/user";

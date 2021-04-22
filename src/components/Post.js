@@ -2,16 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Post = (props) => {
-  const { _id } = props;
-
   return (
     <React.Fragment>
       <PostBox>
-        <Image_Wrap>
+        <ImageWrap>
           <ImageMain src={props.img}></ImageMain>
-        </Image_Wrap>
+        </ImageWrap>
         <InfoWrap>
-          <Info_Box>
+          <InfoBox>
             <InfoText>{props.category}</InfoText>
             <span style={{ marginLeft: "0.25rem", marginRight: "0.25rem" }}>
               ·
@@ -21,7 +19,7 @@ const Post = (props) => {
               ·
             </span>
             <InfoText>댓글 {props.commentCnt}</InfoText>
-          </Info_Box>
+          </InfoBox>
         </InfoWrap>
         <TitleText>{props.title}</TitleText>
         <TailInfo>
@@ -80,7 +78,7 @@ const PostBox = styled.div`
   }
 `;
 
-const Image_Wrap = styled.div`
+const ImageWrap = styled.div`
   & {
     padding-top: 52.1921%;
   }
@@ -99,7 +97,7 @@ const ImageMain = styled.img`
   src: ${(props) => props.src};
 `;
 
-const Info_Box = styled.div`
+const InfoBox = styled.div`
   font-size: 0.75rem;
   line-height: 1.5;
   color: rgb(134, 142, 150);
