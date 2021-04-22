@@ -71,7 +71,7 @@ React와 Node.js가 서로 처음 만나 프로젝트를 만들게 되었습니�
 
 #### API 설계
 
-![](https://images.velog.io/images/pmk4236/post/2e012393-c36c-419e-b26a-26bedf34d4e8/api.jpeg)
+![](https://images.velog.io/images/pmk4236/post/c8496019-eaea-49e7-ab18-632c9e4a4601/api.jpeg)
 
 이번 프로젝트는 특히 노션을 적극 활용하여 백엔드와 API 설계를 튼튼하게 하였습니다.
 덕분에 조금의 소통을 더하여 큰 무리없이 데이터 통신을 할 수 있었고, 그 덕에 프로젝트 진도율이 좋았습니다.
