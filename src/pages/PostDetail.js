@@ -13,6 +13,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import { history } from "../redux/configureStore";
+import { RepeatRounded } from "@material-ui/icons";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
@@ -59,6 +60,12 @@ const PostDetail = (props) => {
     e.preventDefault();
     e.stopPropagation();
 
+    // 로그인 없이 좋아요 기능 눌렀을때 알림과함께 로그인화면으로 보내기
+    if (!user) {
+      window.alert("로그인이 필요합니다.");
+      history.push("/login");
+      return;
+    }
     // 좋아요 현재 상태값 갖고 좋아요 함수 실행
     const is_like = props.is_like;
     dispatch(postActions.toggleLikeDB(post_id, is_like));

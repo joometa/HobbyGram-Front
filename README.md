@@ -14,12 +14,12 @@
 
 ### 기간 / 팀구성
 
-(2021.04.12 ~ 2021.04.22)
+- 2021.04.12 ~ 2021.04.22
 
-- Front-end
+* Front-end
   - 이정주(React)
   - 박민경(React)
-- Back-end
+* Back-end
   - 박현준(Node.js)
   - 김연재(Node.js)
 
