@@ -35,19 +35,6 @@ const initialState = {
   text: null,
 };
 
-// const initialPost = {
-//   _id: null,
-//   title:
-//     "제목이 들어갈 자리입니다. 그래서 아무도 제목말고는 볼 수 없어요. 진짜에요.",
-//   user: "작성자",
-//   commentCnt: 0,
-//   recommendCnt: 0,
-//   img:
-//     "https://cdn.crowdpic.net/list-thumb/thumb_l_1ED169F054035E14E5A306D7947BC544.jpg",
-//   category: "카테고리",
-//   content: "하이",
-// };
-
 const addPostDB = (title, content, imgfile, category, username) => {
   return function (dispatch, getState, { history }) {
     // 이미지가 포함되어있기때문에 formdata로 서버와 소통한다.
@@ -177,7 +164,7 @@ const editPostDB = (content, title, id) => {
           _id: id,
           content: content,
         };
-        console.log(new_post_data);
+        // console.log(new_post_data);
         dispatch(editPost(new_post_data));
         window.alert("수정 되었습니다!");
       })
@@ -197,7 +184,7 @@ const deletePostDB = (id) => {
       },
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(deletePost(id));
       })
       .catch((err) => {

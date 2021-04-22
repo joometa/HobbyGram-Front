@@ -30,6 +30,11 @@ const Signup = () => {
       window.alert("8~16자리의 영문과 숫자를 조합해주세요!");
       return;
     }
+    // 비밀번호와 비밀번호확인이 일치하지 않을 때
+    if (pwd !== pwdcheck) {
+      window.alert("비밀번호가 일치하지 않습니다. 다시 입력 해주세요.");
+      return;
+    }
     dispatch(userActions.signUpDB(email, name, pwd, pwdcheck));
   };
 

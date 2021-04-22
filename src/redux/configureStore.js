@@ -8,6 +8,7 @@ import Post from "./modules/post";
 
 export const history = createBrowserHistory();
 
+// 루트리듀서(여러개 모듈을 하나로 묶어서 사용)
 const rootReducer = combineReducers({
   user: User,
   post: Post,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   router: connectRouter(history),
 });
 
+// 미들웨어(thunk로) 설정
 const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 현재환경 (개발환경, 프로덕션(배포)환경 ...)
@@ -26,6 +28,7 @@ if (env === "development") {
   middlewares.push(logger);
 }
 
+// 리덕스 데브툴 사용설정
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -33,8 +36,10 @@ const composeEnhancers =
       })
     : compose;
 
+//미들웨어 적용
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
+// 스토어에 루트리듀서와 미들웨어랑 리덕스데브툴 적용된 enhancer 적용
 let store = (initialStore) => createStore(rootReducer, enhancer);
 
 export default store();

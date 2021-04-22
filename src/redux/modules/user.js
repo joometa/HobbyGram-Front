@@ -57,12 +57,17 @@ const LoginDB = (email, pwd) => {
       },
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+
+        // 서버로부터 받은 토큰 변수에 할당
         const jwtToken = res.data.result.user.token;
+
         // 서버로 부터 받은 토큰을 쿠키에 저장 (key:value 형태)
         setCookie("is_login", jwtToken);
+
         // 통신 시 헤더에 default 값으로 저장
         axios.defaults.headers.common["Authorization"] = `${jwtToken}`;
+
         const user = {
           email: email,
           name: res.data.result.user.name,
@@ -83,6 +88,7 @@ const getUserDB = () => {
     // 로그인 시 쿠키에 이미 is_login으로 토큰이 저장되어 있기 때문에
     const jwtToken = getCookie("is_login");
     // console.log(jwtToken);
+
     // 새로고침하면 헤더 default도 날라가기 때문에 다시 토큰을 달아준다.
     // 백엔드에서 헤더로 넘어온 Authorization 에서 토큰 값에서 토큰값을 뽑아주기로 함.
     axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`;
@@ -113,22 +119,22 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        // 로그인시 받은 회원 정보
-        console.log(action.payload);
+        // 로그인시 받은 회원 정보 저장, is_login 상태 true 변경
         draft.user = action.payload.user;
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        console.log("로그아웃!");
         //쿠키 삭제
         deleteCookie("is_login");
+
         // 유저정보 삭제 하고 로그인상태 false로 변경
         draft.user = null;
         draft.is_login = false;
       }),
     [GET_USER]: (state, action) =>
       produce(state, (draft) => {
+        // 로그인상태(is_login) true로 변경
         draft.user = action.payload.user;
         draft.is_login = true;
       }),

@@ -19,8 +19,6 @@ const InitialState = {
   list: [],
 };
 
-// Mock-API : https://607541d80baf7c0017fa5966.mockapi.io/post
-
 // DB에 댓글 추가
 const addCommentDB = (user_name, comment, post_id) => {
   return function (dispatch, getState, { history }) {
@@ -54,7 +52,6 @@ const deleteCommentDB = (comment_id) => {
       },
     })
       .then((res) => {
-        console.log(res);
         dispatch(deleteComment(comment_id));
       })
       .catch((err) => {
