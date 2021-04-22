@@ -73,6 +73,12 @@ const PostDetail = (props) => {
 
   // 댓글작성 실행함수
   const addComment = () => {
+    // 로그인 없이 댓글 작성시 알림창 생성
+    if (!user) {
+      window.alert("로그인이 필요합니다.");
+      return;
+    }
+
     // 댓글 입력내용없이 작성버튼누를시 내용입력하라는 알림창 생성
     if (!comment) {
       window.alert("댓글 내용을 입력해주세요.");
