@@ -27,32 +27,83 @@
 
 ### Hobbygram이란?
 
-#### 시현영상 [Youtube]()
+#### 시현영상 [Youtube](https://www.youtube.com/watch?v=SvFizxRfeeU)
 
 ```
-React와 Node.js가 서로 처음 만나 프로젝트를 만들게 되었습니다. 'CRUD의 기능을 확실하게 담으면서 완벽하게 복습하자'는 취지로 시작하였습니다.
+React와 Node.js가 서로 처음 만나 프로젝트를 만들게 되었습니다.
+'CRUD의 기능을 확실하게 담으면서 완벽하게 복습하자'는 취지로 시작하였습니다.
 
-네이버 카페 커뮤니티에서 영감을 받아 사용자가 원하는 취미를 카테고리화하여 그 속에서 공통된 취미를 가진 사람들끼리 소통할 수 있는 커뮤니티 사이트를 만들었습니다.
+네이버 카페 커뮤니티에서 영감을 받아 사용자가 원하는 취미를 카테고리화하여
+그 속에서 공통된 취미를 가진 사람들끼리 소통할 수 있는 커뮤니티 사이트를 만들었습니다.
 ```
 
 ## 🕹 기능정보
 
-### 1.
+### 1.로그인 / 로그아웃
 
-<!-- ![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/68773118/115060060-5ba24e00-9f22-11eb-970f-071c75ddba67.gif) -->
+```
+JWT 방식을 활용하여 토큰을 쿠키에 저장하는 방향으로 로그인/회원가입 기능을 구현하였습니다.
+```
 
-### 2.
+![로그인](https://user-images.githubusercontent.com/61656046/115672995-16997400-a387-11eb-8912-b2e0e3deaecc.gif)
 
-<!-- ![image](https://user-images.githubusercontent.com/68773118/115060153-7ffe2a80-9f22-11eb-9d58-fef5deefcf97.png) -->
+![로그아웃](https://user-images.githubusercontent.com/61656046/115673351-814aaf80-a387-11eb-92c3-e0afdb25f417.gif)
 
-### 3.
+### 2. 회원가입
 
-### 4.반응형 웹
+![회원가입](https://user-images.githubusercontent.com/61656046/115673819-fcac6100-a387-11eb-8ff1-e07317d1183a.gif)
+
+### 3. 게시글(C.R.U.D)
+
+#### 작성
+
+![게시글작성](https://user-images.githubusercontent.com/61656046/115675959-12228a80-a38a-11eb-89be-c974ea379819.gif)
+
+#### 수정
+
+![게시글수정](https://user-images.githubusercontent.com/61656046/115676717-d3d99b00-a38a-11eb-83bc-11a27e1288b0.gif)
+
+#### 삭제
+
+![게시글 삭제](https://user-images.githubusercontent.com/61656046/115677565-91648e00-a38b-11eb-8243-7565a40f8192.gif)
+
+### 4. 댓글(C.D)
+
+#### 작성(로그인 전 / 후)
+
+![댓글작성(로긴전)](https://user-images.githubusercontent.com/61656046/115678640-b1488180-a38c-11eb-803d-b58147ef5965.gif)
+![댓글작성(로긴후)](https://user-images.githubusercontent.com/61656046/115679164-3cc21280-a38d-11eb-9358-1da5a4a01d34.gif)
+
+#### 삭제
+
+![댓글삭제](https://user-images.githubusercontent.com/61656046/115679572-af32f280-a38d-11eb-88a5-0976c3b67bb6.gif)
+
+### 5. 좋아요(로그인 전 / 후)
+
+#### 로그인 전
+
+![좋아요(로그인전)](https://user-images.githubusercontent.com/61656046/115681077-23ba6100-a38f-11eb-80e9-7184866dbb3f.gif)
+
+#### 로그인 후
+
+![좋아요(로그인후)](https://user-images.githubusercontent.com/61656046/115681082-25842480-a38f-11eb-99fa-49a6c3872bf5.gif)
+
+### 6. 페이지네이션
+
+![페이지네이션](https://user-images.githubusercontent.com/61656046/115681088-26b55180-a38f-11eb-936e-bf577708b436.gif)
+
+### 7. 카테고리별 게시글 호출
+
+![카테고리별 게시글호출](https://user-images.githubusercontent.com/61656046/115681093-287f1500-a38f-11eb-91c7-f3910c372a4a.gif)
+
+### 8. 반응형 웹
 
 ![리사이징(메인)](https://user-images.githubusercontent.com/61656046/115669268-0b444980-a383-11eb-88d5-f8a2934d8458.gif)
 ![리사이징(댓글,좋아요)](https://user-images.githubusercontent.com/61656046/115669278-0d0e0d00-a383-11eb-9f02-8dd27793c152.gif)
 
-- @media 함수를 활용하여 모바일 및 태블릿에서도 화면 일그러짐이 없도록 하였습니다.
+```
+@media 를 활용하여 모바일 및 태블릿에서도 화면 일그러짐이 없도록 하였습니다.
+```
 
 ---
 
@@ -85,20 +136,20 @@ React와 Node.js가 서로 처음 만나 프로젝트를 만들게 되었습니�
 
 #### View 설계
 
-<!-- 다른 팀원이 github에 공유 레포지토리를 생성하는 동안 View를 분석하여 <span style="color:#FF7948">Figma를 이용해 팀원간 공유할 수 있는 자료</span>를 만들었습니다.
-Figma는 디자인 툴이긴 하나 현업에서 디자이너와 협업 시에 접하게 될 수도 있겠다는 생각에 간단하게나마 직접 사용해보고자 했습니다.
-**협업하는 이가 어떤 일을 어떻게 하는 지 관심을 가지는 것도 중요하다고 생각하기 때문입니다.**
-
-View를 분석할 때는 눈에 보이는 디자인을 기준으로 <span style="color:#FF7948">컴포넌트를 어떻게 세분화 시킬 지</span> 고민하며 분석했습니다.
+<!-- View를 분석할 때는 눈에 보이는 디자인을 기준으로 <span style="color:#FF7948">컴포넌트를 어떻게 세분화 시킬 지</span> 고민하며 분석했습니다.
 프로젝트를 진행하며 **데이터를 효율적으로 관리할 수 있도록 데이터의 흐름도 고려하여 컴포넌트를 설계해야 함을 깨달았습니다.** -->
-
-<!-- ![](https://images.velog.io/images/mygomi/post/90c4df29-2462-4a7a-b43e-a38ea46b26ea/image.png) -->
 
 ## 🔎 We learned
 
 #### 이정주
 
-1.
+1. axios를 이용해 백엔드 측과 통신을 주고받으며 내가 보낸 요청이 서버측으로 어떤 모양새로 전송이 되는지 화면을 공유하며 insomnia를 통해 직접 눈으로 볼 수 있었고 API 설계를 더 꼼꼼히 작성하면 이후의 일이 더 수월해 질 수 있다는 것을 몸소 체감하게 되었습니다.
+
+2. 이번 프로젝트에서 **GUI(소스트리)**를 처음 사용하였습니다. branch, merge, pull-request 등의 기능을 같은 프론트엔드 팀원과의 협업에서 모두 사용해보았고 덕분에 git을 활용한 협업에 대해 이해도가 많이 상승하게 된 기간이었습니다.
+
+3. JWT 방식의 로그인/회원가입 기능구현을 처음 해보았습니다. 토큰을 활용한 인증 및 axios 통신에서 토큰을 헤더에 담는 방식 등에 대해 많이 알게 되었습니다. 저희는 토큰을 쿠키에 담아서 활용하였습니다.
+
+4. 이미지가 포함된 정보를 주고받을때 formdata를 사용해야 한다는 것을 배웠고 formdata를 이용해 서버와 요청을 주고받는 방식에 대한 이해도가 향상되었습니다.
 
 #### 박민경
 
