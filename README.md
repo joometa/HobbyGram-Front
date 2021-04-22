@@ -1,4 +1,4 @@
-# DANOSHOP 클론코딩
+# Hobbygram
 
 <!-- ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/68773118/115060264-a0c68000-9f22-11eb-8c3d-c009883847c3.gif) -->
 
@@ -14,12 +14,12 @@
 
 ### 기간 / 팀구성
 
-- 2021.04.12 ~ 2021.04.22
+(2021.04.12 ~ 2021.04.22)
 
-* Front-end
+- Front-end
   - 이정주(React)
   - 박민경(React)
-* Back-end
+- Back-end
   - 박현준(Node.js)
   - 김연재(Node.js)
 
