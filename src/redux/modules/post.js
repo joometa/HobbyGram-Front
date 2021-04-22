@@ -97,26 +97,28 @@ const addPostDB = (title, content, imgfile, category, username) => {
 // Mock-API : "https://607541d80baf7c0017fa5966.mockapi.io/post"
 const setPostDB = (text = null, page = 1) => {
   return function (dispatch, getState, { history }) {
+    // 카테고리 값이 없으면 전체 목록 보여주기
     if (text === null) {
       axios({
         method: "get",
         url: `${config.api}/post?page=${page}`,
       }).then((docs) => {
-        // console.log(docs.data);
         const post_list = docs.data;
-        console.log(post_list);
+        // console.log(post_list);
+
+        // 페이지 이동 시, 포스트가 하나라도 없다면
         if (post_list.post.length == 0) {
           window.alert("마지막 페이지입니다");
           return;
         }
         dispatch(setPost(post_list));
       });
+      // 카테고리별로 보여주기
     } else {
       axios({
         method: "get",
         url: `${config.api}/post/${text}`,
       }).then((docs) => {
-        // console.log(docs.data);
         const post_list = docs.data;
         // console.log(post_list);
         if (post_list.post.length == 0) {
