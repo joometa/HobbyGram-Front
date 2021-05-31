@@ -1,6 +1,5 @@
 # HobbyGram(미니프로젝트)
 
-<!-- ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/68773118/115060264-a0c68000-9f22-11eb-8c3d-c009883847c3.gif) -->
 
 ## :pushpin: 목차
 
@@ -49,7 +48,7 @@
 현재 서비스 중인 카테고리 : 음악 / 여행 / 맛집 / 반려동물
 ```
 
-#### 시현영상 [Youtube](https://www.youtube.com/watch?v=SvFizxRfeeU)
+#### 시연영상 [Youtube](https://www.youtube.com/watch?v=SvFizxRfeeU)
 
 ```
 React와 Node.js가 서로 처음 만나 프로젝트를 만들게 되었습니다.
